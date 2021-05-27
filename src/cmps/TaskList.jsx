@@ -1,16 +1,14 @@
 import React from 'react'
-import {taskPreview } from './taskPreview.jsx'
+import {TaskPreview } from './TaskPreview.jsx'
 
 export function TaskList({tasks,onRemoveTask}) {
     return (
         <React.Fragment>
-
-            <h3>tasks</h3>
         <div className="task-list">
             {tasks.map(task => {
                 return (
-                    <div  key={task._id}>
-                        <ToysPreview  onRemoveTask={onRemoveTask} task={task}  />
+                    <div  key={task.id}>
+                        <TaskPreview task={task}  />
                     </div>
                 )
             })
