@@ -22,14 +22,14 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const {isTaskDetailsShow} = this.state;
+        const { isTaskDetailsShow } = this.state;
         // const board = this.props.currBoard
         // console.log(board);
         // if (!board) return <div>Loading</div>
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <div className="board-container">
-            {board.groups.map(group => {
+            {(board.groups) && board.groups.map(group => {
                 return (
                     <div key={group.id}>
                         <Group board={board} group={group} />
@@ -38,7 +38,7 @@ class _BoardDetails extends React.Component {
             })
             }
 
-        
+
         </div>
     }
 }
