@@ -31,7 +31,7 @@ class _BoardDetails extends React.Component {
             {board.groups.map(group => {
                 return (
                     <div key={group.id}>
-                        <Group group={group} />
+                        <Group board={board} group={group} />
                     </div>
                 )
             })
