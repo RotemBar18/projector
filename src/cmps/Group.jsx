@@ -2,6 +2,7 @@ import React from 'react'
 import { TaskList } from './TaskList.jsx'
 
 export function Group({ group }) {
+    console.log(group);
     return (
             <div className="group">
                 <h3>{group.title}</h3>

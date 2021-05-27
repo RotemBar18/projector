@@ -14,6 +14,7 @@ async function query() {
 }
 
 function getById(boardId) {
+    console.log('boardId', boardId)
     return storageService.get(boardId)
 }
 
