@@ -1,0 +1,46 @@
+.group {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-inline: 5px;
+    background-color: #ebecf0;
+    border-radius: 5px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        
+        h4 {
+            color: #243757;
+            margin: 3px;
+            height: 48px;
+            margin: 8px;
+        }
+        .options {
+            background-color: #ebecf0;
+            color: #6d798e;
+            margin: 8px;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 3px;
+        }
+        .options:hover {
+            background-color: rgba(136, 148, 182, 0.164);
+            color: #243757;
+        }
+    }
+    .task-list {
+        width: 265px;
+        padding: 6px 8px;
+    }
+    .add-task-toggle-btn {
+        background-color: #ebecf0;
+        color: #6d798e;
+        margin: 0;
+        padding: 6px 8px;
+    }
+    .add-task-toggle-btn:hover {
+        background-color: rgba(136, 148, 182, 0.164);
+        color: #3f465c;
+    }
+}

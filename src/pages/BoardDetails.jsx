@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
-import { setBoard, loadBoards } from '../store/actions/boardActions.js'
-import { TaskDetails } from '../cmps/TaskDetails'
+import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.js'
+import { groupService } from '../services/groupService.js'
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -16,6 +16,13 @@ class _BoardDetails extends React.Component {
     getBoardDetails = () => {
         const { boardId } = this.props.match.params;
         this.props.setBoard(boardId)
+    }
+
+    onAddTask = (groupId,newTitle) => {
+        const board = this.props.currBoard
+        groupService.addTask(board, groupId,newTitle)
+        this.props.saveBoard(board)
+
     }
 
     goBack = () => {
@@ -33,7 +40,7 @@ class _BoardDetails extends React.Component {
             {(board.groups) && board.groups.map(group => {
                 return (
                     <div key={group.id}>
-                        <Group board={board} group={group} />
+                        <Group board={board} group={group} onAddTask={this.onAddTask} />
                     </div>
                 )
             })
@@ -47,12 +54,13 @@ class _BoardDetails extends React.Component {
 function mapStateToProps(state) {
     return {
         currBoard: state.boardModule.currBoard,
-        // loggedinUser: state.userModule.loggedinUser,
+        boards: state.boardModule.boards,
     }
 }
 const mapDispatchToProps = {
     setBoard,
-    loadBoards
+    loadBoards,
+    saveBoard
 }
 
 export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)

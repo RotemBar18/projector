@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
-
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
@@ -22,6 +21,7 @@ export class TaskPreview extends Component {
     }
 
     convertNumToDate = (deuDate) => {
+        if (!deuDate) return
         const deuDatePreview = taskService.getDueDatePreview(deuDate)
         return deuDatePreview
     }
@@ -41,7 +41,8 @@ export class TaskPreview extends Component {
                         return <LabelPreview lable={label} />
                     }) : ''}
                 </div>
-                <h4>{task.title} </h4>
+                <h5>{task.title}</h5>
+                <div className='badges'>
                 <div className='dew-date'>
                     {this.convertNumToDate(task.dueDate)}
                 </div>
@@ -50,6 +51,7 @@ export class TaskPreview extends Component {
                 {/* <Link className="toy-edit" to={`/toy/edit/${toy._id}`}>edit</Link> */}
                 <div className='checklists-preview'>
                     {(task.checklists) ? this.getChecklistsPreview(task.checklists) : ''}
+                </div>
                 </div>
                 {isTaskDetailsShow &&
                     <TaskDetails toggleTaskDetails={this.toggleAddMail}>TaskDetails</TaskDetails>

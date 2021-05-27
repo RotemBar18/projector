@@ -24,9 +24,12 @@ function remove(boardId) {
 }
 
 async function save(board) {
+    console.log('board._id', board._id)
     if (board._id) {
-        return await storageService.put(board)
+        console.log('board put', board)
+        return await storageService.put('board_db',board)
     } else {
+        console.log('board post', board)
         return await storageService.post('board_db',board)
     }
 }
