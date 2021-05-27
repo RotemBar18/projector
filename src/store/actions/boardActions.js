@@ -3,10 +3,10 @@ import { userService } from '../../services/userService'
 import { socketService, SOCKET_EVENT_BOARD_ADDED } from '../../services/socketService'
 
 
-export function loadBoard() {
+export function loadBoards() {
   return async dispatch => {
     try {
-      const board = await boardService.query()
+      const boards = await boardService.query()
       dispatch({ type: 'SET_BOARDS', boards })
 
       // socketService.on(SOCKET_EVENT_BOARD_ADDED, board =>{
@@ -19,16 +19,18 @@ export function loadBoard() {
   }
 }
 
-export function addBoard(board) {
+export function saveBoard(board) { // Action Creator
+  const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
   return async dispatch => {
     try {
-      const addedBoard = await boardService.add(board)
-      dispatch({ type: 'ADD_BOARD', board: addedBoard })
+      const savedBoard = await boardService.save(board)
+      dispatch({type, board: savedBoard})
     } catch (err) {
-      console.log('BoardActions: err in addBoard', err)
+      console.log('BoardActions: err in save/update board', err)
     }
   }
 }
+
 
 export function removeBoard(boardId) {
   return async dispatch => {
@@ -40,3 +42,16 @@ export function removeBoard(boardId) {
     }
   }
 }
+
+
+export function setBoard(boardId) { // Action Creator
+  return dispatch => {
+      try{
+
+        await boardService.getById(boardId)
+          dispatch({type: 'SET_CURR_BOARD',currBoard: board})
+        } catch (err) {
+          console.log('BoardActions: err in setBoard', err)
+        }
+      }
+    }

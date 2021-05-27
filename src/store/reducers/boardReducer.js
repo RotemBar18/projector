@@ -5,19 +5,21 @@ const initialState = {
 
 export function boardReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'SET_BOARD':
-      return { ...state, reviews: action.reviews }
+    case 'SET_BOARDS':
+      return { ...state, boards: action.boards }
     case 'ADD_BOARD':
-      return { ...state, reviews: [...state.reviews, action.review] }
-    case 'REMOVE_BOARD':
-      return { ...state, reviews: state.reviews.filter(review => review._id !== action.reviewId) }
+      return { ...state, boards: [...state.boards, action.board] }
     case 'UPDATE_BOARD':
       return {
         ...state,
-        reviews: state.reviews.map(review =>
-          review._id === action.review._id ? action.review : review
+        boards: state.boards.map(board =>
+          boards._id === action.board._id ? action.board : board
         )
       }
+    case 'REMOVE_BOARD':
+      return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
+    case 'SET_CURR_BOARD':
+      return { ...state, currBoard: action.currBoard }
     default:
       return state
   }
