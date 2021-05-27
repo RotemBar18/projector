@@ -33,7 +33,7 @@ class _TaskDetails extends Component {
 
 function mapStateToProps(state) {
     return {
-        setBoard,
+
     }
 }
 
