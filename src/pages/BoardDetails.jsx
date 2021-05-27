@@ -1,18 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
-// import { Group } from '../cmps/Group.jsx';
+import { Group } from '../cmps/Group.jsx';
 import { setBoard, loadBoards } from '../store/actions/boardActions.js'
 import {TaskDetails } from '../cmps/TaskDetails'
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
     state = {
-        isTaskDetailsShow: true,
     }
 
     componentDidMount() {
-        const { boardId } = this.props.match.params;
-        console.log('boardId',boardId);
         this.getBoardDetails()
     }
 
@@ -26,21 +23,28 @@ class _BoardDetails extends React.Component {
         this.props.history.push('/board')
     }
 
-    toggleTaskDetails = () => {
-        this.setState({ isTaskDetailsShow: !this.state.isTaskDetailsShow })
-      }
-
     render() {
         const {isTaskDetailsShow} = this.state;
         console.log(isTaskDetailsShow)
         // const board = this.props.currBoard
         // console.log(board);
         // if (!board) return <div>Loading</div>
-        return 
-            {isTaskDetailsShow &&
-            <button>
-                <TaskDetails toggleTaskDetails={this.toggleAddMail}>TaskDetails</TaskDetails>
-            </button>}
+        const board = this.props.currBoard
+        console.log(this.props.currBoard);
+        console.log(board);
+        if (!board) return <div>Loading</div>
+        return <div className="board-container">
+            {board.groups.map(group => {
+                return (
+                    <div key={group.id}>
+                        <Group board={board} group={group} />
+                    </div>
+                )
+            })
+            }
+
+        
+        </div>
     }
 }
 
