@@ -1,0 +1,145 @@
+[{
+    "_id": "b101",
+    "title": "Sprint 4",
+    "createdAt": 1622107839665,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3ukMucs"
+    },
+    "style": {
+        "backgroundColor": "blue"
+    },
+    "labels": [{
+            "id": "l101",
+            "title": "Done",
+            "color": "#61bd4f"
+        },
+        {
+            "id": "l102",
+            "title": "InProgress",
+            "color": "yellow"
+        },
+        {
+            "id": "l103",
+            "title": "NotStarted",
+            "color": "red"
+        }
+
+    ],
+    "members": [{
+            "_id": "u101",
+            "fullname": "Roey Barda",
+            "imgUrl": "https://bit.ly/3ukMucs"
+        },
+        {
+            "_id": "u102",
+            "fullname": "Rotem Bar",
+            "imgUrl": "https://bit.ly/3hX34fZ"
+        },
+        {
+            "_id": "u103",
+            "fullname": "Noa Kaplan",
+            "imgUrl": "https://bit.ly/2RIHwsW"
+        }
+    ],
+    "groups": [{
+            "id": "g101",
+            "title": "Things To Do",
+            "tasks": [{
+                    "id": "t101",
+                    "title": "Come up with the app name"
+                },
+                {
+                    "id": "t102",
+                    "title": "Create app logo"
+                }
+            ],
+            "style": {
+                "backgroundColor": "grey"
+            }
+        },
+        {
+            "id": "g102",
+            "title": "Doing",
+            "tasks": [{
+                    "id": "t103",
+                    "title": "Create demo data"
+                },
+                {
+                    "id": "t104",
+                    "title": "Finishing demo 1",
+                    "description": "everything that needs to be ready by sunday",
+                    "comments": [{
+                        "id": "ZdPnm",
+                        "txt": "need more detailted check-lists",
+                        "createdAt": 1622107839665,
+                        "byMember": {
+                            "_id": "u102",
+                            "fullname": "Rotem Bar",
+                            "imgUrl": "https://bit.ly/3hX34fZ"
+                        }
+                    }],
+                    "checklists": [{
+                        "id": "YEhmF",
+                        "title": "Checklist",
+                        "todos": [{
+                            "id": "212jX",
+                            "title": "Json",
+                            "isDone": true
+                        }, {
+                            "id": "213jX",
+                            "title": "Full flow of app",
+                            "isDone": false
+                        }, {
+                            "id": "214jX",
+                            "title": "Basic design",
+                            "isDone": false
+                        }, {
+                            "id": "215jX",
+                            "title": "Drag & Drop",
+                            "isDone": false
+                        }, {
+                            "id": "216jX",
+                            "title": "CRUD",
+                            "isDone": true
+                        }]
+                    }],
+                    "members": [{
+                        "_id": "u101",
+                        "username": "Tal",
+                        "fullname": "Tal Tarablus",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    }],
+                    "labelIds": ["101"],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "Tal",
+                        "fullname": "Tal Tarablus",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    },
+                    "style": {
+                        "bgColor": "#26de81"
+                    }
+                }
+            ],
+            "style": {}
+        }
+    ],
+    "activities": [{
+        "id": "a101",
+        "txt": "Changed Color",
+        "createdAt": 154514,
+        "byMember": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c101",
+            "title": "Replace Logo"
+        }
+    }]
+}]
