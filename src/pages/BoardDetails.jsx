@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
-
 import { setBoard, loadBoards } from '../store/actions/boardActions.js'
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
@@ -13,7 +12,6 @@ class _BoardDetails extends React.Component {
         const { boardId } = this.props.match.params;
         console.log('boardId',boardId);
         this.getBoardDetails()
-        // socketService.emit('toy', 'hello toy')
     }
 
     getBoardDetails = () => {
@@ -25,13 +23,6 @@ class _BoardDetails extends React.Component {
     goBack = () => {
         this.props.history.push('/board')
     }
-
-    // onRemoveReview = async (review, toy) => {
-    //     if (this.props.loggedinUser._id !== review.by._id) return console.log('you are not the creator of this review')
-    //     await this.props.removeReview(review._id, toy)
-    //     this.getToyDetails()
-    // }
-
 
     render() {
         const board = this.props.currBoard
@@ -49,6 +40,7 @@ class _BoardDetails extends React.Component {
         </div>
     }
 }
+
 function mapStateToProps(state) {
     return {
         currBoard: state.boardModule.currBoard,
@@ -59,6 +51,5 @@ const mapDispatchToProps = {
     setBoard,
     loadBoards
 }
-
 
 export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)

@@ -1,83 +1,56 @@
 [{
     "_id": "b101",
-    "title": "Sprint 4",
-    "createdAt": 1622107839665,
+    "title": "Robot dev proj",
+    "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u101",
-        "fullname": "Roey Barda",
-        "imgUrl": "https://bit.ly/3ukMucs"
+        "fullname": "Abi Abambi",
+        "imgUrl": "http://some-img"
     },
-    "style": {
-        "backgroundColor": "blue"
-    },
+    "style": {},
     "labels": [{
-            "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
-        },
-        {
-            "id": "l102",
-            "title": "InProgress",
-            "color": "yellow"
-        },
-        {
-            "id": "l103",
-            "title": "NotStarted",
-            "color": "red"
-        }
-
-    ],
+        "id": "l101",
+        "title": "Done",
+        "color": "#61bd4f"
+    }],
     "members": [{
-            "_id": "u101",
-            "fullname": "Roey Barda",
-            "imgUrl": "https://bit.ly/3ukMucs"
-        },
-        {
-            "_id": "u102",
-            "fullname": "Rotem Bar",
-            "imgUrl": "https://bit.ly/3hX34fZ"
-        },
-        {
-            "_id": "u103",
-            "fullname": "Noa Kaplan",
-            "imgUrl": "https://bit.ly/2RIHwsW"
-        }
-    ],
+        "_id": "u101",
+        "fullname": "Tal Tarablus",
+        "imgUrl": "https://www.google.com"
+    }],
     "groups": [{
             "id": "g101",
-            "title": "Things To Do",
+            "title": "Group 1",
             "tasks": [{
-                    "id": "t101",
-                    "title": "Come up with the app name"
+                    "id": "c101",
+                    "title": "Replace logo"
                 },
                 {
-                    "id": "t102",
-                    "title": "Create app logo"
+                    "id": "c102",
+                    "title": "Add Samples"
                 }
             ],
-            "style": {
-                "backgroundColor": "grey"
-            }
+            "style": {}
         },
         {
             "id": "g102",
-            "title": "Doing",
+            "title": "Group 2",
             "tasks": [{
-                    "id": "t103",
-                    "title": "Create demo data"
+                    "id": "c103",
+                    "title": "Do that"
                 },
                 {
-                    "id": "t104",
-                    "title": "Finishing demo 1",
-                    "description": "everything that needs to be ready by sunday",
+                    "id": "c104",
+                    "title": "Help me",
+                    "description": "description",
                     "comments": [{
                         "id": "ZdPnm",
-                        "txt": "need more detailted check-lists",
-                        "createdAt": 1622107839665,
+                        "txt": "also @yaronb please CR this",
+                        "createdAt": 1590999817436.0,
                         "byMember": {
-                            "_id": "u102",
-                            "fullname": "Rotem Bar",
-                            "imgUrl": "https://bit.ly/3hX34fZ"
+                            "_id": "u101",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         }
                     }],
                     "checklists": [{
@@ -85,24 +58,8 @@
                         "title": "Checklist",
                         "todos": [{
                             "id": "212jX",
-                            "title": "Json",
-                            "isDone": true
-                        }, {
-                            "id": "213jX",
-                            "title": "Full flow of app",
+                            "title": "To Do 1",
                             "isDone": false
-                        }, {
-                            "id": "214jX",
-                            "title": "Basic design",
-                            "isDone": false
-                        }, {
-                            "id": "215jX",
-                            "title": "Drag & Drop",
-                            "isDone": false
-                        }, {
-                            "id": "216jX",
-                            "title": "CRUD",
-                            "isDone": true
                         }]
                     }],
                     "members": [{

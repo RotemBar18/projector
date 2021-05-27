@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-
 import { loadBoards } from '../store/actions/boardActions.js'
+
 export class _BoardList extends React.Component {
     componentDidMount() {
-        this.props.loadBoards()
+       const boards =  this.props.loadBoards()
     }
     render() {
 
@@ -14,8 +14,8 @@ export class _BoardList extends React.Component {
             </section>
         )
     }
-
 }
+
 function mapStateToProps(state) {
     return {
     }
