@@ -9,7 +9,7 @@ export const boardService = {
 }
 
 async function query() {
-    let boards = await storageService.query();
+    let boards = await storageService.query('board_db');
     return boards;
 }
 
@@ -21,11 +21,11 @@ function remove(boardId) {
     return storageService.remove(boardId)
 }
 
-function save(board) {
+async function save(board) {
     if (board._id) {
-        return storageService.put(board)
+        return await storageService.put(board)
     } else {
-        return storageService.post(board)
+        return await storageService.post('board_db',board)
     }
 }
 
