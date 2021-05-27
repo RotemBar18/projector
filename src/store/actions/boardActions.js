@@ -16,7 +16,7 @@ export function loadBoards() {
 
 export function saveBoard(board) { // Action Creator
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
-    return async dispatch => {
+    return async dispatch => { 
         try {
             const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
