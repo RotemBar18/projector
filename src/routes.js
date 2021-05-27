@@ -1,6 +1,6 @@
 import { Home } from './pages/Home.jsx'
-import { BoardsList } from './pages/BoardsList.jsx'
-import { BoardPreview } from './pages/BoardApp.jsx'
+import { BoardList } from './pages/BoardList.jsx'
+import { BoardDetails } from './pages/BoardDetails.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 
 export const routes = [
@@ -10,11 +10,11 @@ export const routes = [
     },
     {
         path: '/board',
-        component: BoardsList,
+        component: BoardList,
     },
     {
         path: '/board/:boardId?',
-        component: BoardPreview,
+        component: BoardDetails,
     },
     {
         path: '/login',

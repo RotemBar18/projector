@@ -2,20 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
 
-import { setBoard, } from '../store/actions/board.actions.js'
+import { setBoard, loadBoards } from '../store/actions/boardActions.js'
 // import { socketService } from '../services/socketService.js';
-class _BoardApp extends React.Component {
+class _BoardDetails extends React.Component {
 
     state = {
     }
 
     componentDidMount() {
-        this.getToyDetails()
-        socketService.emit('toy', 'hello toy')
+        const { boardId } = this.props.match.params;
+        console.log('boardId',boardId);
+        this.getBoardDetails()
+        // socketService.emit('toy', 'hello toy')
     }
 
-    getToyDetails = () => {
+    getBoardDetails = () => {
         const { boardId } = this.props.match.params;
+        console.log('boardId',boardId);
         this.props.setBoard(boardId)
     }
 
@@ -32,6 +35,7 @@ class _BoardApp extends React.Component {
 
     render() {
         const board = this.props.currBoard
+        console.log(board);
         if (!board) return <div>Loading</div>
         return <div className="board-container">
             {board.groups.map(group => {
@@ -53,9 +57,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     setBoard,
-    removeReview,
-    addReview
+    loadBoards
 }
 
 
-export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)
+export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)

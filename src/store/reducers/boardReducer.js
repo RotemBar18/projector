@@ -1,5 +1,5 @@
 const initialState = {
-  currBoard: {},
+  currBoard: null,
   boards: [],
 }
 
@@ -13,7 +13,7 @@ export function boardReducer(state = initialState, action = {}) {
       return {
         ...state,
         boards: state.boards.map(board =>
-          boards._id === action.board._id ? action.board : board
+          board._id === action.board._id ? action.board : board
         )
       }
     case 'REMOVE_BOARD':

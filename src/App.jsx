@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { routes } from './routes.js'
 
 import { Header } from './cmps/Header'
 
@@ -14,7 +15,7 @@ export function App() {
         </Switch>
       </main>
       <footer>
-        Starter
+        footer App.jsx
         </footer>
     </div>
   )
