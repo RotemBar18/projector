@@ -2,7 +2,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 
 export function TaskPreview({ task }) {
-
+    
     return (
         <article className={`task-container`}>
             <h4>{task.title} </h4>

@@ -4,7 +4,6 @@ import { loadBoards } from '../store/actions/boardActions.js'
 
 export class _BoardList extends React.Component {
     componentDidMount() {
-       const boards =  this.props.loadBoards()
     }
     render() {
 

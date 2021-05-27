@@ -1,5 +1,5 @@
 import { boardService } from '../../services/boardService'
-import { userService } from '../../services/userService'
+// import { userService } from '../../services/userService'
 // import { socketService, SOCKET_EVENT_BOARD_ADDED } from '../../services/socketService'
 
 export function loadBoards() {
