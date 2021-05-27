@@ -9,8 +9,6 @@ class _BoardDetails extends React.Component {
     }
 
     componentDidMount() {
-        const { boardId } = this.props.match.params;
-        console.log('boardId',boardId);
         this.getBoardDetails()
     }
 
@@ -26,6 +24,7 @@ class _BoardDetails extends React.Component {
 
     render() {
         const board = this.props.currBoard
+        console.log(this.props.currBoard);
         console.log(board);
         if (!board) return <div>Loading</div>
         return <div className="board-container">
