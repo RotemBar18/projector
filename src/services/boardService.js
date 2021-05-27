@@ -8,13 +8,15 @@ export const boardService = {
     remove,
 }
 
+var dataBase = 'board_db'
+
 async function query() {
-    let boards = await storageService.query('board_db');
+    let boards = await storageService.query(dataBase);
     return boards;
 }
 
 function getById(boardId) {
-    return storageService.get(boardId)
+    return storageService.get(dataBase, boardId)
 }
 
 function remove(boardId) {
