@@ -15,7 +15,6 @@ class _BoardDetails extends React.Component {
 
     getBoardDetails = () => {
         const { boardId } = this.props.match.params;
-        console.log('boardId',boardId);
         this.props.setBoard(boardId)
     }
 
@@ -25,13 +24,10 @@ class _BoardDetails extends React.Component {
 
     render() {
         const {isTaskDetailsShow} = this.state;
-        console.log(isTaskDetailsShow)
         // const board = this.props.currBoard
         // console.log(board);
         // if (!board) return <div>Loading</div>
         const board = this.props.currBoard
-        console.log(this.props.currBoard);
-        console.log(board);
         if (!board) return <div>Loading</div>
         return <div className="board-container">
             {board.groups.map(group => {

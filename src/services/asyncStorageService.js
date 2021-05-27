@@ -37,7 +37,7 @@ var gBoards = [{
         "tasks": [{
             "id": "c101",
             "title": "Replace logo",
-            "labelIds": ["101","102"]
+            "labelIds": ["101", "102"]
         },
         {
             "id": "c102",
@@ -74,6 +74,31 @@ var gBoards = [{
                     "id": "212jX",
                     "title": "To Do 1",
                     "isDone": false
+                }, {
+                    "id": "394kdk",
+                    "title": "To Do 1",
+                    "isDone": true
+                }, {
+                    "id": "421uel",
+                    "title": "To Do 1",
+                    "isDone": true
+                }]
+            },
+            {
+                "id": "IYGku",
+                "title": "Checklist2",
+                "todos": [{
+                    "id": "321lds",
+                    "title": "To Do 1",
+                    "isDone": true
+                }, {
+                    "id": "394kdk",
+                    "title": "To Do 1",
+                    "isDone": false
+                }, {
+                    "id": "02i5f",
+                    "title": "To Do 1",
+                    "isDone": true
                 }]
             }],
             "members": [{
