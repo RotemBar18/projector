@@ -17,87 +17,88 @@ var gBoards = [{
     },
     "style": {},
     "labels": [{
-        "id": "l101",
-        "title": "Done",
-        "color": "#61bd4f"
-    },
-    {
-        "id": "l102",
-        "title": "30 min",
-        "color": "#54eef9"
-    }],
+            "id": "l101",
+            "title": "Done",
+            "color": "#61bd4f"
+        },
+        {
+            "id": "l102",
+            "title": "30 min",
+            "color": "#54eef9"
+        }
+    ],
     "members": [{
         "_id": "u101",
         "fullname": "Tal Tarablus",
         "imgUrl": "https://www.google.com"
     }],
     "groups": [{
-        "id": "g101",
-        "title": "Group 1",
-        "tasks": [{
-            "id": "c101",
-            "title": "Replace logo",
-            "labelIds": ["101","102"]
-        },
-        {
-            "id": "c102",
-            "title": "Add Samples"
-        }
-        ],
-        "style": {}
-    },
-    {
-        "id": "g102",
-        "title": "Group 2",
-        "tasks": [{
-            "id": "c103",
-            "title": "Do that"
-        },
-        {
-            "id": "c104",
-            "title": "Help me",
-            "description": "i describe that i need help",
-            "comments": [{
-                "id": "ZdPnm",
-                "txt": "also @yaronb please CR this",
-                "createdAt": 1590999817436.0,
-                "byMember": {
-                    "_id": "u101",
-                    "fullname": "Tal Tarablus",
-                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+            "id": "g101",
+            "title": "Group 1",
+            "tasks": [{
+                    "id": "c101",
+                    "title": "Replace logo",
+                    "labelIds": ["101", "102"]
+                },
+                {
+                    "id": "c102",
+                    "title": "Add Samples"
                 }
-            }],
-            "checklists": [{
-                "id": "YEhmF",
-                "title": "Checklist",
-                "todos": [{
-                    "id": "212jX",
-                    "title": "To Do 1",
-                    "isDone": false
-                }]
-            }],
-            "members": [{
-                "_id": "u101",
-                "username": "Tal",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-            }],
-            "labelIds": ["101"],
-            "createdAt": 1590999730348,
-            "dueDate": 16156215211,
-            "byMember": {
-                "_id": "u101",
-                "username": "Tal",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-            },
-            "style": {
-                "bgColor": "#26de81"
-            }
+            ],
+            "style": {}
+        },
+        {
+            "id": "g102",
+            "title": "Group 2",
+            "tasks": [{
+                    "id": "c103",
+                    "title": "Do that"
+                },
+                {
+                    "id": "c104",
+                    "title": "Help me",
+                    "description": "i describe that i need help",
+                    "comments": [{
+                        "id": "ZdPnm",
+                        "txt": "also @yaronb please CR this",
+                        "createdAt": 1590999817436.0,
+                        "byMember": {
+                            "_id": "u101",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        }
+                    }],
+                    "checklists": [{
+                        "id": "YEhmF",
+                        "title": "Checklist",
+                        "todos": [{
+                            "id": "212jX",
+                            "title": "To Do 1",
+                            "isDone": false
+                        }]
+                    }],
+                    "members": [{
+                        "_id": "u101",
+                        "username": "Tal",
+                        "fullname": "Tal Tarablus",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    }],
+                    "labelIds": ["101"],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "Tal",
+                        "fullname": "Tal Tarablus",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    },
+                    "style": {
+                        "bgColor": "#26de81"
+                    }
+                }
+            ],
+            "style": {}
         }
-        ],
-        "style": {}
-    }
     ],
     "activities": [{
         "id": "a101",
@@ -129,7 +130,6 @@ function query(entityType) {
 function get(entityType, entityId) {
     return query(entityType)
         .then(entities => {
-            console.log(entities)
             return entities.find(entity => entity._id === entityId || entity.id === entityId)
         })
 }

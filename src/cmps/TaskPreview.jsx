@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux'
 import {TaskDetails} from './TaskDetails.jsx'
 
 import React from 'react'
@@ -13,7 +12,6 @@ export class TaskPreview extends Component {
     }
 
    getLableById = (labelId) => {
-        console.log(labelId);
         return this.props.board.labels.find(label => label.id === 'l' + labelId)
     }
 
@@ -33,14 +31,14 @@ export class TaskPreview extends Component {
     }
 
     render(){ 
-        const {task, board} = this.props
+        const {task} = this.props
         const {isTaskDetailsShow} = this.state
         return (
             <article onClick = {this.toggleTaskDetails} className={`task-container`}>
         <div className='label-list'>
         {(task.labelIds) ? task.labelIds.map(labelId => {
             const label = this.getLableById(labelId)
-            return <LabelPreview lable={label} />
+            return <LabelPreview lable={label}/>
         }) : ''}
         </div>
         <h4>{task.title} </h4>

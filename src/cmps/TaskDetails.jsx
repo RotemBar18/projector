@@ -20,21 +20,21 @@ class _TaskDetails extends Component {
     }
 
     render() {
-        const { task } = this.state
-        if (!task) return <div>loading</div> // LOADER
+        // const { task } = this.state
+        // if (!task) return <div>loading</div>
         return (
             <section className="task-details full flex column container">
+              <button className='btn task-details-close' onClick={this.props.toggleAddMail}><i className="fas fa-times"></i></button>
               hi noa
-              <button className='btn-add-mail-close' onClick={this.props.toggleAddMail}><i className="fas fa-times"></i></button>
             </section>
         )
     }
 }
 
 function mapStateToProps(state) {
-    // return {
-    //     loggedInUser: state.appModule.loggedInUser,
-    // }
+    return {
+        setBoard,
+    }
 }
 
 

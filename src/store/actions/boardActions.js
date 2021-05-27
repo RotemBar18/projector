@@ -38,13 +38,11 @@ export function removeBoard(boardId) {
     }
 }
 
-
 export function setBoard(boardId) { // Action Creator
     return async dispatch => {
         try {
 
             const board = await boardService.getById(boardId)
-            console.log(board);
             dispatch({ type: 'SET_CURR_BOARD', currBoard: board })
         } catch (err) {
             console.log('BoardActions: err in setBoard', err)
