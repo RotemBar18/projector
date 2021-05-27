@@ -20,6 +20,11 @@ var gBoards = [{
         "id": "l101",
         "title": "Done",
         "color": "#61bd4f"
+    },
+    {
+        "id": "l102",
+        "title": "30 min",
+        "color": "#54eef9"
     }],
     "members": [{
         "_id": "u101",
@@ -31,7 +36,8 @@ var gBoards = [{
         "title": "Group 1",
         "tasks": [{
             "id": "c101",
-            "title": "Replace logo"
+            "title": "Replace logo",
+            "labelIds": ["101", "102"]
         },
         {
             "id": "c102",
@@ -50,7 +56,7 @@ var gBoards = [{
         {
             "id": "c104",
             "title": "Help me",
-            "description": "description",
+            "description": "i describe that i need help",
             "comments": [{
                 "id": "ZdPnm",
                 "txt": "also @yaronb please CR this",
@@ -68,6 +74,31 @@ var gBoards = [{
                     "id": "212jX",
                     "title": "To Do 1",
                     "isDone": false
+                }, {
+                    "id": "394kdk",
+                    "title": "To Do 1",
+                    "isDone": true
+                }, {
+                    "id": "421uel",
+                    "title": "To Do 1",
+                    "isDone": true
+                }]
+            },
+            {
+                "id": "IYGku",
+                "title": "Checklist2",
+                "todos": [{
+                    "id": "321lds",
+                    "title": "To Do 1",
+                    "isDone": true
+                }, {
+                    "id": "394kdk",
+                    "title": "To Do 1",
+                    "isDone": false
+                }, {
+                    "id": "02i5f",
+                    "title": "To Do 1",
+                    "isDone": true
                 }]
             }],
             "members": [{

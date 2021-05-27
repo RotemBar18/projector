@@ -1,5 +1,5 @@
-import { boardService } from '../../services/boardService.js'
-import { userService } from '../../services/userService'
+import { boardService } from '../../services/boardService'
+// import { userService } from '../../services/userService'
 // import { socketService, SOCKET_EVENT_BOARD_ADDED } from '../../services/socketService'
 
 export function loadBoards() {
@@ -44,7 +44,6 @@ export function setBoard(boardId) { // Action Creator
         try {
 
             const board = await boardService.getById(boardId)
-            console.log(board);
             dispatch({ type: 'SET_CURR_BOARD', currBoard: board })
         } catch (err) {
             console.log('BoardActions: err in setBoard', err)
