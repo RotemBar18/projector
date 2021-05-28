@@ -23,7 +23,7 @@ class _BoardDetails extends React.Component {
         groupService.addTask(board, groupId, newTitle)
         this.props.saveBoard(board)
     }
-    onUpdateTask = ( updatedTask) => {
+    onUpdateTask = (groupId, updatedTask) => {
         const board = this.props.currBoard
         groupService.updateTask(board, groupId, updatedTask)
         this.props.saveBoard(board)

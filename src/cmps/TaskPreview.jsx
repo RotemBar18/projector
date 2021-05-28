@@ -39,14 +39,14 @@ export class TaskPreview extends Component {
         const { task,onUpdateTask } = this.props
         const { isTaskDetailsShow, isTaskOptionsShow } = this.state
         return (
-            <article onClick={this.toggleTaskDetails} className={`task-container`}>
+            <article className={`task-container`}>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
                         const label = this.getLableById(labelId)
                         return <LabelPreview lable={label} />
                     }) : ''}
                 </div>
-                <h5>{task.title}</h5>
+                <h5 onClick={this.toggleTaskDetails} >{task.title}</h5>
                 <div className='badges'>
                     <div className='dew-date'>
                         {this.convertNumToDate(task.dueDate)}
