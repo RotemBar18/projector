@@ -21,7 +21,6 @@ class _Header extends Component {
             </span>}
         </header>
     }
-
 }
 const mapStateToProps = state => {
     return {

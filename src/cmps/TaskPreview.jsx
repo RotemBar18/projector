@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux'
 import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
 import React from 'react'
@@ -60,7 +59,7 @@ export class TaskPreview extends Component {
                 {isTaskOptionsShow &&
                     <TaskOptions onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions}/>}
                 {isTaskDetailsShow &&
-                    <TaskDetails toggleTaskDetails={this.toggleAddMail}>TaskDetails</TaskDetails>
+                    <TaskDetails toggleTaskDetails={this.toggleTaskDetails} task={task}></TaskDetails>
                 }
             </article>
         )

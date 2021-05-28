@@ -38,7 +38,6 @@ export function removeBoard(boardId) {
     }
 }
 
-
 export function setBoard(boardId) { // Action Creator
     return async dispatch => {
         try {
