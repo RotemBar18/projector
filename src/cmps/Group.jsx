@@ -52,24 +52,31 @@ export class Group extends React.Component {
         const { isAddTaskOpen, isGroupOptionOpen } = this.state
 
         return (
-            <div className="group">
-                <div className='header'>
-                    <h4>{group.title}</h4>
-                    <button className='options' onClick={this.onToggleGroupOptions}>more</button>
+            <React.Fragment>
+
+                <div className="group">
+                    <div className='header'>
+                        <h4>{group.title}</h4>
+                        <button className='options' onClick={this.onToggleGroupOptions}>...</button>
+                    </div>
+
+                    {(group.tasks) ? <TaskList onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} group={group} /> : ''}
+                    {!isAddTaskOpen &&
+                        <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
+                    {isAddTaskOpen &&
+                        <form className='add-task-form' onSubmit={this.onToggleAddTask}>
+                            <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={this.handleChange}></textarea>
+                            <div className='add-task-controls'>
+                                <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}>Add card</button>
+                                <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
+                            </div>
+                        </form>
+
+                    }
+                    {isGroupOptionOpen &&
+                        <GroupOptions onToggleGroupOptions={this.onToggleGroupOptions} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
                 </div>
-                {isGroupOptionOpen &&
-                    <GroupOptions onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
-                <TaskList onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} group ={group} />
-                {!isAddTaskOpen &&
-                 <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
-                {isAddTaskOpen &&
-                    <form onSubmit={this.onToggleAddTask}>
-                        <textarea name='title' id="" cols="5" rows="3" onChange={this.handleChange}></textarea>
-                        <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
-                        <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}> Add </button>
-                    </form>
-                }
-            </div>
+            </React.Fragment>
         )
     }
 

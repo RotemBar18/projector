@@ -19,6 +19,7 @@ class _BoardDetails extends React.Component {
     }
 
     handleChange = (ev) => {
+        ev.preventDefault()
         const value = ev.target.value;
         const key = ev.target.name;
         this.setState({ group: { [key]: value } });
@@ -43,6 +44,7 @@ class _BoardDetails extends React.Component {
         this.setState({ isAddGroupOpen: !this.state.isAddGroupOpen })
     }
     onAddGroup = (newGroupTitle) => {
+        this.onToggleAddGroup()
         const board = this.props.currBoard
         groupService.addGroup(board, newGroupTitle)
     }
@@ -72,7 +74,10 @@ class _BoardDetails extends React.Component {
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
-        return <div className="board-container">
+        console.log(board)
+        return <React.Fragment>
+            <div className='board-window' style={(board.style.imgUrl)? {backgroundImage :`url(${board.style.imgUrl})`} :{ backgroundColor: board.style.bgColor }} ></div>
+        <div className="board-container">
             {(board.groups) && board.groups.map(group => {
                 return (
                     <div key={group.id}>
@@ -80,19 +85,22 @@ class _BoardDetails extends React.Component {
                     </div>
                 )
             })
-            }
+        }
             {!isAddGroupOpen &&
                 <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>}
             {isAddGroupOpen &&
-                <form >
-                    <textarea name='title' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
+                <form className='add-group-form' onSubmit={this.handleChange}>
+                    <textarea name='title' placeholder='Enter list title...' className='group-title-input' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
+                    <div className='add-group-controls'>
+                    <button className='add-group-add-btn' onClick={()=>this.onAddGroup(newGroupTitle)}> Add list</button>
                     <button className='add-group-close-btn' onClick={this.onToggleAddGroup}> X </button>
-                    <button className='add-group-add-btn' onClick={this.onAddGroup(newGroupTitle)}> Add list</button>
+                    </div>
                 </form>
             }
 
 
         </div>
+            </React.Fragment>
     }
 }
 
