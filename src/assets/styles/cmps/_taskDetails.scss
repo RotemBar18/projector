@@ -6,7 +6,7 @@
     background-origin: content-box;
     padding: 0px;
     box-sizing: border-box;
-    background-position: left center;
+    align-items: flex-start;
     .window {
         position: fixed;
         width: 100%;
@@ -24,8 +24,6 @@
         width: 700px;
         background-color: #f4f5f7;
         border-radius: 5px;
-        margin: 48px 0 80px;
-        overflow: hidden;
         position: absolute;
         z-index: 99;
     }
@@ -59,7 +57,7 @@
         }
     }
     .comment {
-        align-items: baseline;
+        align-items: flex-end;
         .avatar {
             width: 30px;
             height: 30px;

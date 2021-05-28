@@ -1,9 +1,6 @@
 import { Component } from 'react';
-import { connect } from 'react-redux'
 
 import React from 'react'
-// import { Link } from 'react-router-dom'
-import { LabelPreview } from './LabelPreview.jsx'
 
 export class GroupOptions extends Component {
 

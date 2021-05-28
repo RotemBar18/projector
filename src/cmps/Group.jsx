@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react'
 import React from 'react'
 import { TaskList } from './TaskList.jsx'
 import { GroupOptions } from './GroupOptions.jsx'
@@ -12,7 +11,6 @@ export class Group extends React.Component {
             title: ''
         }
     }
-
 
     handleChange = (ev) => {
         const value = ev.target.value;
@@ -57,7 +55,7 @@ export class Group extends React.Component {
                 </div>
                 {isGroupOptionOpen &&
                     <GroupOptions onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
-                <TaskList onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} />
+                <TaskList onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} group ={group} />
                 <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>
                 {isAddTaskOpen &&
                     <form onSubmit={this.onToggleAddTask}>

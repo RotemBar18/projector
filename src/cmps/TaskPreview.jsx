@@ -1,15 +1,13 @@
 import { Component } from 'react';
-import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 
 export class TaskPreview extends Component {
 
     state = {
-        isTaskDetailsShow: false,
         isTaskOptionsShow: false
     }
 
@@ -36,8 +34,8 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { task,onUpdateTask } = this.props
-        const { isTaskDetailsShow, isTaskOptionsShow } = this.state
+        const {board, group, task,onUpdateTask } = this.props
+        const {isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 <div className='label-list'>
@@ -46,7 +44,8 @@ export class TaskPreview extends Component {
                         return <LabelPreview lable={label} />
                     }) : ''}
                 </div>
-                <h5 onClick={this.toggleTaskDetails} >{task.title}</h5>
+                <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
+</Link>
                 <div className='badges'>
                     <div className='dew-date'>
                         {this.convertNumToDate(task.dueDate)}
@@ -58,9 +57,6 @@ export class TaskPreview extends Component {
                 <button onClick={this.toggleTaskOptions} className='task-options'>Edit</button>
                 {isTaskOptionsShow &&
                     <TaskOptions onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions}/>}
-                {isTaskDetailsShow &&
-                    <TaskDetails toggleTaskDetails={this.toggleTaskDetails} task={task}></TaskDetails>
-                }
             </article>
         )
 
