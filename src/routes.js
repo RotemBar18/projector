@@ -1,5 +1,5 @@
 import { Home } from './pages/Home.jsx'
-import { BoardList } from './pages/BoardList.jsx'
+import { BoardPage } from './pages/BoardPage.jsx'
 import { BoardDetails } from './pages/BoardDetails.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 
@@ -10,7 +10,7 @@ export const routes = [
     },
     {
         path: '/board',
-        component: BoardList,
+        component: BoardPage,
     },
     {
         path: '/board/:boardId?',
