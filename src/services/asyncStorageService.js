@@ -245,7 +245,6 @@ const STORAGE_KEY = 'board_db'
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    console.log('entities',entities);
     if (!entities || !entities.length) {
         entities = gBoards;
         _save(STORAGE_KEY, entities)
@@ -254,10 +253,8 @@ function query(entityType) {
 }
 
 function get(entityType, entityId) {
-    console.log('entityType',entityType);
     return query(entityType)
         .then(entities => {
-            console.log(entities)
             return entities.find(entity => entity._id === entityId || entity.id === entityId)
         })
 }
@@ -273,8 +270,6 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    console.log('updatedEntity', updatedEntity)
-    console.log('entityType', entityType)
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity._id === updatedEntity._id)

@@ -18,11 +18,27 @@ class _BoardDetails extends React.Component {
         this.props.setBoard(boardId)
     }
 
-    onAddTask = (groupId,newTitle) => {
+    onAddTask = (groupId, newTitle) => {
         const board = this.props.currBoard
-        groupService.addTask(board, groupId,newTitle)
+        groupService.addTask(board, groupId, newTitle)
+        this.props.saveBoard(board)
+    }
+    onUpdateTask = ( updatedTask) => {
+        const board = this.props.currBoard
+        groupService.updateTask(board, groupId, updatedTask)
         this.props.saveBoard(board)
 
+    }
+
+    onDeleteGroup = (groupId) => {
+        const board = this.props.currBoard
+        groupService.deleteGroup(board, groupId)
+        this.props.saveBoard(board)
+    }
+    onCopyGroup = (group) => {
+        const board = this.props.currBoard
+        groupService.copyGroup(board, group)
+        this.props.saveBoard(board)
     }
 
     goBack = () => {
@@ -30,17 +46,13 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const { isTaskDetailsShow } = this.state;
-        // const board = this.props.currBoard
-        // console.log(board);
-        // if (!board) return <div>Loading</div>
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <div className="board-container">
             {(board.groups) && board.groups.map(group => {
                 return (
                     <div key={group.id}>
-                        <Group board={board} group={group} onAddTask={this.onAddTask} />
+                        <Group onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                     </div>
                 )
             })

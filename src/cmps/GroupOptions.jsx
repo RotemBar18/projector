@@ -8,16 +8,15 @@ import { LabelPreview } from './LabelPreview.jsx'
 export class GroupOptions extends Component {
 
     
-
     render() {
-        const {onToggleAddTask} = this.props
+        const {onToggleAddTask,onDeleteGroup,onCopyGroup} = this.props
         return (
             <div className='group-options-container'>
             <div className='title'>List Actions</div>
             <hr />
             <button onClick={onToggleAddTask}>Add Card</button>
-            <button>Copy List</button>
-            <button>Delete List</button>
+            <button onClick={onCopyGroup}>Copy List</button>
+            <button onClick={onDeleteGroup}>Delete List</button>
             </div>
             )
 

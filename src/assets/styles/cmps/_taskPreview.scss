@@ -1,4 +1,5 @@
 .task-container {
+    position: relative;
     display: none;
     display: flex;
     flex-direction: column;
@@ -34,6 +35,17 @@
         > *:not(:first-child) {
             margin-left: 5%;
         }
+    }
+    .task-options {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
 
+.task-container:hover {
+    .task-options {
+        display: block;
     }
 }

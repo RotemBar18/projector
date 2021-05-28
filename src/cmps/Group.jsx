@@ -6,7 +6,7 @@ import { GroupOptions } from './GroupOptions.jsx'
 
 export class Group extends React.Component {
     state = {
-        isGroupOptionOpen:false,
+        isGroupOptionOpen: false,
         isAddTaskOpen: false,
         task: {
             title: ''
@@ -21,27 +21,43 @@ export class Group extends React.Component {
     }
 
     onToggleAddTask = () => {
-        this.setState({ isGroupOptionOpen:false })
+        this.setState({ isGroupOptionOpen: false })
         this.setState({ isAddTaskOpen: !this.state.isAddTaskOpen })
     }
     onToggleGroupOptions = () => {
-        this.setState({ isAddTaskOpen:false })
+        this.setState({ isAddTaskOpen: false })
         this.setState({ isGroupOptionOpen: !this.state.isGroupOptionOpen })
     }
+
+    onDeleteGroup = () => {
+        this.onToggleGroupOptions()
+        this.props.onDeleteGroup(this.props.group.id)
+
+    }
+    onCopyGroup = () => {
+        this.onToggleGroupOptions()
+        this.props.onCopyGroup(this.props.group)
+
+    }
+    onUpdateTask = (updatedTask) => {
+        this.props.onUpdateTask(this.props.group.id, updatedTask)
+
+    }
+
     render() {
-        const { group, board, onAddTask } = this.props
+        const { group, board, onAddTask, } = this.props
         const newTaskTitle = this.state.task.title
-        const { isAddTaskOpen,isGroupOptionOpen } = this.state
+        const { isAddTaskOpen, isGroupOptionOpen } = this.state
 
         return (
             <div className="group">
                 <div className='header'>
-                <h4>{group.title}</h4>
-                <button className='options' onClick={this.onToggleGroupOptions}>more</button>
+                    <h4>{group.title}</h4>
+                    <button className='options' onClick={this.onToggleGroupOptions}>more</button>
                 </div>
                 {isGroupOptionOpen &&
-                    <GroupOptions onToggleAddTask={this.onToggleAddTask}/>}
-                <TaskList board={board} tasks={group.tasks} />
+                    <GroupOptions onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
+                <TaskList onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} />
                 <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>
                 {isAddTaskOpen &&
                     <form onSubmit={this.onToggleAddTask}>
