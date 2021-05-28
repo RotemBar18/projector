@@ -25,7 +25,7 @@ function remove(boardId) {
 
 async function save(board) {
     if (board._id) {
-        return await storageService.put(board)
+        return await storageService.put('board_db',board)
     } else {
         return await storageService.post('board_db',board)
     }

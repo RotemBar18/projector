@@ -11,7 +11,9 @@
 @import "basics/forms";
 // Components
 @import "cmps/Header";
-@import "cmps/ReviewList";
+@import "cmps/boardDetails";
+@import "cmps/group";
+@import "cmps/taskPreview";
 @import "cmps/taskDetails";
 //Pages
 @import "pages/BoardList.scss"

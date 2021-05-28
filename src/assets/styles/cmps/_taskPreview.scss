@@ -1,0 +1,51 @@
+.task-container {
+    position: relative;
+    display: none;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 1px 0 #091e4240;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    .label-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3px 6px;
+        .label {
+            font-size: 0.8rem;
+            border-radius: 5px;
+            margin: 3px;
+            color: white;
+            font-weight: 600;
+            padding-inline: 5px;
+        }
+    }
+    h5 {
+        font-weight: 300;
+        margin: 0;
+        margin: 0 9px 4px;
+    }
+    .badges {
+        margin: 0 9px 4px;
+        display: flex;
+        > * {
+            font-size: 1rem;
+            color: #6d798e;
+        }
+        > *:not(:first-child) {
+            margin-left: 5%;
+        }
+    }
+    .task-options {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.task-container:hover {
+    .task-options {
+        display: block;
+    }
+}

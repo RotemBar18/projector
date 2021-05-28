@@ -18,7 +18,7 @@ function getPreview(checklists) {
 }
 
 function getDueDatePreview(deuDate) {
-    const date = new Date(1546108200 * 1000);
+    const date = new Date(deuDate * 1000);
     const month = date.getUTCMonth()
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
