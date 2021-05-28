@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
 import React from 'react'
+import Avatar from '@material-ui/core/Avatar';
 // import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
@@ -20,9 +21,9 @@ export class TaskPreview extends Component {
     toggleTaskDetails = () => {
         this.setState({ isTaskDetailsShow: !this.state.isTaskDetailsShow })
     }
-    toggleTaskOptions = ()=>{
+    toggleTaskOptions = () => {
         this.setState({ isTaskOptionsShow: !this.state.isTaskOptionsShow })
-        
+
     }
 
     convertNumToDate = (deuDate) => {
@@ -36,14 +37,18 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { task,onUpdateTask } = this.props
+        const { task, onUpdateTask, onDeleteTask } = this.props
         const { isTaskDetailsShow, isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
+                <div className='task-cover'>
+                    {console.log(task.style)}
+                    {(task.style)?(task.style.imgUrl)? <img className='img-cover' src={task.style.imgUrl}/>:<div className='bgc-cover' style={{backgroundColor: task.style.bgColor}}></div>:''}
+                </div>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
                         const label = this.getLableById(labelId)
-                        return <LabelPreview lable={label} />
+                        return <LabelPreview key={label.id} lable={label} />
                     }) : ''}
                 </div>
                 <h5 onClick={this.toggleTaskDetails} >{task.title}</h5>
@@ -54,10 +59,15 @@ export class TaskPreview extends Component {
                     <div className='checklists-preview'>
                         {(task.checklists) ? this.getChecklistsPreview(task.checklists) : ''}
                     </div>
+                    <div className='avatars'>
+                        {(task.members) ? task.members.map(member => {
+                            return <Avatar key={member._id} className='avatar' alt={member.fullName} src={member.imgUrl} />
+                        }) : ''}
+                    </div>
                 </div>
-                <button onClick={this.toggleTaskOptions} className='task-options'>Edit</button>
+                <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
                 {isTaskOptionsShow &&
-                    <TaskOptions onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions}/>}
+                    <TaskOptions onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
                 {isTaskDetailsShow &&
                     <TaskDetails toggleTaskDetails={this.toggleTaskDetails} task={task}></TaskDetails>
                 }

@@ -43,6 +43,10 @@ export class Group extends React.Component {
         this.props.onUpdateTask(this.props.group.id, updatedTask)
 
     }
+    onDeleteTask = (taskId) => {
+        this.props.onDeleteTask(this.props.group.id, taskId)
+
+    }
 
     render() {
         const { group, board, onAddTask, } = this.props
@@ -57,11 +61,12 @@ export class Group extends React.Component {
                 </div>
                 {isGroupOptionOpen &&
                     <GroupOptions onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
-                <TaskList onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} />
-                <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>
+                <TaskList onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} board={board} tasks={group.tasks} />
+                {!isAddTaskOpen &&
+                 <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                 {isAddTaskOpen &&
                     <form onSubmit={this.onToggleAddTask}>
-                        <input type="text" name='title' onChange={this.handleChange} />
+                        <textarea name='title' id="" cols="5" rows="3" onChange={this.handleChange}></textarea>
                         <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
                         <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}> Add </button>
                     </form>
