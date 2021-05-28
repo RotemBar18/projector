@@ -12,8 +12,8 @@ import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 
 import { setBoard, loadBoards } from '../store/actions/boardActions.js';
+import { taskService } from '../services/taskService.js';
 
-// import { Link } from 'react-router-dom';
 
 class _TaskDetails extends Component {
 
@@ -23,9 +23,9 @@ class _TaskDetails extends Component {
     }
 
     async componentDidMount() {
-        const task = this.props.task;
-        const board = this.props.currBoard;
-        this.setState({ board, task })
+        const {taskId, groupId, boardId } = this.props.match.params;
+        const task = await taskService.getTaskById(taskId, groupId, boardId);
+        this.setState({ task });
     }
 
     handleChange = ({ target }) => {
@@ -43,38 +43,41 @@ class _TaskDetails extends Component {
         return initials
     }
 
-    getBtnList = () =>{
-       const btns = [
-        {name: 'Members', icon: <PersonOutlineOutlinedIcon className= "icon"/>},
-        {name: 'Labels', icon: <LabelOutlinedIcon className= "icon"/>},
-        {name:'Checklist', icon: <ListOutlinedIcon className= "icon"/>},
-        {name: 'Dates', icon: <TodayOutlinedIcon className= "icon"/>},
-        {name: 'Attachment', icon: <AttachFileOutlinedIcon className= "icon"/>} ];
+    getBtnList = () => {
+        const btns = [
+            { name: 'Members', icon: <PersonOutlineOutlinedIcon className="icon" /> },
+            { name: 'Labels', icon: <LabelOutlinedIcon className="icon" /> },
+            { name: 'Checklist', icon: <ListOutlinedIcon className="icon" /> },
+            { name: 'Dates', icon: <TodayOutlinedIcon className="icon" /> },
+            { name: 'Attachment', icon: <AttachFileOutlinedIcon className="icon" /> }];
         return btns;
     }
 
+    goBack = () => {
+        this.props.history.push(`/board/${this.props.match.params.boardId}`)
+    }
 
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
         console.log(task)
         const content = (task.description) || ''
-        const {byMember} = task;
+        const { byMember } = task;
         return (
-            <section className="task-details">
-                <div className="window flex">
+            <section className="task-details flex">
+                <div className="window" onClick={this.goBack}></div>
                     <div className="card flex column">
                         <div className="cover flex column">
-                            <CloseOutlinedIcon className='btn task-details-close'onClick={this.props.toggleTaskDetails}/>
+                            <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
                             <button className="btn flex">cover</button>
                         </div>
                         <div className="header">
-                            <h2 className="title flex">
-                                <AssignmentOutlinedIcon className="taskIcon" color="disabled"/>
+                            <h3 className="title flex">
+                                <AssignmentOutlinedIcon className="taskIcon" color="disabled" />
                                 <Input defaultValue={task.title}
                                     disableUnderline
                                 />
-                            </h2>
+                            </h3>
                         </div>
                         <div className="main flex row">
                             <div className="details flex column">
@@ -83,12 +86,12 @@ class _TaskDetails extends Component {
                                     <AvatarGroup max={10}>
                                         {task.members && task.members.map(member => {
                                             return <Avatar className="avatar"
-                                                key={member._id}>{this.getNameInitials(member.fullname)}</Avatar>
+                                                key={member._id} src={member.imgUrl}>{this.getNameInitials(member.fullname)}</Avatar>
                                         })}
                                     </AvatarGroup>
                                 </div>}
                                 <div className="form flex column">
-                                    <h3><DescriptionOutlinedIcon color="disabled"/> Description</h3>
+                                    <h3><DescriptionOutlinedIcon className="icon" color="disabled" /> Description</h3>
                                     <TextField className="textarea"
                                         name="content"
                                         id="outlined-multiline-static"
@@ -102,7 +105,7 @@ class _TaskDetails extends Component {
                                     />
                                 </div>
                                 <Grid item className="comment flex">
-                                   {byMember &&<Avatar className="avatar">{this.getNameInitials(byMember.fullname)}</Avatar>}
+                                    {byMember && <Avatar src={byMember.imgUrl} className="avatar">{!byMember.imgUrl && this.getNameInitials(byMember.fullname)}</Avatar>}
                                     <TextField id="input-with-icon-grid" label="Write a comment..." />
                                 </Grid>
                             </div>
@@ -113,7 +116,7 @@ class _TaskDetails extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+               
 
             </section>
         )

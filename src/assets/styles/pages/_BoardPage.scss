@@ -1,0 +1,61 @@
+.board-page{
+    padding: rem(24px);
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+    color: #fff;
+    flex-grow: 1;
+}
+.board-list{
+    max-width: rem(1100px);
+    margin: 0 auto;
+    padding: rem(30px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, rem(250px));
+    grid-gap: rem(20px) rem(10px);
+    gap: rem(20px) rem(10px);
+    justify-content: center;
+}
+
+.create-board{
+    position: fixed;
+    z-index: 1;
+    top: 50;
+    margin-left: 40vw;
+    overflow: auto;
+    background-color: rgb(21, 187, 225);
+    border: 5px solid black;
+}
+
+
+
+.board-preview{
+    padding: rem(15px) rem(10px);
+    width: rem(240px);
+    height: rem(130px);
+    border-radius: rem(5px);
+    text-align: center;
+    color: #fff;
+    position: relative;
+    text-shadow: rem(1px) rem(2px) rem(3px) #000;
+    background-image: url(../../imgs/b101.jpg);
+    background-color: rgb(109, 179, 242);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.new-board{
+    padding: rem(40px) rem(10px);
+    width: rem(240px);
+    height: rem(130px);
+    border-radius: rem(10px);
+    text-align: center;
+    background-color: #5a5959;
+}
+
+.plus-icon{
+    width: rem(50px);
+    opacity: 0.7;
+    filter: invert(1);
+}

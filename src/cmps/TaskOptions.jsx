@@ -11,7 +11,7 @@ export class TaskOptions extends Component {
     }
 
     onUpdateTask = (task) => {
-        this.props.onToggleTaskOptions()
+        // this.props.onToggleTaskOptions()
         task = { ...task, title: this.state.task.title }
         this.props.onUpdateTask(task)
     }
@@ -25,7 +25,7 @@ export class TaskOptions extends Component {
         this.setState({ task: { [key]: value } });
     }
     render() {
-        const { task, onToggleTaskOptions, onDeleteTask } = this.props
+        const { task} = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>

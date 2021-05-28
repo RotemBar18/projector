@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { saveBoard } from '../store/actions/boardActions.js'
+import Plus from '../assets/imgs/plus.png'
 
 class _BoardCreate extends React.Component {
 
@@ -29,8 +30,8 @@ class _BoardCreate extends React.Component {
 
     render() {
         return (
-            <div className="board-create">
-                <button onClick={() => { this.toggleModalVisibility(false) }}>Create New Board</button>
+            <div className="board-create" onClick={() => { this.toggleModalVisibility(false)}}>
+            <img className="plus-icon" src={Plus}/>
                 <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard}>
                     <label htmlFor="title">Board Name</label>
                     <input type="text" name="title" placeholder="Board Name" onChange={this.handleChange}></input>

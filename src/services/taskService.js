@@ -1,13 +1,14 @@
 import { utilService } from './utilService.js'
+import { boardService } from './boardService.js'
 
 export const taskService = {
     getPreview,
     getDueDatePreview,
     addTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    getTaskById
 }
-
 
 function getPreview(checklists) {
     var todosSum = 0
@@ -50,4 +51,11 @@ function deleteTask(board, groupId, taskId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     const updatedTaskId = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
     board.groups[groupIdx].tasks.splice(updatedTaskId, 1)
+}
+
+async function getTaskById(taskId, groupId, boardId) {
+    const board = await boardService.getById(boardId);
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const task = board.groups[groupIdx].tasks.find(task => task.id === taskId)
+    return task
 }

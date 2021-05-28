@@ -104,7 +104,8 @@ var gBoards = [{
                     "title": "To Do 1",
                     "isDone": true
                 }]
-            }
+            },
+            
             ],
             "members": [{
                 "_id": "u101",

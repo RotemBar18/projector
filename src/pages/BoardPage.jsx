@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadBoards, saveBoard } from '../store/actions/boardActions.js'
-import { Link } from 'react-router-dom'
 
 import { BoardList } from '../cmps/BoardList'
 import { BoardCreate } from '../cmps/BoardCreate'
@@ -38,9 +37,9 @@ class _BoardPage extends React.Component {
         const { boards } = this.props
         if (!boards) return <div>Loading...</div>
         return (
-            <section>
-                <h1>Board Page</h1>
-                <BoardCreate />
+            <section className="board-page">
+                <h1>Your Boards</h1>
+                {/* <BoardCreate /> */}
                 <BoardList boards={boards}/>
             </section>
         )

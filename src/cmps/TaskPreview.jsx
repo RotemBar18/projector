@@ -1,16 +1,15 @@
 import { Component } from 'react';
-import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 // import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 
 export class TaskPreview extends Component {
 
     state = {
-        isTaskDetailsShow: false,
         isTaskOptionsShow: false
     }
 
@@ -37,13 +36,13 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { task, onUpdateTask, onDeleteTask } = this.props
-        const { isTaskDetailsShow, isTaskOptionsShow } = this.state
+        const { board, group, task, onUpdateTask, onDeleteTask } = this.props
+        const { isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 <div className='task-cover'>
                     {console.log(task.style)}
-                    {(task.style)?(task.style.imgUrl)? <img className='img-cover' src={task.style.imgUrl}/>:<div className='bgc-cover' style={{backgroundColor: task.style.bgColor}}></div>:''}
+                    {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
@@ -51,7 +50,8 @@ export class TaskPreview extends Component {
                         return <LabelPreview key={label.id} lable={label} />
                     }) : ''}
                 </div>
-                <h5 onClick={this.toggleTaskDetails} >{task.title}</h5>
+                <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
+                </Link>
                 <div className='badges'>
                     <div className='dew-date'>
                         {this.convertNumToDate(task.dueDate)}
@@ -68,9 +68,7 @@ export class TaskPreview extends Component {
                 <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
                 {isTaskOptionsShow &&
                     <TaskOptions onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
-                {isTaskDetailsShow &&
-                    <TaskDetails toggleTaskDetails={this.toggleTaskDetails} task={task}></TaskDetails>
-                }
+
             </article>
         )
 

@@ -15,7 +15,7 @@ html {
 body {
     font-size: rem(18px);
     margin: 0;
-    background-color: rgb(34, 177, 243)
+    background-color: #1a1a1a;
 }
 
 h1,
@@ -32,6 +32,7 @@ section,
 main,
 footer {
     padding: 5px;
+    color: white;
 }
 
 img {
@@ -53,4 +54,11 @@ a:hover {
 
 button{
     cursor: pointer;
+}
+
+.app{ 
+    height: 100vh;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
 }

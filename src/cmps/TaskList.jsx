@@ -1,14 +1,14 @@
 import React from 'react'
 import { TaskPreview } from './TaskPreview.jsx'
 
-export function TaskList({ tasks, board, onDeleteTask, onUpdateTask }) {
+export function TaskList({ tasks, group, board, onDeleteTask, onUpdateTask }) {
     return (
         <React.Fragment>
             <div className="task-list">
                 {tasks.map(task => {
                     return (
                         <div key={task.id}>
-                            <TaskPreview onUpdateTask={onUpdateTask} onDeleteTask={onDeleteTask} board={board} task={task} />
+                            <TaskPreview onUpdateTask={onUpdateTask} onDeleteTask={onDeleteTask} board={board} task={task} group={group} />
                         </div>
                     )
                 })
