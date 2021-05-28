@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadBoards, saveBoard } from '../store/actions/boardActions.js'
-import { Link } from 'react-router-dom'
 
 import { BoardList } from '../cmps/BoardList'
 import { BoardCreate } from '../cmps/BoardCreate'

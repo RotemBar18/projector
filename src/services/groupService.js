@@ -7,7 +7,6 @@ export const groupService = {
     updateTask
 }
 
-
 function addTask(board, groupId, newTitle) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     board.groups[groupIdx].tasks.push({
@@ -15,10 +14,12 @@ function addTask(board, groupId, newTitle) {
         title: newTitle
     })
 }
+
 function deleteGroup(board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     board.groups.splice(groupIdx, 1)
 }
+
 function copyGroup(board, group) {
     const groupIdx = board.groups.findIndex(currGroup => group.id === currGroup.id)
     board.groups.splice(groupIdx, 0, group)

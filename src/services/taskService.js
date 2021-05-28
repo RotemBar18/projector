@@ -1,8 +1,9 @@
+import { boardService } from './boardService.js';
 export const taskService = {
     getPreview,
     getDueDatePreview,
+    getTaskById,
 }
-
 
 function getPreview(checklists) {
     var todosSum = 0
@@ -26,4 +27,11 @@ function getDueDatePreview(deuDate) {
     const subMonth = monthNames[month].substring(0, 3)
     const day = date.getUTCDate()
     return `${subMonth} ${day} `
+}
+
+async function getTaskById(taskId, groupId, boardId) {
+    const board = await boardService.getById(boardId);
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const task = board.groups[groupIdx].tasks.find(task => task.id === taskId)
+    return task
 }
