@@ -5,13 +5,10 @@ export const taskService = {
 
 
 function getPreview(checklists) {
-    console.log('checklists', checklists)
     var todosSum = 0
     var doneTodosSum = 0
     checklists.forEach(checklist => {
-        console.log('checklist', checklist)
         const currTodosSum = checklist.todos.length
-        console.log('currTodosSum', currTodosSum)
         var currDoneTodosSum = checklist.todos.filter(todo => todo.isDone).length
         currDoneTodosSum = (!currDoneTodosSum) ? 0 : currDoneTodosSum
         todosSum += currTodosSum

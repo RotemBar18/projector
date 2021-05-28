@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux'
 import { TaskDetails } from './TaskDetails.jsx'
 import { taskService } from '../services/taskService.js'
 
@@ -34,14 +33,14 @@ export class TaskPreview extends Component {
         const { task } = this.props
         const { isTaskDetailsShow } = this.state
         return (
-            <article onClick={this.toggleTaskDetails} className={`task-container`}>
+            <article className={`task-container`}>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
                         const label = this.getLableById(labelId)
                         return <LabelPreview lable={label} />
                     }) : ''}
                 </div>
-                <h4>{task.title} </h4>
+                <h4  onClick={this.toggleTaskDetails}>{task.title}</h4>
                 <div className='dew-date'>
                     {this.convertNumToDate(task.dueDate)}
                 </div>
@@ -52,7 +51,7 @@ export class TaskPreview extends Component {
                     {(task.checklists) ? this.getChecklistsPreview(task.checklists) : ''}
                 </div>
                 {isTaskDetailsShow &&
-                    <TaskDetails toggleTaskDetails={this.toggleAddMail}>TaskDetails</TaskDetails>
+                    <TaskDetails toggleTaskDetails={this.toggleTaskDetails} task={task}></TaskDetails>
                 }
             </article>
         )

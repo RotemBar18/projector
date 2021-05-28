@@ -22,7 +22,6 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const { isTaskDetailsShow } = this.state;
         // const board = this.props.currBoard
         // console.log(board);
         // if (!board) return <div>Loading</div>

@@ -104,11 +104,18 @@ var gBoards = [{
                         }
                     ],
                     "members": [{
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    }],
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "Rotem",
+                            "fullname": "Rotem Bar",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        }
+                    ],
                     "labelIds": ["101"],
                     "createdAt": 1590999730348,
                     "dueDate": 16156215211,
@@ -247,7 +254,6 @@ const STORAGE_KEY = 'board_db'
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    console.log('entities', entities);
     if (!entities || !entities.length) {
         entities = gBoards;
         _save(STORAGE_KEY, entities)
@@ -256,7 +262,6 @@ function query(entityType) {
 }
 
 function get(entityType, entityId) {
-    console.log('entityType', entityType);
     return query(entityType)
         .then(entities => {
             return entities.find(entity => entity._id === entityId || entity.id === entityId)
