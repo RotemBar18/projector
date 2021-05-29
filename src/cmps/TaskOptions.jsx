@@ -30,15 +30,15 @@ export class TaskOptions extends Component {
     }
     toggleChangeMembers = () => {
         this.setState({ isChangeMembersOpen: !this.state.isChangeMembersOpen })
-
     }
+
     toggleChangeDueDate = () => {
         this.setState({ isChangeDueDateOpen: !this.state.isChangeDueDateOpen })
-
     }
+
     render() {
         const { isEditLabelsOpen, isChangeMembersOpen, isChangeDueDateOpen } = this.state
-        const { onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
+        const { checkLabel, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>
@@ -50,7 +50,7 @@ export class TaskOptions extends Component {
                     <div className='options-btns'>
                         <button className='options-btn' onClick={this.toggleEditLabels} >Edit Labels</button>
                         {isEditLabelsOpen &&
-                            <EditLabels task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
+                            <EditLabels checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
                         }
                         <button className='options-btn' onClick={this.toggleChangeMembers} >Change Members</button>
                         <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>

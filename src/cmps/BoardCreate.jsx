@@ -15,7 +15,6 @@ class _BoardCreate extends React.Component {
     }
 
     toggleModalVisibility = (boolean) => {
-        console.log('boolean', boolean);
         this.setState({ isCreateHidden: boolean })
     }
 

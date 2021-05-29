@@ -48,6 +48,12 @@ export class Group extends React.Component {
     onAddLabel = (taskId, labelId) => {
         this.props.onAddLabel(this.props.group.id, taskId, labelId)
     }
+    checkLabel = (taskId, labelId) => {
+        return this.props.checkLabel(this.props.group.id, taskId, labelId)
+    }
+    onRemoveLabel = (taskId, labelId) => {
+         this.props.onRemoveLabel(this.props.group.id, taskId, labelId)
+    }
 
     render() {
         const { group, board, onAddTask } = this.props
@@ -63,7 +69,7 @@ export class Group extends React.Component {
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
 
-                    {(group.tasks) ? <TaskList board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
+                    {(group.tasks) ? <TaskList checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                     {isAddTaskOpen &&

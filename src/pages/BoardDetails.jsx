@@ -47,6 +47,7 @@ class _BoardDetails extends React.Component {
         this.onToggleAddGroup()
         const board = this.props.currBoard
         groupService.addGroup(board, newGroupTitle)
+        this.props.saveBoard(board)
     }
 
     goBack = () => {
@@ -69,10 +70,19 @@ class _BoardDetails extends React.Component {
         taskService.deleteTask(board, groupId, taskId)
         this.props.saveBoard(board)
     }
-    
+
     onAddLabel = (groupId, taskId, labelId) => {
         const board = this.props.currBoard
         taskService.addLabel(board, groupId, taskId, labelId)
+        this.props.saveBoard(board)
+    }
+    checkLabel = (groupId, taskId, labelId) => {
+        const board = this.props.currBoard
+        return taskService.checkLabel(board, groupId, taskId, labelId)
+    }
+    onRemoveLabel = (groupId, taskId, labelId) => {
+        const board = this.props.currBoard
+        taskService.onRemoveLabel(board, groupId, taskId, labelId)
         this.props.saveBoard(board)
     }
 
@@ -81,14 +91,13 @@ class _BoardDetails extends React.Component {
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
-        console.log(board)
         return <React.Fragment>
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
             <div className="board-container">
                 {(board.groups) && board.groups.map(group => {
                     return (
                         <div key={group.id}>
-                            <Group onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                            <Group checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                         </div>
                     )
                 })

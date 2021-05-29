@@ -66,14 +66,12 @@ class _TaskDetails extends Component {
         res = this.state.task.members.map(member =>{
             return patten.test(member.fullname)
         })
-        console.log(res)
         return res
     }
 
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
-        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members } = task;
         const board = this.props.currBoard;
@@ -148,7 +146,6 @@ class _TaskDetails extends Component {
                     </div>
                 </div>
                 {this.state.isMembersModalShow && <div className="modal members flex column">
-                    {console.log(board)}
                     {board.members && board.members.map(member => {
                         return <div className="member flex"><Avatar className="avatar"
                             key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>

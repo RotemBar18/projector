@@ -8,14 +8,19 @@ export class EditLabels extends Component {
         isEditLabelOpen: false,
         currLabel: null
     }
-
+    onLabelToggle = (taskId, labelId) => {
+        if (this.props.checkLabel(taskId, labelId)) {
+            return this.props.onRemoveLabel(taskId, labelId)
+        }
+        this.props.onAddLabel(taskId, labelId)
+    }
     toggleEditLabel = (label = null) => {
         this.setState({ isEditLabelOpen: !this.state.isEditLabelOpen })
         this.setState({ currLabel: label })
     }
     render() {
         const { isEditLabelOpen, currLabel } = this.state
-        const { task, board, toggleEditLabels, onAddLabel } = this.props
+        const { task, board, toggleEditLabels, checkLabel, onAddLabel } = this.props
         return (<React.Fragment>
 
             {!isEditLabelOpen &&
@@ -28,7 +33,7 @@ export class EditLabels extends Component {
                         <div className='labels'>
                             {board.labels.map(label => {
                                 return <div key={label.id} className='label-preview'>
-                                    <div style={{ backgroundColor: label.color }} className='label-title' onClick={() => onAddLabel(task.id, label.id)}>{label.title}</div>
+                                    <div style={{ backgroundColor: label.color }} className='label-title' onClick={() => this.onLabelToggle(task.id, label.id)}>{label.title}</div>
                                     <button className='open-edit-label-btn' onClick={() => this.toggleEditLabel(label)}>Edit</button>
                                 </div>
 

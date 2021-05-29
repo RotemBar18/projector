@@ -10,11 +10,9 @@ export const groupService = {
 
 
 function addGroup(board, newTitle) {
-    console.log('newTitle', newTitle)
-    console.log('board', board.groups)
     board.groups.push({
         id: 'g' + utilService.makeId(),
-        title: newTitle
+        title: newTitle,
     })
 }
 

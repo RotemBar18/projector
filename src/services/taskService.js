@@ -7,7 +7,9 @@ export const taskService = {
     updateTask,
     deleteTask,
     getTaskById,
-    addLabel
+    addLabel,
+    onRemoveLabel,
+    checkLabel
 }
 
 function getPreview(checklists) {
@@ -36,6 +38,7 @@ function getDueDatePreview(deuDate) {
 
 function addTask(board, groupId, newTitle) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     board.groups[groupIdx].tasks.push({
         id: 'c' + utilService.makeId(),
         title: newTitle
@@ -68,4 +71,24 @@ function addLabel(board, groupId, taskId, labelId) {
     if (!labelIds) return board.groups[groupIdx].tasks[TaskIdx].labelIds = [fitLabelId]
     labelIds.push(fitLabelId)
 
+}
+
+function onRemoveLabel(board, groupId, taskId, labelId) {
+    const fitLabelId = labelId.substring(1, labelId.length)
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const TaskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    let labelIds = board.groups[groupIdx].tasks[TaskIdx].labelIds
+    const labelIdx = labelIds.findIndex(currLabelId => currLabelId === fitLabelId)
+    labelIds.splice(labelIdx, 1)
+}
+
+function checkLabel(board, groupId, taskId, labelId) {
+    const fitLabelId = labelId.substring(1, labelId.length)
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const TaskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    let labelIds = board.groups[groupIdx].tasks[TaskIdx].labelIds
+    if (!labelIds) return false
+    const labelIdx = labelIds.findIndex(currLabelId => currLabelId === fitLabelId)
+    if (labelIdx === -1) return false
+    return true
 }
