@@ -81,6 +81,7 @@ class _BoardDetails extends React.Component {
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
+<<<<<<< HEAD
         console.log(board)
         return <React.Fragment>
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
@@ -104,6 +105,26 @@ class _BoardDetails extends React.Component {
                         </div>
                     </form>
                 }
+=======
+        return <div className="board-container">
+            {(board.groups) && board.groups.map(group => {
+                return (
+                    <div key={group.id}>
+                        <Group onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                    </div>
+                )
+            })
+            }
+            {!isAddGroupOpen &&
+                <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>}
+            {isAddGroupOpen &&
+                <form >
+                    <textarea name='title' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
+                    <button className='add-group-close-btn' onClick={this.onToggleAddGroup}> X </button>
+                    <button className='add-group-add-btn' onClick={()=>this.onAddGroup(newGroupTitle)}> Add list</button>
+                </form>
+            }
+>>>>>>> 72b036a82e5c1a936078f97d1767f1eb7edaee11
 
 
             </div>

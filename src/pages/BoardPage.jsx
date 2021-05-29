@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { loadBoards, saveBoard } from '../store/actions/boardActions.js'
 
 import { BoardList } from '../cmps/BoardList'
-import { BoardCreate } from '../cmps/BoardCreate'
 
 class _BoardPage extends React.Component {
 
@@ -39,7 +38,6 @@ class _BoardPage extends React.Component {
         return (
             <section className="board-page">
                 <h1>Your Boards</h1>
-                {/* <BoardCreate /> */}
                 <BoardList boards={boards}/>
             </section>
         )

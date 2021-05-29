@@ -27,8 +27,9 @@ h6 {
 }
 
 section,
-main,
 footer {
+    display: flex;
+    justify-content: space-around;
     padding: 5px;
 }
 
@@ -49,11 +50,11 @@ a:hover {
     text-decoration: underline;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-.app{ 
+.app {
     height: 100vh;
     background-color: #1a1a1a;
     display: flex;

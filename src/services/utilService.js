@@ -1,8 +1,8 @@
-
 export const utilService = {
     delay,
     getRandomInt,
-    makeId
+    makeId,
+    getNameInitials
 }
 
 function delay(ms = 1500) {
@@ -24,4 +24,13 @@ function makeId(length = 5) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return txt;
+}
+
+function getNameInitials(name){
+    let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
+    let initials = [...name.matchAll(rgx)] || [];
+    initials = (
+        (initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')
+    ).toUpperCase();
+    return initials
 }
