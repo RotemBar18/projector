@@ -58,21 +58,21 @@ class _TaskDetails extends Component {
     }
 
     toggleMembersModal = () => {
-        this.setState({...this.state, isMembersModalShow: !this.state.isMembersModalShow })
+        this.setState({ ...this.state, isMembersModalShow: !this.state.isMembersModalShow })
     }
 
-    toggleTaskMember =(member) =>{
+    toggleTaskMember = (member) => {
         const board = this.props.currBoard;
         const { task } = this.state
-        taskService.toggleTaskMember(board, this.props.match.params.groupId, task, member)
-        this.setState({...this.state, task}, () => {
+        taskService.toggleTaskMember(task, member)
+        this.setState({ ...this.state, task }, () => {
             this.props.saveBoard(board)
         })
     }
 
-    checkIfMemberInTask= (name) =>{
+    checkIfMemberInTask = (name) => {
         var patten = new RegExp(name);
-        return this.state.task.members?.some(member =>{
+        return this.state.task.members?.some(member => {
             return patten.test(member.fullname)
         })
     }
@@ -80,7 +80,6 @@ class _TaskDetails extends Component {
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
-        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members } = task;
         const board = this.props.currBoard;
@@ -154,13 +153,12 @@ class _TaskDetails extends Component {
                         </div>
                     </div>
                 </div>
-                    {console.log(board)}
                 {this.state.isMembersModalShow && <div className="modal members flex column">
                     {board.members && board.members.map(member => {
                         return <div className="member flex" onClick={() => this.toggleTaskMember(member)}><Avatar className="avatar"
                             key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
                             <p>{member.fullname}</p>
-                            {this.checkIfMemberInTask(member.fullname) && <DoneOutlinedIcon/>}
+                            {this.checkIfMemberInTask(member.fullname) && <DoneOutlinedIcon />}
                         </div>
                     })}
                 </div>}
