@@ -37,12 +37,12 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { checkLabel, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
+        const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
         const { isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 {isTaskOptionsShow &&
-                    <TaskOptions checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
+                    <TaskOptions updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
                 <div className='task-cover'>
                     {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt="" /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div>

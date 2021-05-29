@@ -6,6 +6,7 @@ import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.j
 import { groupService } from '../services/groupService.js'
 import { taskService } from '../services/taskService.js';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
+import { labelService } from '../services/labelService.js';
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -87,6 +88,17 @@ class _BoardDetails extends React.Component {
         taskService.onRemoveLabel(board, groupId, taskId, labelId)
         this.props.saveBoard(board)
     }
+    
+    updateLabel = (currLabel, labelUpdates) => {
+        const board = this.props.currBoard
+        labelService.updateLabel(board, currLabel, labelUpdates)
+        this.props.saveBoard(board)
+    }
+    addLabelToBoard = (newLabel) => {
+        const board = this.props.currBoard
+        labelService.addLabelToBoard(board, newLabel)
+        this.props.saveBoard(board)
+    }
 
     render() {
         const { isAddGroupOpen } = this.state
@@ -100,7 +112,7 @@ class _BoardDetails extends React.Component {
                 {(board.groups) && board.groups.map(group => {
                     return (
                         <div key={group.id}>
-                            <Group checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                            <Group updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                         </div>
                     )
                 })
