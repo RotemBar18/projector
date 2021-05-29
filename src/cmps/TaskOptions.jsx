@@ -1,31 +1,44 @@
 import { Component } from 'react';
+import { EditLabels } from './EditLabels.jsx'
 
 import React from 'react'
 // import { Link } from 'react-router-dom'
 
 export class TaskOptions extends Component {
     state = {
+        isEditLabelsOpen: false,
+        isChangeMembersOpen: false,
+        isChangeDueDateOpen: false,
         task: {
             title: ''
         }
     }
 
     onUpdateTask = (task) => {
-        // this.props.onToggleTaskOptions()
+        this.props.onToggleTaskOptions()
         task = { ...task, title: this.state.task.title }
         this.props.onUpdateTask(task)
     }
-
-
-
-
     handleChange = (ev) => {
         const value = ev.target.value;
         const key = ev.target.name;
         this.setState({ task: { [key]: value } });
     }
+
+    toggleEditLabels = () => {
+        this.setState({ isEditLabelsOpen: !this.state.isEditLabelsOpen })
+    }
+    toggleChangeMembers = () => {
+        this.setState({ isChangeMembersOpen: !this.state.isChangeMembersOpen })
+
+    }
+    toggleChangeDueDate = () => {
+        this.setState({ isChangeDueDateOpen: !this.state.isChangeDueDateOpen })
+
+    }
     render() {
-        const { task} = this.props
+        const { isEditLabelsOpen, isChangeMembersOpen, isChangeDueDateOpen } = this.state
+        const { onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>
@@ -35,10 +48,13 @@ export class TaskOptions extends Component {
                         <button onClick={() => this.onUpdateTask(task)}>Save</button>
                     </div>
                     <div className='options-btns'>
-                        <button >Edit Labels</button>
-                        <button >Change Members</button>
-                        <button >Change Due Date</button>
-                        <button onClick={onDeleteTask}>Delete</button>
+                        <button className='options-btn' onClick={this.toggleEditLabels} >Edit Labels</button>
+                        {isEditLabelsOpen &&
+                            <EditLabels task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
+                        }
+                        <button className='options-btn' onClick={this.toggleChangeMembers} >Change Members</button>
+                        <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
+                        <button className='options-btn' onClick={onDeleteTask}>Delete</button>
                     </div>
 
                     {/* <button onClick={onDeleteTask}>Delete List</button> */}

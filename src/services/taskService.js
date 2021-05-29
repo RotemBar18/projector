@@ -6,7 +6,8 @@ export const taskService = {
     addTask,
     updateTask,
     deleteTask,
-    getTaskById
+    getTaskById,
+    addLabel
 }
 
 function getPreview(checklists) {
@@ -49,12 +50,22 @@ function updateTask(board, groupId, updatedTask) {
 
 function deleteTask(board, groupId, taskId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
-    const updatedTaskId = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-    board.groups[groupIdx].tasks.splice(updatedTaskId, 1)
+    const updatedTaskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    board.groups[groupIdx].tasks.splice(updatedTaskIdx, 1)
 }
 
 function getTaskById(taskId, groupId, board) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     const task = board.groups[groupIdx].tasks.find(task => task.id === taskId)
     return task
+}
+
+function addLabel(board, groupId, taskId, labelId) {
+    const fitLabelId = labelId.substring(1, labelId.length)
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const TaskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    let labelIds = board.groups[groupIdx].tasks[TaskIdx].labelIds
+    if (!labelIds) return board.groups[groupIdx].tasks[TaskIdx].labelIds = [fitLabelId]
+    labelIds.push(fitLabelId)
+
 }

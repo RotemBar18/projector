@@ -1,11 +1,20 @@
-.main-header{
+.main-header {
+    z-index: 1;
     background-color: #7f7f7f;
     display: flex;
     justify-content: space-between;
     padding-left: rem(30px);
     padding-right: rem(30px);
-    a{color: #fff}
-    a:hover{text-decoration: none};
+    a {
+        color: #fff;
+    }
+    a:hover {
+        text-decoration: none;
+    }
 }
 
-.left-header{a{padding-right: rem(10px);}}
+.left-header {
+    a {
+        padding-right: rem(10px);
+    }
+}

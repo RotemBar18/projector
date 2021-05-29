@@ -6,23 +6,26 @@
     background-color: #ebecf0;
     border-radius: 5px;
     .header {
+        width: 265px;
+        height: 37px;
         display: flex;
         justify-content: space-between;
-        
+
         h4 {
             color: #243757;
-            margin: 3px;
-            height: 48px;
-            margin: 8px;
+            margin-top: 5px;
+            padding: 9px;
         }
         .options {
             background-color: #ebecf0;
             color: #6d798e;
-            margin: 8px;
-            padding: 0;
+            padding: 0px;
+            margin: 9px;
             width: 32px;
             height: 32px;
             border-radius: 3px;
+
+            font-weight: 900;
         }
         .options:hover {
             background-color: rgba(136, 148, 182, 0.164);
@@ -32,15 +35,58 @@
     .task-list {
         width: 265px;
         padding: 6px 8px;
+        padding-bottom: 0;
     }
     .add-task-toggle-btn {
         background-color: #ebecf0;
         color: #6d798e;
-        margin: 0;
         padding: 6px 8px;
+        margin: 0px 9px 6px;
+        border-radius: 3px;
+        height: 35px;
     }
     .add-task-toggle-btn:hover {
         background-color: rgba(136, 148, 182, 0.164);
         color: #3f465c;
+    }
+    .add-task-form {
+        padding: 6px 8px;
+        padding-top: 0;
+        .task-title-input {
+            outline: none;
+            border: none;
+            color: #00395aec;
+            box-shadow: 0 1px 0 #091e4240;
+            border-radius: 3px;
+            width: 100%;
+            margin: 0;
+            padding: 8px 12px;
+            resize: none;
+        }
+        .add-task-controls {
+            height: 32px;
+            margin: 8px 0px 0px 0px;
+            display: flex;
+            .add-task-close-btn {
+                padding: 0;
+                margin: 0;
+                width: 32px;
+                font-size: 1.1rem;
+                color: #42526ec5;
+            }
+            .add-task-close-btn:hover {
+                color: #2e3542;
+            }
+            .add-task-add-btn {
+                background-color: #0079bf;
+                color: white;
+                height: 32px;
+                margin: 0px;
+                border-radius: 3px;
+            }
+            .add-task-add-btn:hover {
+                background-color: #0069a7;
+            }
+        }
     }
 }

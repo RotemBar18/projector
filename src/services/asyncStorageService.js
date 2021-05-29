@@ -15,7 +15,11 @@ var gBoards = [{
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
-    "style": {},
+    "style": {
+        "bgColor":'#ffffff',
+        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+        
+    },
     "labels": [{
             "id": "l101",
             "title": "Done",
