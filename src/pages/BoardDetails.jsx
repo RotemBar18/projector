@@ -78,6 +78,15 @@ class _BoardDetails extends React.Component {
         taskService.addLabel(board, groupId, taskId, labelId)
         this.props.saveBoard(board)
     }
+    checkLabel = (groupId, taskId, labelId) => {
+        const board = this.props.currBoard
+        return taskService.checkLabel(board, groupId, taskId, labelId)
+    }
+    onRemoveLabel = (groupId, taskId, labelId) => {
+        const board = this.props.currBoard
+        taskService.onRemoveLabel(board, groupId, taskId, labelId)
+        this.props.saveBoard(board)
+    }
 
     render() {
         const { isAddGroupOpen } = this.state
@@ -91,7 +100,7 @@ class _BoardDetails extends React.Component {
                 {(board.groups) && board.groups.map(group => {
                     return (
                         <div key={group.id}>
-                            <Group onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                            <Group checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                         </div>
                     )
                 })
