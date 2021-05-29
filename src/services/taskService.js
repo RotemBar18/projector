@@ -9,7 +9,8 @@ export const taskService = {
     getTaskById,
     addLabel,
     onRemoveLabel,
-    checkLabel
+    checkLabel,
+    toggleTaskMember
 }
 
 function getPreview(checklists) {
@@ -70,8 +71,9 @@ function addLabel(board, groupId, taskId, labelId) {
     let labelIds = board.groups[groupIdx].tasks[TaskIdx].labelIds
     if (!labelIds) return board.groups[groupIdx].tasks[TaskIdx].labelIds = [fitLabelId]
     labelIds.push(fitLabelId)
-
 }
+
+
 
 function onRemoveLabel(board, groupId, taskId, labelId) {
     const fitLabelId = labelId.substring(1, labelId.length)
@@ -91,4 +93,14 @@ function checkLabel(board, groupId, taskId, labelId) {
     const labelIdx = labelIds.findIndex(currLabelId => currLabelId === fitLabelId)
     if (labelIdx === -1) return false
     return true
+}
+function toggleTaskMember( task, member) {
+    var memberIdx = -1
+    memberIdx = task.members?.findIndex(taskMember => taskMember._id === member._id)
+    if (memberIdx >= 0) {
+        task.members.splice(memberIdx, 1)
+    } else {
+        if(!task.members) task.members = []
+        task.members.push(member)
+    }
 }

@@ -16,9 +16,9 @@ var gBoards = [{
         "imgUrl": "http://some-img"
     },
     "style": {
-        "bgColor":'#ffffff',
+        "bgColor": '#ffffff',
         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        
+
     },
     "labels": [{
             "id": "l101",
@@ -37,15 +37,15 @@ var gBoards = [{
             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
         },
         {
-            "_id": "u107",
+            "_id": "u104",
             "fullname": "Noa Kaplan",
         },
         {
-            "_id": "u108",
+            "_id": "u103",
             "fullname": "Roey Barda",
         },
         {
-            "_id": "u108",
+            "_id": "u102",
             "fullname": "Rotem Bar",
             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
         },
@@ -184,7 +184,7 @@ var gBoards = [{
         "fullname": "Roey Barda",
         "imgUrl": "http://some-img"
     },
-    "style": {},
+    "style": {"imgUrl": "https://bit.ly/3yLM7uN"},
     "labels": [{
         "id": "l101",
         "title": "Done",
@@ -297,8 +297,8 @@ function get(entityType, entityId) {
         })
 }
 
-function post(entityType, newEntity) {
-    newEntity._id = _makeId()
+function post(entityType, newEntity, lastBoardId) {
+    newEntity = _makeNewBoard(newEntity, lastBoardId)
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
@@ -337,4 +337,24 @@ function _makeId(length = 5) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return text
+}
+
+function _makeNewId(lastdId){
+    let IdLetter = lastdId.substring(0, 1)
+    let lastId = +(lastdId.substring(1, lastdId.length))
+    lastId = lastId + 1
+    let newId = IdLetter + lastId
+    return newId
+}
+
+function _makeNewBoard(newEntity, lastdId){
+    newEntity._id = _makeNewId(lastdId)
+    newEntity.style = {"imgUrl": "https://bit.ly/3yLM7uN"}
+    newEntity.activities = {}
+    newEntity.createdAt = Date.now()
+    newEntity.createdBy = {  "_id": "u101", "fullname": "Roey Barda", "imgUrl": "https://bit.ly/3p16jEB"}
+    newEntity.groups = [{id: _makeId(), style: {}, tasks: [{id: _makeId(), labelsIds: [], style:{}, title:"task 1"}], title: "Group 1"}]
+    newEntity.labels = []
+    newEntity.members = []
+    return newEntity
 }

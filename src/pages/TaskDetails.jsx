@@ -18,6 +18,7 @@ import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
 
 
+
 class _TaskDetails extends Component {
 
     state = {
@@ -60,13 +61,20 @@ class _TaskDetails extends Component {
         this.setState({...this.state, isMembersModalShow: !this.state.isMembersModalShow })
     }
 
+    toggleTaskMember =(member) =>{
+        const board = this.props.currBoard;
+        const { task } = this.state
+        taskService.toggleTaskMember(board, this.props.match.params.groupId, task, member)
+        this.setState({...this.state, task}, () => {
+            this.props.saveBoard(board)
+        })
+    }
+
     checkIfMemberInTask= (name) =>{
         var patten = new RegExp(name);
-        var res = false;
-        res = this.state.task.members.map(member =>{
+        return this.state.task.members?.some(member =>{
             return patten.test(member.fullname)
         })
-        return res
     }
 
     render() {
@@ -147,7 +155,7 @@ class _TaskDetails extends Component {
                 </div>
                 {this.state.isMembersModalShow && <div className="modal members flex column">
                     {board.members && board.members.map(member => {
-                        return <div className="member flex"><Avatar className="avatar"
+                        return <div className="member flex" onClick={() => this.toggleTaskMember(member)}><Avatar className="avatar"
                             key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
                             <p>{member.fullname}</p>
                             {this.checkIfMemberInTask(member.fullname) && <DoneOutlinedIcon/>}

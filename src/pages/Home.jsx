@@ -12,8 +12,8 @@ export class Home extends Component {
                         From planning, through working and eventually finishing your project.
                         Projector is flexible to any project you could dream of.
                     </h3>
-                </div>
                 <Link to="/board" className="home-link">COME ON IN!</Link>
+                </div>
             </div>
         )
     }
