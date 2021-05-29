@@ -38,7 +38,7 @@ export class TaskOptions extends Component {
 
     render() {
         const { isEditLabelsOpen, isChangeMembersOpen, isChangeDueDateOpen } = this.state
-        const { checkLabel,updateLabel,addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
+        const { checkLabel,updateLabel,addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, } = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>
@@ -54,7 +54,7 @@ export class TaskOptions extends Component {
                         }
                         <button className='options-btn' onClick={this.toggleChangeMembers} >Change Members</button>
                         <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
-                        <button className='options-btn' onClick={onDeleteTask}>Delete</button>
+                        <button className='options-btn' onClick={()=>onDeleteTask(task.id)}>Delete</button>
                     </div>
 
                     {/* <button onClick={onDeleteTask}>Delete List</button> */}
