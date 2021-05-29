@@ -56,7 +56,7 @@ export class Group extends React.Component {
     }
 
     render() {
-        const { group, board, onAddTask } = this.props
+        const { group, board, onAddTask,updateLabel,addLabelToBoard} = this.props
         const newTaskTitle = this.state.task.title
         const { isAddTaskOpen, isGroupOptionOpen } = this.state
 
@@ -69,7 +69,7 @@ export class Group extends React.Component {
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
 
-                    {(group.tasks) ? <TaskList checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
+                    {(group.tasks) ? <TaskList updateLabel={updateLabel}  addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                     {isAddTaskOpen &&

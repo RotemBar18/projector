@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { EditLabels } from './EditLabels.jsx'
+import { LabelsList } from './LabelsList.jsx'
 
 import React from 'react'
 // import { Link } from 'react-router-dom'
@@ -38,7 +38,7 @@ export class TaskOptions extends Component {
 
     render() {
         const { isEditLabelsOpen, isChangeMembersOpen, isChangeDueDateOpen } = this.state
-        const { checkLabel, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
+        const { checkLabel,updateLabel,addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel } = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>
@@ -50,7 +50,7 @@ export class TaskOptions extends Component {
                     <div className='options-btns'>
                         <button className='options-btn' onClick={this.toggleEditLabels} >Edit Labels</button>
                         {isEditLabelsOpen &&
-                            <EditLabels checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
+                            <LabelsList updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
                         }
                         <button className='options-btn' onClick={this.toggleChangeMembers} >Change Members</button>
                         <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
