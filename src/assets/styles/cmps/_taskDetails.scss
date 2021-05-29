@@ -1,12 +1,10 @@
 .task-details {
     background-color: $clr1;
-    width: 500px;
-    height: 116px;
-    min-height: 116px;
     background-origin: content-box;
     padding: 0px;
     box-sizing: border-box;
     align-items: flex-start;
+    justify-content: space-around;
     .window {
         position: fixed;
         width: 100%;
@@ -25,7 +23,7 @@
         background-color: #f4f5f7;
         border-radius: 5px;
         position: absolute;
-        z-index: 99;
+        z-index: 2;
     }
     .cover {
         background-color: #ffaf3f;
@@ -56,8 +54,12 @@
             background-color: rgb(221, 221, 221);
         }
     }
+    .comments {
+        justify-content: space-around;
+    }
     .comment {
         align-items: flex-end;
+        margin-top: 10px;
         .avatar {
             width: 30px;
             height: 30px;
@@ -70,5 +72,24 @@
     }
     .form {
         margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .modal {
+        position: relative;
+        right: -138px;
+        top: 129px;
+        border-radius: 10px;
+        z-index: 3;
+        .member {
+            background-color: #efefef;
+            height: 30px;
+            margin-bottom: 10px;
+            .avatar {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+                margin-right: 10px
+            }
+        }
     }
 }

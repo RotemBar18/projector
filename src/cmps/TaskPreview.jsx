@@ -41,8 +41,7 @@ export class TaskPreview extends Component {
         return (
             <article className={`task-container`}>
                 <div className='task-cover'>
-                    {console.log(task.style)}
-                    {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
+                    {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl}  alt = ""/> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
