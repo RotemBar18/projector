@@ -16,7 +16,7 @@ import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
-import { EditLabels } from '../cmps/EditLabels';
+import { LabelEdit } from '../cmps/LabelEdit';
 
 
 
