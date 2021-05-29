@@ -73,8 +73,6 @@ function addLabel(board, groupId, taskId, labelId) {
     labelIds.push(fitLabelId)
 }
 
-
-
 function onRemoveLabel(board, groupId, taskId, labelId) {
     const fitLabelId = labelId.substring(1, labelId.length)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
@@ -94,7 +92,7 @@ function checkLabel(board, groupId, taskId, labelId) {
     if (labelIdx === -1) return false
     return true
 }
-function toggleTaskMember( task, member) {
+function toggleTaskMember(task, member) {
     var memberIdx = -1
     memberIdx = task.members?.findIndex(taskMember => taskMember._id === member._id)
     if (memberIdx >= 0) {

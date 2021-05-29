@@ -190,7 +190,7 @@ const mapStateToProps = state => {
   return {
     users: state.userModule.users,
     loggedInUser: state.userModule.loggedInUser,
-    isLoading: state.systemModule.isLoading
+    // isLoading: state.systemModule.isLoading
   }
 }
 const mapDispatchToProps = {
