@@ -73,8 +73,6 @@ function addLabel(board, groupId, taskId, labelId) {
     labelIds.push(fitLabelId)
 }
 
-
-
 function onRemoveLabel(board, groupId, taskId, labelId) {
     const fitLabelId = labelId.substring(1, labelId.length)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)

@@ -16,6 +16,7 @@ import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
+import { EditLabels } from '../cmps/EditLabels';
 
 
 
@@ -24,6 +25,7 @@ class _TaskDetails extends Component {
     state = {
         task: null,
         isMembersModalShow: false,
+        isLabelsModalShow: false,
     }
 
     async componentDidMount() {
@@ -57,8 +59,8 @@ class _TaskDetails extends Component {
         this.props.history.push(`/board/${this.props.match.params.boardId}`)
     }
 
-    toggleMembersModal = () => {
-        this.setState({ ...this.state, isMembersModalShow: !this.state.isMembersModalShow })
+    toggleModal = (modal) => {
+        this.setState({ ...this.state, [modal]: !this.state[modal] })
     }
 
     toggleTaskMember = (member) => {
@@ -77,11 +79,15 @@ class _TaskDetails extends Component {
         })
     }
 
+    toggleEditLabels = () => {
+        this.setState({ isEditLabelsOpen: !this.state.isEditLabelsOpen })
+    }
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
         const description = (task.description) || ''
-        const { byMember, comments, members } = task;
+        const { byMember, comments, members, labelIds } = task;
         const board = this.props.currBoard;
         return (
             <section className="task-details flex">
@@ -111,6 +117,12 @@ class _TaskDetails extends Component {
                                             key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
                                     })}
                                 </AvatarGroup>
+                            </div>}
+                            {labelIds && <div className="lebals">
+                                {labelIds.map(labelId => {
+                                   return <div className="modal lebal">
+                                   </div>
+                                })}
                             </div>}
                             <div className="form flex column">
                                 <h4><DescriptionOutlinedIcon className="icon" color="disabled" /> Description</h4>
@@ -145,8 +157,8 @@ class _TaskDetails extends Component {
                             </div>
                         </div>
                         <div className="sidebar flex column">
-                            <button className="btn flex" onClick={this.toggleMembersModal}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
-                            <button className="btn flex"><LabelOutlinedIcon className="icon" /> Labels</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isMembersModalShow')}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isLabelsModalShow')}><LabelOutlinedIcon className="icon" /> Labels</button>
                             <button className="btn flex"><ListOutlinedIcon className="icon" /> Checklist</button>
                             <button className="btn flex"><TodayOutlinedIcon className="icon" /> Dates</button>
                             <button className="btn flex"><AttachFileOutlinedIcon className="icon" /> Attachment</button>
@@ -161,6 +173,9 @@ class _TaskDetails extends Component {
                             {this.checkIfMemberInTask(member.fullname) && <DoneOutlinedIcon />}
                         </div>
                     })}
+                </div>}
+                {this.state.isLabelsModalShow && <div>
+
                 </div>}
 
             </section>
