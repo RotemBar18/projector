@@ -8,159 +8,316 @@ export const storageService = {
 
 var gBoards = [{
     "_id": "b101",
-    "title": "Robot dev proj",
+    "title": "The Better Trello",
     "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u101",
-        "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3fxLayU"
     },
     "style": {
-        "bgColor": '#ffffff',
-        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-
+        "imgUrl": "https://bit.ly/3yQz8rN"
     },
     "labels": [{
-            "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
-        },
-        {
-            "id": "l102",
-            "title": "30 min",
-            "color": "#54eef9"
-        }
-    ],
+        "id": "l101",
+        "title": "Done",
+        "color": "#61bd4f"
+    }, {
+        "title": "דגדשג",
+        "color": "#ff9f1a",
+        "id": "lfFu98"
+    }, {
+        "title": "To-do",
+        "color": "#eb5a46",
+        "id": "lF2mRT"
+    }, {
+        "title": "Doing",
+        "color": "#f1d600",
+        "id": "lOmqYf"
+    }],
     "members": [{
-            "_id": "u101",
-            "fullname": "Tal Tarablus",
-            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        },
-        {
-            "_id": "u104",
-            "fullname": "Noa Kaplan",
-        },
-        {
-            "_id": "u103",
-            "fullname": "Roey Barda",
-        },
-        {
-            "_id": "u102",
-            "fullname": "Rotem Bar",
-            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        },
-    ],
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3fxLayU"
+    }, {
+        "_id": "u102",
+        "fullname": "Rotem Bar",
+        "imgUrl": "https://bit.ly/34HUb2d"
+    }, {
+        "_id": "u103",
+        "fullname": "Noa Kaplan",
+        "imgUrl": "https://bit.ly/3wHMPHH"
+    }, {
+        "_id": "u104",
+        "fullname": "Hila Meri",
+        "imgUrl": ""
+    }],
     "groups": [{
-            "id": "g101",
-            "title": "Group 1",
-            "tasks": [{
-                    "id": "c101",
-                    "title": "Replace logo",
-                    "labelIds": ["101", "102"],
-                    "style": {
-                        "bgColor": "#26de81",
-                    }
-                },
-                {
-                    "id": "c102",
-                    "title": "Add Samples"
-                }
-            ],
-            "style": {}
-        },
-        {
-            "id": "g102",
-            "title": "Group 2",
-            "tasks": [{
-                    "id": "c103",
-                    "title": "Do that"
-                },
-                {
-                    "id": "c104",
-                    "title": "Help me",
-                    "description": "i describe that i need help",
-                    "comments": [{
-                        "id": "ZdPnm",
-                        "txt": "also @yaronb please CR this",
-                        "createdAt": 1590999817436.0,
-                        "byMember": {
-                            "_id": "u101",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        }
-                    }],
-                    "checklists": [{
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [{
-                                "id": "212jX",
-                                "title": "To Do 1",
-                                "isDone": false
-                            }, {
-                                "id": "394kdk",
-                                "title": "To Do 1",
-                                "isDone": true
-                            }, {
-                                "id": "421uel",
-                                "title": "To Do 1",
-                                "isDone": true
-                            }]
-                        },
-                        {
-                            "id": "IYGku",
-                            "title": "Checklist2",
-                            "todos": [{
-                                "id": "321lds",
-                                "title": "To Do 1",
-                                "isDone": true
-                            }, {
-                                "id": "394kdk",
-                                "title": "To Do 1",
-                                "isDone": false
-                            }, {
-                                "id": "02i5f",
-                                "title": "To Do 1",
-                                "isDone": true
-                            }]
-                        },
-
-                    ],
-                    "members": [{
-                            "_id": "u101",
-                            "username": "Tal",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        },
-                        {
-                            "_id": "u102",
-                            "username": "Rotem",
-                            "fullname": "Rotem Bar",
-                        },
-                        {
-                            "_id": "u103",
-                            "username": "Roey",
-                            "fullname": "Roey Barda",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        }
-                    ],
-                    "labelIds": ["101"],
-                    "createdAt": 1590999730348,
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    }
-                }
-            ],
-            "style": {}
-        }
-    ],
+        "id": "gLNMeY",
+        "title": "Backlog",
+        "tasks": [{
+            "id": "c5nVjK",
+            "title": "Operation: All The Bugs",
+            "description": "One week, all outstanding bugs!",
+            "labelIds": ["F2mRT"],
+            "style": {
+                "bgColor": "blue"
+            },
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }]
+        }, {
+            "id": "covUhe",
+            "title": "Multiple Emojis select",
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }],
+            "description": "Repro Windows/Chrome\n\n1.Open checklist\n2.Use Shift+Click to highlight multiple items\nExpected: Ability to select multiple items",
+            "labelIds": ["F2mRT"]
+        }, {
+            "id": "cvb1Rn",
+            "title": "Company RoadMap",
+            "labelIds": ["F2mRT"],
+            "style": {
+                "imgUrl": "https://i.pinimg.com/originals/f6/b0/8e/f6b08efbe82b77db463cee9770223d5e.gif"
+            },
+            "members": [{
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "c8m7vF",
+            "title": "Metrics and KPI ",
+            "labelIds": ["F2mRT"],
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "cgjwZ3",
+            "title": "Add Tab to react on images",
+            "description": "1.Open any image\n2.Press 'tab'\nExpected: Focus on the emoji reaction field",
+            "labelIds": ["F2mRT"],
+            "style": {
+                "imgUrl": "https://bit.ly/3ftTAaq"
+            },
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }]
+    }, {
+        "id": "grHLeX",
+        "title": "In Progress",
+        "tasks": [{
+            "id": "ccwPce",
+            "title": "Emoji Reaction on comments",
+            "description": "The Emoji Guide To Team Productivity [Infographic]",
+            "labelIds": ["OmqYf"],
+            "style": {
+                "imgUrl": "https://bit.ly/3c3kTGr"
+            },
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }, {
+            "id": "cuvFE9",
+            "title": "The Emoji Guide To Team Productivity [Infographic]",
+            "labelIds": ["OmqYf"],
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "cGnBxQ",
+            "title": "Build Emoji Reactions in our tool - Project Overview",
+            "description": "Let's add Emoji reaction capabilities to our tools",
+            "labelIds": ["OmqYf"],
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "cxSDAj",
+            "title": "Localization",
+            "labelIds": ["OmqYf"],
+            "style": {
+                "bgColor": "green"
+            },
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "cE1n29",
+            "title": "Allow Custom Emojis",
+            "labelIds": ["OmqYf"],
+            "members": [{
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }]
+        }]
+    }, {
+        "id": "ggHGbO",
+        "title": "General Information",
+        "tasks": [{
+            "id": "cW0f4S",
+            "title": "How to use this board",
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }, {
+            "id": "chMMKG",
+            "title": "Add Emoji Reactions on images",
+            "description": "1. log in.\n2. go to any board.\n3. change the board name upper left corner\nexpeted: board name change\nactual: board name change but not save",
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }]
+        }, {
+            "id": "cyg5R9",
+            "title": "Team Members Responsibilities",
+            "description": "Project manager\nAlexia\n\nDev team:\nAmy, Samantha and Chris T\n\nDesign:\nAndre\n\nMarketing\nMarques\n\nSupport\nPriscilla",
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }]
+    }, {
+        "id": "gsFMxg",
+        "title": "Market Research",
+        "tasks": [{
+            "id": "c9pckh",
+            "title": "Video load issues on IE 11",
+            "description": "Repro Windows on IE 11\n\nUpload a video greater than 100mb\n1.Play video\n2.Expected: Video streams in player\n\nActual: Video does not load or stream",
+            "style": {
+                "bgColor": "red"
+            },
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }]
+    }, {
+        "id": "gT1WXg",
+        "title": "Live",
+        "tasks": [{
+            "id": "c50q9s",
+            "title": "Custom emoji for web",
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "cEbkg4",
+            "title": "Emoji support",
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }]
+        }, {
+            "id": "cipfRb",
+            "title": "Material design for Android",
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }]
+    }, {
+        "id": "gfLEh5",
+        "title": "Done",
+        "tasks": [{
+            "id": "cogeY9",
+            "title": "Create demo data",
+            "labelIds": ["101"],
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }]
+    }],
     "activities": [{
         "id": "a101",
         "txt": "Changed Color",
@@ -176,106 +333,247 @@ var gBoards = [{
         }
     }]
 }, {
+    "title": "Sprint 4",
+    "bgColor": "#000",
     "_id": "b102",
-    "title": "The Better Trello",
-    "createdAt": 1589983468418,
-    "createdBy": {
-        "_id": "u102",
-        "fullname": "Roey Barda",
-        "imgUrl": "http://some-img"
+    "style": {
+        "imgUrl": "https://bit.ly/3yLM7uN"
     },
-    "style": {"imgUrl": "https://bit.ly/3yLM7uN"},
-    "labels": [{
-        "id": "l101",
+    "activities": {},
+    "createdAt": 1622312265790,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "gQ3Z3T",
+        "title": "Backlog",
+        "tasks": [{
+            "id": "cG2KTJ",
+            "title": "Adding a login page",
+            "labelIds": ["kk92g"],
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "cT1jJ4",
+            "title": "Adding a drag & drop option",
+            "labelIds": ["kk92g"],
+            "style": {
+                "bgColor": "#ffcc99"
+            },
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "c9pIp2",
+            "title": "Adding Attachments",
+            "labelIds": ["kk92g"],
+            "style": {
+                "bgColor": "purple"
+            },
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "c8lT6S",
+            "title": "Adding Checklists",
+            "labelIds": ["kk92g"],
+            "style": {
+                "bgColor": "#cc99ff"
+            },
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "cjkAPd",
+            "title": "Creating a logo",
+            "labelIds": ["kk92g"],
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "c6nx4D",
+            "title": "Change buttons text to icons",
+            "labelIds": ["kk92g"]
+        }, {
+            "id": "cqxmAn",
+            "title": "Having some drinks and go to the beach once the sprint is over",
+            "labelIds": ["kk92g"],
+            "style": {
+                "imgUrl": "https://bit.ly/3wJ6ffy"
+            },
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }]
+    }, {
+        "id": "gHIs2O",
+        "title": "In Progress",
+        "tasks": [{
+            "id": "cGLmGX",
+            "title": "Creating activity log",
+            "labelIds": ["RH4XC"],
+            "members": [{
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }, {
+            "id": "cxqw5C",
+            "title": "Trying not to go crazy during the sprint",
+            "labelIds": ["RH4XC"],
+            "style": {
+                "imgUrl": "https://bit.ly/2SIkSkc"
+            },
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }, {
+            "id": "cPcuox",
+            "title": "Trying really hard not go crazy during the sprint",
+            "labelIds": ["RH4XC"],
+            "style": {
+                "imgUrl": "https://bit.ly/34tMKeL"
+            },
+            "members": [{
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }, {
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }]
+    }, {
+        "id": "gpPaKf",
         "title": "Done",
-        "color": "#61bd4f"
+        "tasks": [{
+            "id": "cA02R6",
+            "title": "Creating Demo Data",
+            "labelIds": ["2dqpH"],
+            "members": [{
+                "_id": "u104",
+                "fullname": "Hila Meri",
+                "imgUrl": ""
+            }, {
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }]
+        }, {
+            "id": "cvumru",
+            "title": "Building a Homepage",
+            "labelIds": ["2dqpH"],
+            "members": [{
+                "_id": "u103",
+                "fullname": "Noa Kaplan",
+                "imgUrl": "https://bit.ly/3wHMPHH"
+            }, {
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }, {
+            "id": "cLnvy7",
+            "title": "Adding custom labels",
+            "labelIds": ["2dqpH"],
+            "members": [{
+                "_id": "u102",
+                "fullname": "Rotem Bar",
+                "imgUrl": "https://bit.ly/34HUb2d"
+            }]
+        }, {
+            "id": "cNm0P8",
+            "title": "Come up with a name",
+            "labelIds": ["2dqpH"],
+            "style": {
+                "bgColor": "#0099ff"
+            },
+            "members": [{
+                "_id": "u101",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            }]
+        }]
+    }],
+    "labels": [{
+        "title": "To-do",
+        "color": "#eb5a46",
+        "id": "lkk92g"
+    }, {
+        "title": "Doing",
+        "color": "#f1d600",
+        "id": "lRH4XC"
+    }, {
+        "title": "Done",
+        "color": "#60be50",
+        "id": "l2dqpH"
     }],
     "members": [{
         "_id": "u101",
-        "fullname": "Tal Tarablus",
-        "imgUrl": "https://www.google.com"
-    }],
-    "groups": [{
-            "id": "g101",
-            "title": "Group 1",
-            "tasks": [{
-                    "id": "c101",
-                    "title": "Replace logo"
-                },
-                {
-                    "id": "c102",
-                    "title": "Add Samples"
-                }
-            ],
-            "style": {}
-        },
-        {
-            "id": "g102",
-            "title": "Group 2",
-            "tasks": [{
-                    "id": "c103",
-                    "title": "Do that",
-                },
-                {
-                    "id": "c104",
-                    "title": "Help me",
-                    "description": "description",
-                    "comments": [{
-                        "id": "ZdPnm",
-                        "txt": "also @yaronb please CR this",
-                        "createdAt": 1590999817436.0,
-                        "byMember": {
-                            "_id": "u101",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        }
-                    }],
-                    "checklists": [{
-                        "id": "YEhmF",
-                        "title": "Checklist",
-                        "todos": [{
-                            "id": "212jX",
-                            "title": "To Do 1",
-                            "isDone": false
-                        }]
-                    }],
-                    "members": [{
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    }],
-                    "labelIds": ["101"],
-                    "createdAt": 1590999730348,
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81",
-                        "imgUrl": ''
-                    }
-                }
-            ],
-            "style": {}
-        }
-    ],
-    "activities": [{
-        "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": 154514,
-        "byMember": {
-            "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c101",
-            "title": "Replace Logo"
-        }
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3fxLayU"
+    }, {
+        "_id": "u102",
+        "fullname": "Rotem Bar",
+        "imgUrl": "https://bit.ly/34HUb2d"
+    }, {
+        "_id": "u103",
+        "fullname": "Noa Kaplan",
+        "imgUrl": "https://bit.ly/3wHMPHH"
+    }, {
+        "_id": "u104",
+        "fullname": "Hila Meri",
+        "imgUrl": ""
     }]
 }]
 
@@ -339,7 +637,7 @@ function _makeId(length = 5) {
     return text
 }
 
-function _makeNewId(lastdId){
+function _makeNewId(lastdId) {
     let IdLetter = lastdId.substring(0, 1)
     let lastId = +(lastdId.substring(1, lastdId.length))
     lastId = lastId + 1
@@ -347,13 +645,29 @@ function _makeNewId(lastdId){
     return newId
 }
 
-function _makeNewBoard(newEntity, lastdId){
+function _makeNewBoard(newEntity, lastdId) {
     newEntity._id = _makeNewId(lastdId)
-    newEntity.style = {"imgUrl": "https://bit.ly/3yLM7uN"}
+    newEntity.style = {
+        "imgUrl": "https://bit.ly/3yLM7uN"
+    }
     newEntity.activities = {}
     newEntity.createdAt = Date.now()
-    newEntity.createdBy = {  "_id": "u101", "fullname": "Roey Barda", "imgUrl": "https://bit.ly/3p16jEB"}
-    newEntity.groups = [{id: _makeId(), style: {}, tasks: [{id: _makeId(), labelsIds: [], style:{}, title:"task 1"}], title: "Group 1"}]
+    newEntity.createdBy = {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    }
+    newEntity.groups = [{
+        id: _makeId(),
+        style: {},
+        tasks: [{
+            id: _makeId(),
+            labelsIds: [],
+            style: {},
+            title: "task 1"
+        }],
+        title: "Group 1"
+    }]
     newEntity.labels = []
     newEntity.members = []
     return newEntity

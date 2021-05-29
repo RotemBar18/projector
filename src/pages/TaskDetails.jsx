@@ -16,8 +16,8 @@ import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
+import { LabelPreview } from '../cmps/LabelPreview.jsx';
 import { LabelEdit } from '../cmps/LabelEdit';
-
 
 
 class _TaskDetails extends Component {
@@ -83,12 +83,24 @@ class _TaskDetails extends Component {
         this.setState({ isEditLabelsOpen: !this.state.isEditLabelsOpen })
     }
 
+    getLableById = (labelId) => {
+        return this.props.currBoard.labels.find(label => label.id === 'l' + labelId)
+    }
+
+    getLabelProperty = (labelId) => {
+        const board = this.props.currBoard;
+        return board.labels?.find(label => label.id === 'l' + labelId)
+    }
+
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
+        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds } = task;
         const board = this.props.currBoard;
+        const { groupId } = this.props.match.params;
         return (
             <section className="task-details flex">
                 <div className="window" onClick={this.goBack}></div>
@@ -118,10 +130,10 @@ class _TaskDetails extends Component {
                                     })}
                                 </AvatarGroup>
                             </div>}
-                            {labelIds && <div className="lebals">
+                            {labelIds && <div className="labels flex">
                                 {labelIds.map(labelId => {
-                                   return <div className="modal lebal">
-                                   </div>
+                                    const label = this.getLableById(labelId)
+                                    return <LabelPreview key={label.id} lable={label} />
                                 })}
                             </div>}
                             <div className="form flex column">
@@ -174,9 +186,17 @@ class _TaskDetails extends Component {
                         </div>
                     })}
                 </div>}
-                {this.state.isLabelsModalShow && <div>
-
-                </div>}
+                {this.state.isLabelsModalShow &&
+                    <div className="modal labels-list">
+                        {labelIds?.map(labelId => {
+                            const labelProperty = this.getLabelProperty(labelId)
+                            console.log(labelProperty)
+                            return <div className="label" style={{ backgroundColor: labelProperty.color }}>
+                                {labelProperty.title || ''}
+                            </div>
+                        })
+                        }
+                    </div>}
 
             </section>
         )

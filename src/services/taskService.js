@@ -10,7 +10,7 @@ export const taskService = {
     addLabel,
     onRemoveLabel,
     checkLabel,
-    toggleTaskMember
+    toggleTaskMember,
 }
 
 function getPreview(checklists) {
@@ -95,13 +95,14 @@ function checkLabel(board, groupId, taskId, labelId) {
     if (labelIdx === -1) return false
     return true
 }
+
 function toggleTaskMember(task, member) {
     var memberIdx = -1
     memberIdx = task.members?.findIndex(taskMember => taskMember._id === member._id)
     if (memberIdx >= 0) {
         task.members.splice(memberIdx, 1)
     } else {
-        if(!task.members) task.members = []
+        if (!task.members) task.members = []
         task.members.push(member)
     }
 }
