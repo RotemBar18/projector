@@ -108,39 +108,47 @@
             outline: none;
         }
     }
-    .edit-label-colors-pick {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        .color {
-            margin: 0 8px 8px 0;
-            width: 48px;
-            height: 32px;
-            border-radius: 3px;
-            cursor: pointer;
-            &:hover {
-                opacity: 0.5;
+    .edit-label-form {
+        margin-left: 4px;
+        .edit-label-colors-pick {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            .color {
+                margin: 0px 8px 8px 0px;
+                width: 48px;
+                height: 32px;
+                border-radius: 3px;
+                cursor: pointer;
+                &:hover {
+                    opacity: 0.5;
+                }
+                &:nth-child(5n+5) {
+                    margin-right: 4px;
+                }
             }
         }
-    }
-    .edit-label-controls {
-        display: flex;
-        justify-content: space-between;
-        margin: auto;
-        >* {
-            border-radius: 3px;
-            color: #fff;
-            height: 32px;
-            padding: 6px;
-            &:hover {
-                opacity: 0.5;
+        .edit-label-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0;
+            > * {
+                border-radius: 3px;
+                color: #fff;
+                height: 32px;
+                padding: 6px;
+                &:hover {
+                    opacity: 0.5;
+                }
             }
-        }
-        .confirm-btn {
-            background-color: #5aac44;
-        }
-        .delete-btn {
-            background-color: red;
+            .confirm-btn {
+                background-color: #5aac44;
+            }
+            .delete-btn {
+                margin-right: 4px;
+                background-color: red;
+            }
         }
     }
 }

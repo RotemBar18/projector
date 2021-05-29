@@ -36,8 +36,8 @@ export class LabelEdit extends Component {
         this.setState({ label: { ...this.state.label, color } })
     }
     render() {
-        const {  currLabel } = this.state
-        const {  toggleEditLabel } = this.props
+        const { currLabel } = this.state
+        const { toggleEditLabel } = this.props
         return (
             <div className='edit-label-container'>
                 <div className='edit-label-header'>
@@ -63,7 +63,10 @@ export class LabelEdit extends Component {
                     </div>
                     <div className='edit-label-controls'>
                         <button onClick={this.onSaveLabel} className='confirm-btn'>{(currLabel) ? 'Update' : 'Create'}</button>
-                        <button className='delete-btn'>Delete</button>
+                        {(currLabel)&&
+                            <button className='delete-btn'>Delete</button>
+                        }
+
                     </div>
                 </form>
             </div>
