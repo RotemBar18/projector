@@ -80,6 +80,7 @@ class _TaskDetails extends Component {
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
+        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members } = task;
         const board = this.props.currBoard;
@@ -153,6 +154,7 @@ class _TaskDetails extends Component {
                         </div>
                     </div>
                 </div>
+                    {console.log(board)}
                 {this.state.isMembersModalShow && <div className="modal members flex column">
                     {board.members && board.members.map(member => {
                         return <div className="member flex" onClick={() => this.toggleTaskMember(member)}><Avatar className="avatar"
