@@ -15,7 +15,7 @@ export function App() {
         </Switch>
       </main>
       <footer>
-        footer App.jsx
+        Contact Us
         </footer>
     </div>
   )

@@ -1,5 +1,4 @@
 import { BoardPreview } from './BoardPreview'
-import Plus from '../assets/imgs/plus.png'
 import {BoardCreate} from './BoardCreate'
 
 export function BoardList ({boards}){

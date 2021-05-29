@@ -1,0 +1,40 @@
+.group-options-container {
+    z-index: 5;
+    position: absolute;
+    display: flex;
+    top: 40px;
+    left: 100px;
+    width: 270px;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 3px;
+    color: #172b4d;
+    padding: 10px;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+    text-decoration: none;
+    .title {
+        color: #243757;
+        text-align: center;
+        border-bottom: 0.2px solid #0b2450ba;
+    }
+    .devider {
+        width: 260px;
+        border: 0.2px solid #041e4d7a;
+        border-collapse: collapse;
+    }
+    button {
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: rgba(0, 0, 0, 0.068);
+    }
+    .close-group-options-btn {
+        position: absolute;
+        top: 9px;
+        right: 6px;
+        padding: 4px;
+        
+    }
+}

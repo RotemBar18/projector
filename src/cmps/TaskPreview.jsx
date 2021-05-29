@@ -37,12 +37,12 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { board, group, task, onUpdateTask, onDeleteTask } = this.props
+        const { board, group, task, onUpdateTask, onDeleteTask,onAddLabel } = this.props
         const { isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 <div className='task-cover'>
-                    {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl}  alt = ""/> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
+                    {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt = ""/> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div>
                 <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
@@ -67,7 +67,7 @@ export class TaskPreview extends Component {
                 </div>
                 <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
                 {isTaskOptionsShow &&
-                    <TaskOptions onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
+                    <TaskOptions onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
 
             </article>
         )
