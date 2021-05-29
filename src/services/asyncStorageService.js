@@ -16,9 +16,9 @@ var gBoards = [{
         "imgUrl": "http://some-img"
     },
     "style": {
-        "bgColor":'#ffffff',
+        "bgColor": '#ffffff',
         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        
+
     },
     "labels": [{
             "id": "l101",
@@ -37,15 +37,15 @@ var gBoards = [{
             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
         },
         {
-            "_id": "u107",
+            "_id": "u104",
             "fullname": "Noa Kaplan",
         },
         {
-            "_id": "u108",
+            "_id": "u103",
             "fullname": "Roey Barda",
         },
         {
-            "_id": "u108",
+            "_id": "u102",
             "fullname": "Rotem Bar",
             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
         },

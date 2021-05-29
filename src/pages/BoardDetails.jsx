@@ -1,9 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
 import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.js'
 import { groupService } from '../services/groupService.js'
 import { taskService } from '../services/taskService.js';
+import { TaskDetails } from '../pages/TaskDetails.jsx';
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -69,7 +71,7 @@ class _BoardDetails extends React.Component {
         taskService.deleteTask(board, groupId, taskId)
         this.props.saveBoard(board)
     }
-    
+
     onAddLabel = (groupId, taskId, labelId) => {
         const board = this.props.currBoard
         taskService.addLabel(board, groupId, taskId, labelId)
@@ -81,8 +83,8 @@ class _BoardDetails extends React.Component {
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
-        console.log(board)
         return <React.Fragment>
+            <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
             <div className="board-container">
                 {(board.groups) && board.groups.map(group => {
