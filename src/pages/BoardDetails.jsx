@@ -87,7 +87,7 @@ class _BoardDetails extends React.Component {
                 <form >
                     <textarea name='title' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
                     <button className='add-group-close-btn' onClick={this.onToggleAddGroup}> X </button>
-                    <button className='add-group-add-btn' onClick={this.onAddGroup(newGroupTitle)}> Add list</button>
+                    <button className='add-group-add-btn' onClick={()=>this.onAddGroup(newGroupTitle)}> Add list</button>
                 </form>
             }
 
