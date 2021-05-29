@@ -36,6 +36,7 @@ function getDueDatePreview(deuDate) {
 
 function addTask(board, groupId, newTitle) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     board.groups[groupIdx].tasks.push({
         id: 'c' + utilService.makeId(),
         title: newTitle

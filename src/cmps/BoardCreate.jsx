@@ -10,7 +10,8 @@ class _BoardCreate extends React.Component {
         isCreateHidden: true,
         board: {
             "title": '',
-            "bgColor": '#000'
+            "bgColor": '#000',
+            // "imgUrl": "https://bit.ly/3yLM7uN"
         }
     }
 
@@ -24,9 +25,12 @@ class _BoardCreate extends React.Component {
     }
 
     onCreateBoard = (ev) => {
+        const { boards } = this.props
+        const lastBoardId = boards[boards.length - 1]._id
+
         ev.preventDefault()
         if (!this.state.board.title) return
-        this.props.saveBoard(this.state.board)
+        this.props.saveBoard(this.state.board, lastBoardId)
         this.setState({ isCreateHidden: true })
     }
 

@@ -47,6 +47,7 @@ class _BoardDetails extends React.Component {
         this.onToggleAddGroup()
         const board = this.props.currBoard
         groupService.addGroup(board, newGroupTitle)
+        this.props.saveBoard(board)
     }
 
     goBack = () => {
