@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 
+
 export class TaskPreview extends Component {
 
     state = {
