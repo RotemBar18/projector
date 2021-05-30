@@ -28,7 +28,7 @@ var gBoards = [{
         "id": "lfFu98"
     }, {
         "title": "To-do",
-        "color": "#eb5a46",
+        "color": "#00c2e0",
         "id": "lF2mRT"
     }, {
         "title": "Doing",
@@ -63,6 +63,16 @@ var gBoards = [{
             "style": {
                 "bgColor": "blue"
             },
+            "checklists": [{
+                "id": "YEhmF",
+                "title": "Checklist",
+                "todos": [{
+                    "id": "212jX",
+                    "title": "To Do 1",
+                    "isDone": false
+                }]
+            }],
+            "dueDate": 1622370903876,
             "members": [{
                 "_id": "u101",
                 "fullname": "Roey Barda",
