@@ -475,7 +475,7 @@ var gBoards = [{
     "_id": "b102",
     "style": {
         "bgColor": "#ffffff",
-        // "imgUrl": "https://bit.ly/3yLM7uN"
+        "imgUrl": "https://bit.ly/3yLM7uN"
     },
     "activities": [],
     "createdAt": 1622312265790,
@@ -1047,7 +1047,7 @@ function _makeId(length = 5) {
 
 function _makeNewBoard(newEntity, lastdId) {
     newEntity._id = _makeId()
-    newEntity.activities = {}
+    newEntity.activities = []
     newEntity.createdAt = Date.now()
     newEntity.createdBy = {
         "_id": "u101",
