@@ -803,7 +803,7 @@ var gBoards = [{
         "bgColor": "rgb(96, 190, 80)"
     },
     "_id": "pGkYm",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622404972472,
     "createdBy": {
         "_id": "u101",
@@ -830,7 +830,7 @@ var gBoards = [{
         "bgColor": ""
     },
     "_id": "ITzjh",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622404981198,
     "createdBy": {
         "_id": "u101",
@@ -856,7 +856,7 @@ var gBoards = [{
         "bgColor": "rgb(2, 121, 191)"
     },
     "_id": "skpFX",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622405010202,
     "createdBy": {
         "_id": "u101",
@@ -883,7 +883,7 @@ var gBoards = [{
         "bgColor": ""
     },
     "_id": "rgwwY",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622405044526,
     "createdBy": {
         "_id": "u101",
@@ -909,7 +909,7 @@ var gBoards = [{
         "bgColor": "rgb(255, 159, 26)"
     },
     "_id": "W3DV7",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622405075137,
     "createdBy": {
         "_id": "u101",
@@ -936,7 +936,7 @@ var gBoards = [{
         "bgColor": ""
     },
     "_id": "5iiUS",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622405087675,
     "createdBy": {
         "_id": "u101",
@@ -962,7 +962,7 @@ var gBoards = [{
         "bgColor": "rgb(235, 90, 70)"
     },
     "_id": "U6NXw",
-    "activities": {},
+    "activities": [],
     "createdAt": 1622405126183,
     "createdBy": {
         "_id": "u101",
