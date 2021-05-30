@@ -2,7 +2,7 @@ import { utilService } from './utilService.js'
 
 export const taskService = {
     getPreview,
-    getDueDatePreview,
+    getDatePreview,
     addTask,
     updateTask,
     deleteTask,
@@ -27,8 +27,8 @@ function getPreview(checklists) {
     return `${doneTodosSum}/${todosSum}`
 }
 
-function getDueDatePreview(deuDate) {
-    const date = new Date(deuDate * 1000);
+function getDatePreview(currDate) {
+    const date = new Date(currDate * 1000);
     const month = date.getUTCMonth()
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"

@@ -456,21 +456,23 @@ var gBoards = [{
             }]
         }]
     }],
-    "activities": [{
-        "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": 154514,
-        "byMember": {
-            "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c101",
-            "title": "Replace Logo"
+    "activities": [
+        {
+            "id": "a101",
+            "txt": "Changed Color",
+            "createdAt": 1622114211778,
+            "byMember": {
+                "_id": "u101",
+                "fullname": "Abi Abambi",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c101",
+                "title": "Replace Logo"
 
+            }
         }
-    }]
+    ]
 }, {
     "title": "Sprint 4",
     "bgColor": "#000",

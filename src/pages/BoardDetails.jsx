@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
+import { SideBar } from '../cmps/SideBar.jsx';
 import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.js'
 import { groupService } from '../services/groupService.js'
 import { taskService } from '../services/taskService.js';
@@ -11,11 +12,13 @@ import { labelService } from '../services/labelService.js';
 class _BoardDetails extends React.Component {
 
     state = {
+        isSideBarOpen: false,
         isAddGroupOpen: false,
         group: {
             title: ''
         }
     }
+
 
     componentDidMount() {
         this.getBoardDetails()
@@ -26,6 +29,11 @@ class _BoardDetails extends React.Component {
         const value = ev.target.value;
         const key = ev.target.name;
         this.setState({ group: { [key]: value } });
+    }
+
+    onToggleSideBar = () => {
+        console.log('toggi')
+        this.setState({ isSideBarOpen: !this.state.isSideBarOpen })
     }
 
     getBoardDetails = () => {
@@ -88,7 +96,7 @@ class _BoardDetails extends React.Component {
         taskService.onRemoveLabel(board, groupId, taskId, labelId)
         this.props.saveBoard(board)
     }
-    
+
     updateLabel = (currLabel, labelUpdates) => {
         const board = this.props.currBoard
         labelService.updateLabel(board, currLabel, labelUpdates)
@@ -99,15 +107,24 @@ class _BoardDetails extends React.Component {
         labelService.addLabelToBoard(board, newLabel)
         this.props.saveBoard(board)
     }
+    getDatePreview = (dateNum)=>{
+       return taskService.getDatePreview(dateNum)
+    }
 
     render() {
-        const { isAddGroupOpen } = this.state
+        const { isAddGroupOpen, isSideBarOpen } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
+            {!isSideBarOpen &&
+                <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
+            }
+            {isSideBarOpen &&
+                <SideBar getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
+            }
             <div className="board-container">
                 {(board.groups) && board.groups.map(group => {
                     return (
@@ -118,7 +135,8 @@ class _BoardDetails extends React.Component {
                 })
                 }
                 {!isAddGroupOpen &&
-                    <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>}
+                    <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>
+                }
                 {isAddGroupOpen &&
                     <form className='add-group-form' onSubmit={this.handleChange}>
                         <textarea name='title' placeholder='Enter list title...' className='group-title-input' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
