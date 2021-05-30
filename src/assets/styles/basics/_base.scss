@@ -17,8 +17,12 @@ body {
     height: 100vh;
 }
 
-.root, .app, main, .home, .board-page{
+#root, .app, main, .home, .board-page{
     height: 100%;
+}
+
+main {
+    padding-top: rem(25px);
 }
 
 h1,

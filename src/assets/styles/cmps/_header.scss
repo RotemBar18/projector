@@ -5,6 +5,9 @@
     justify-content: space-between;
     padding-left: rem(30px);
     padding-right: rem(30px);
+    width: 100%;
+    position: fixed;
+    opacity: 0.75;
     a {
         color: #fff;
     }
