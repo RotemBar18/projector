@@ -46,7 +46,7 @@ var gBoards = [{
     }, {
         "_id": "u103",
         "fullname": "Noa Kaplan",
-        "imgUrl": "https://bit.ly/3wHMPHH"
+        "imgUrl": "https://bit.ly/2SDYecT"
     }, {
         "_id": "u104",
         "fullname": "Hila Meri",
