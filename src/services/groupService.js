@@ -22,6 +22,7 @@ function deleteGroup(board, groupId) {
 }
 
 function copyGroup(board, group) {
+    const groupCopy = { ...group, id: utilService.makeId() }
     const groupIdx = board.groups.findIndex(currGroup => group.id === currGroup.id)
-    board.groups.splice(groupIdx, 0, group)
+    board.groups.splice(groupIdx, 0, groupCopy)
 }
