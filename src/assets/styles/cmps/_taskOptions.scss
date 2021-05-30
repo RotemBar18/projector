@@ -9,8 +9,8 @@
 }
 .task-options-container {
     position: fixed;
-    top:50px;
-    z-index: 99;
+    top: 50px;
+    z-index: 100;
     display: flex;
     padding: 20px;
     border-radius: 5px;
@@ -27,7 +27,7 @@
             padding: 20px;
             outline: none;
             border-radius: 5px;
-            border: 0.5px solid ;
+            border: 0.5px solid;
             width: 200px;
         }
         button {
@@ -41,22 +41,23 @@
             background-color: #0069a7;
         }
     }
-    .options-btns{
+    .options-btns {
         margin-left: 15px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         .options-btn {
+            margin: 0 0 15px 8px;
+            padding: 6px 12px 6px 8px;
             position: relative;
             color: white;
-            background-color: #0000008c;
+            background-color: #2f2f2fbe;
             width: 150px;
             height: 30px;
             font-size: 0.8rem;
         }
-        .options-btn:hover{          
+        .options-btn:hover {
             background-color: #000000;
-            left:10px
+            left: 10px;
         }
     }
 }
