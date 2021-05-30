@@ -40,6 +40,7 @@ export class LabelEdit extends Component {
         const {  toggleEditLabel } = this.props
         return (
             <div className='edit-label-container'>
+                {console.log('hi noaaa')}
                 <div className='edit-label-header'>
                     <div className='title'>{(currLabel) ? 'Edit Label' : 'Create Label'}</div>
                     <button className='close-edit-label-btn' onClick={toggleEditLabel}>X</button>
