@@ -42,7 +42,7 @@ export class TaskPreview extends Component {
         return (
             <article className={`task-container`}>
                 {isTaskOptionsShow &&
-                    <TaskOptions  updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
+                    <TaskOptions updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
                 <div className='task-cover'>
                     {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt="" /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div>
@@ -53,20 +53,21 @@ export class TaskPreview extends Component {
                     }) : ''}
                 </div>
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
-                <div className='badges'>
-                    <div className='dew-date'>
-                        {this.convertNumToDate(task.dueDate)}
+                    <div className='badges'>
+                    {(task.checklists) ?  <div className='dew-date'>
+                            {this.convertNumToDate(task.dueDate)}
+                        </div>:''}
+
+                        {(task.checklists) ? <div className='checklists-preview'>
+                            {this.getChecklistsPreview(task.checklists)}
+                        </div> : ''}
+                        <div className='avatars'>
+                            {(task.members) ? task.members.map(member => {
+                                return <Avatar key={member._id} className='avatar' alt={member.fullName} src={member.imgUrl} />
+                            }) : ''}
+                        </div>
                     </div>
-                    <div className='checklists-preview'>
-                        {(task.checklists) ? this.getChecklistsPreview(task.checklists) : ''}
-                    </div>
-                    <div className='avatars'>
-                        {(task.members) ? task.members.map(member => {
-                            return <Avatar key={member._id} className='avatar' alt={member.fullName} src={member.imgUrl} />
-                        }) : ''}
-                    </div>
-                </div>
-                        </Link>
+                </Link>
                 <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
 
             </article>

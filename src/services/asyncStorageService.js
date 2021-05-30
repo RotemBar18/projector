@@ -77,7 +77,7 @@ var gBoards = [{
             }],
             "labelIds": ["F2mRT"],
             "style": {
-                "bgColor": "blue"
+                "bgColor": "#0279bf"
             },
             "checklists": [{
                 "id": "YEhmF",
@@ -265,7 +265,7 @@ var gBoards = [{
             },
             "labelIds": ["OmqYf"],
             "style": {
-                "bgColor": "green"
+                "bgColor": "#60be50"
             },
             "members": [{
                 "_id": "u101",
@@ -360,7 +360,7 @@ var gBoards = [{
             },
             "description": "Repro Windows on IE 11\n\nUpload a video greater than 100mb\n1.Play video\n2.Expected: Video streams in player\n\nActual: Video does not load or stream",
             "style": {
-                "bgColor": "red"
+                "bgColor": "#eb5a46"
             },
             "members": [{
                 "_id": "u102",
