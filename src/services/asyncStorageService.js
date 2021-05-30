@@ -23,7 +23,7 @@ var gBoards = [{
         "title": "Done",
         "color": "#61bd4f"
     }, {
-        "title": "דגדשג",
+        "title": "Waiting",
         "color": "#ff9f1a",
         "id": "lfFu98"
     }, {

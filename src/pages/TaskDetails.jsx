@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Avatar, TextField, Input, Grid, Button } from '@material-ui/core';
+import { Avatar, TextField, Input, Grid} from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
@@ -123,11 +123,9 @@ class _TaskDetails extends Component {
     render() {
         const { task, currLabel } = this.state
         if (!task) return <div>loading</div>
-        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style } = task;
         const board = this.props.currBoard;
-        const { groupId } = this.props.match.params;
         return (
             <section className="task-details flex">
                 <div className="window" onClick={this.goBack}></div>

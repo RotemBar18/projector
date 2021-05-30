@@ -29,27 +29,27 @@ class _BoardCreate extends React.Component {
         ev.preventDefault()
         if (!this.state.board.title) return
         this.props.saveBoard(this.state.board, lastBoardId)
-        this.setState({isCreateHidden: true, board: { ...this.state.board, ['title']: ''}})
+        this.setState({isCreateHidden: true, board: { ...this.state.board, title: ''}})
     }
 
     render() {
         return (
             <div>
                 <div className="board-create" onClick={() => { this.toggleModalVisibility(false) }}>
-                    <img className="plus-icon" src={Plus} />
+                    <img className="plus-icon" alt = "" src={Plus} />
                 </div>
-                <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autocomplete="off">
+                <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autoComplete="off">
                     <input type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
                     <div className="board-background-options">
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
+                        <div className="board-background-thumb"><img src={tempImg} alt = ""/></div>
                     </div>
                     <button>Create</button>
                     <button onClick={() => { this.toggleModalVisibility(true) }}>Cancel</button>
