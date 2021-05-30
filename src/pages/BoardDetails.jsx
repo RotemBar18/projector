@@ -8,6 +8,7 @@ import { groupService } from '../services/groupService.js'
 import { taskService } from '../services/taskService.js';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { labelService } from '../services/labelService.js';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -107,8 +108,17 @@ class _BoardDetails extends React.Component {
         labelService.addLabelToBoard(board, newLabel)
         this.props.saveBoard(board)
     }
-    getDatePreview = (dateNum)=>{
-       return taskService.getDatePreview(dateNum)
+    getDatePreview = (dateNum) => {
+        return taskService.getDatePreview(dateNum)
+    }
+
+    handleOnDragEnd = (result) => {
+        const board = this.props.currBoard;
+        const items = Array.from(board.groups);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem)
+        board.groups = items
+        this.props.saveBoard(board)
     }
 
     render() {
@@ -125,30 +135,43 @@ class _BoardDetails extends React.Component {
             {isSideBarOpen &&
                 <SideBar getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
             }
-            <div className="board-container">
-                {(board.groups) && board.groups.map(group => {
-                    return (
-                        <div key={group.id}>
-                            <Group updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
-                        </div>
-                    )
-                })
-                }
-                {!isAddGroupOpen &&
-                    <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>
-                }
-                {isAddGroupOpen &&
-                    <form className='add-group-form' onSubmit={this.handleChange}>
-                        <textarea name='title' placeholder='Enter list title...' className='group-title-input' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
-                        <div className='add-group-controls'>
-                            <button className='add-group-add-btn' onClick={() => this.onAddGroup(newGroupTitle)}> Add list</button>
-                            <button className='add-group-close-btn' onClick={this.onToggleAddGroup}> X </button>
-                        </div>
-                    </form>
-                }
 
+            <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                <Droppable droppableId={board._id} direction="horizontal">
+                    {(provided) => (
+                        <div className="board-container"{...provided.droppableProps} ref={provided.innerRef}>
+                            {(board.groups) && board.groups.map((group, index) => {
+                                return (
+                                    <Draggable key={group.id} draggableId={group.id} index={index}>
+                                        {(provided) => (
+                                            <div
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                ref={provided.innerRef}>
+                                                <Group updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                )
+                            })
+                            }
+                            {!isAddGroupOpen &&
+                                <button className='add-group-toggle-btn' onClick={this.onToggleAddGroup}>+ Add another list</button>}
+                            {isAddGroupOpen &&
+                                <form className='add-group-form' onSubmit={this.handleChange}>
+                                    <textarea name='title' placeholder='Enter list title...' className='group-title-input' id="" cols="1" rows="1" onChange={this.handleChange}></textarea>
+                                    <div className='add-group-controls'>
+                                        <button className='add-group-add-btn' onClick={() => this.onAddGroup(newGroupTitle)}> Add list</button>
+                                        <button className='add-group-close-btn' onClick={this.onToggleAddGroup}> X </button>
+                                    </div>
+                                </form>
+                            }
 
-            </div>
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
         </React.Fragment>
     }
 }

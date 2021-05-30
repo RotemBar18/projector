@@ -14,7 +14,7 @@ export function loadBoards() {
     }
 }
 
-export function saveBoard(board, lastBoardId) { // Action Creator
+export function saveBoard(board, lastBoardId) {
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
     return async dispatch => { 
         try {

@@ -1,7 +1,7 @@
 .home{ 
     font-family: "montserrat",sans-serif;
     background-image: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url("../../imgs/home.png");
-    background-position: 50%;
+    background-position: 50% rem(9px);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
@@ -58,6 +58,7 @@
 
 .home-link:hover{
     background-color:#5cbf2a;
+    text-decoration: none;
 }
 
 .home-link:active{

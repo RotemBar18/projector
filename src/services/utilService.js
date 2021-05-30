@@ -2,7 +2,7 @@ export const utilService = {
     delay,
     getRandomInt,
     makeId,
-    getNameInitials
+    getNameInitials,
 }
 
 function delay(ms = 1500) {
@@ -26,7 +26,7 @@ function makeId(length = 5) {
     return txt;
 }
 
-function getNameInitials(name){
+function getNameInitials(name) {
     let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
     let initials = [...name.matchAll(rgx)] || [];
     initials = (
