@@ -2,25 +2,14 @@ import React from 'react'
 import { TaskPreview } from './TaskPreview.jsx'
 import { connect } from 'react-redux'
 import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.js'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-// export function TaskList({ tasks, group, board, onDeleteTask, onUpdateTask, onAddLabel, updateLabel, addLabelToBoard, checkLabel, onRemoveLabel }) {
 class _TaskList extends React.Component {
 
     state = {}
 
-    handleOnDragEnd = (result) => {
-        const { board, group } = this.props
-        const items = Array.from(group.tasks);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem)
-        group.tasks = items
-        this.props.saveBoard(board)
-    }
-
     render() {
         return (
-            <DragDropContext onDragEnd={this.handleOnDragEnd}>
                 <Droppable droppableId={this.props.group.id}>
                     {(provided) => (
                         <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
@@ -43,7 +32,7 @@ class _TaskList extends React.Component {
                         </div>
                     )}
                 </Droppable>
-            </DragDropContext>
+            // </DragDropContext>
 
         )
     }

@@ -9,6 +9,7 @@ import { taskService } from '../services/taskService.js';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { labelService } from '../services/labelService.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { boardService } from '../services/boardService.js';
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -114,17 +115,31 @@ class _BoardDetails extends React.Component {
 
     handleOnDragEnd = (result) => {
         const board = this.props.currBoard;
-        const items = Array.from(board.groups);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem)
-        board.groups = items
+        if (result.type === 'list') {
+            const groups = board.groups
+            const [reorderedItem] = groups.splice(result.source.index, 1);
+            groups.splice(result.destination.index, 0, reorderedItem)
+        } else {
+            const groupSource = board.groups.find(group => group.id === result.source.droppableId)
+            const [reorderedItem] = groupSource.tasks.splice(result.source.index, 1);
+            const groupDes = board.groups.find(group => group.id === result.destination.droppableId)
+            groupDes.tasks.splice(result.destination.index, 0, reorderedItem)
+        }
+        this.props.saveBoard(board)
+    }
+    
+    onChangeBg = (pick, imgUrl, bgColor) => {
+        const board = this.props.currBoard;
+        boardService.changeBg(pick, imgUrl, bgColor, board)
         this.props.saveBoard(board)
     }
 
     render() {
+
         const { isAddGroupOpen, isSideBarOpen } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
+        console.log(board);
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
@@ -133,11 +148,12 @@ class _BoardDetails extends React.Component {
                 <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
             }
             {isSideBarOpen &&
-                <SideBar getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
+
+                <SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
             }
 
             <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                <Droppable droppableId={board._id} direction="horizontal">
+                <Droppable droppableId={board._id} direction="horizontal" type='list' >
                     {(provided) => (
                         <div className="board-container"{...provided.droppableProps} ref={provided.innerRef}>
                             {(board.groups) && board.groups.map((group, index) => {
