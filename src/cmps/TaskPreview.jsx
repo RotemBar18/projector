@@ -53,7 +53,6 @@ export class TaskPreview extends Component {
                     }) : ''}
                 </div>
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
-                </Link>
                 <div className='badges'>
                     <div className='dew-date'>
                         {this.convertNumToDate(task.dueDate)}
@@ -67,6 +66,7 @@ export class TaskPreview extends Component {
                         }) : ''}
                     </div>
                 </div>
+                        </Link>
                 <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
 
             </article>
