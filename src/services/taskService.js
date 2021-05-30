@@ -11,6 +11,7 @@ export const taskService = {
     onRemoveLabel,
     checkLabel,
     toggleTaskMember,
+    addComment,
 }
 
 function getPreview(checklists) {
@@ -44,6 +45,27 @@ function addTask(board, groupId, newTitle) {
         id: 'c' + utilService.makeId(),
         title: newTitle
     })
+}
+
+function addComment(task,txt, comment ) {
+    var commentIdx = -1
+    if (!task.comments) task.comments = [];
+    commentIdx = task.comments?.findIndex(taskcomment => taskcomment?.id === comment?.id)
+    if (commentIdx >= 0) {
+        task.comments.splice(commentIdx, 1)
+    } else {
+        const comment = {
+            "id": "ZdPnm",
+            "txt": txt,
+            "createdAt": utilService.makeId(),
+            "byMember": {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+            }
+        }
+        task.comments.push(comment)
+    }
 }
 
 function updateTask(board, groupId, updatedTask) {

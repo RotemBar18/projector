@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Avatar, TextField, Input, Grid } from '@material-ui/core';
+import { Avatar, TextField, Input, Grid, Button } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
@@ -12,13 +12,14 @@ import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
 import { LabelPreview } from '../cmps/LabelPreview.jsx';
 import { LabelEdit } from '../cmps/LabelEdit';
-
+import { labelService } from '../services/labelService.js';
 
 class _TaskDetails extends Component {
 
@@ -26,13 +27,20 @@ class _TaskDetails extends Component {
         task: null,
         isMembersModalShow: false,
         isLabelsModalShow: false,
+        isEditLabelsShow: false,
+        isEditDateShow: false,
+        isAttachmentShow: true,
+        currLabel: null,
+        comment:{
+            txt: '',
+        }
     }
 
     async componentDidMount() {
         const { taskId, groupId } = this.props.match.params;
         const board = this.props.currBoard;
         const task = await taskService.getTaskById(taskId, groupId, board);
-        this.setState({ task });
+        this.setState({ ...this.state, task });
     }
 
     handleChange = ({ target }) => {
@@ -44,6 +52,18 @@ class _TaskDetails extends Component {
             this.props.saveBoard(board)
         })
     }
+
+    // addComment = ({ target }) => {
+    //     let { name, value } = target
+    //     const { task } = this.state;
+    //     const { comment } = this.state;
+    //     this.setState({comment: {...comment, [name]: value }}, () => {
+    //         setTimeout(()=>{
+    //             taskService.addComment(task, value)
+    //         },3000)
+    //     })
+    // }
+
 
     // getBtnList = () => {
     //     const btns = [
@@ -79,8 +99,15 @@ class _TaskDetails extends Component {
         })
     }
 
-    toggleEditLabels = () => {
-        this.setState({ isEditLabelsOpen: !this.state.isEditLabelsOpen })
+    toggleEditLabel = (currLabel = null) => {
+        this.setState({ ...this.state, isEditLabelsShow: !this.state.isEditLabelsShow, currLabel })
+        console.log(this.state)
+    }
+
+    updateLabel = (currLabel, labelUpdates) => {
+        const board = this.props.currBoard
+        labelService.updateLabel(board, currLabel, labelUpdates)
+        this.props.saveBoard(board)
     }
 
     getLableById = (labelId) => {
@@ -94,11 +121,11 @@ class _TaskDetails extends Component {
 
 
     render() {
-        const { task } = this.state
+        const { task, currLabel } = this.state
         if (!task) return <div>loading</div>
         console.log(task)
         const description = (task.description) || ''
-        const { byMember, comments, members, labelIds } = task;
+        const { byMember, comments, members, labelIds, style } = task;
         const board = this.props.currBoard;
         const { groupId } = this.props.match.params;
         return (
@@ -114,6 +141,7 @@ class _TaskDetails extends Component {
                             <AssignmentOutlinedIcon className="taskIcon" color="disabled" />
                             <Input defaultValue={task.title}
                                 disableUnderline
+                                fullWidth
                                 onChange={this.handleChange}
                                 name="title"
                             />
@@ -150,6 +178,7 @@ class _TaskDetails extends Component {
                                     onChange={this.handleChange}
                                 />
                             </div>
+                            {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                             <div className="comments flex column">
                                 {comments && comments.map(comment => {
                                     return <Grid item className="comment flex" key={comment.id}>
@@ -161,9 +190,11 @@ class _TaskDetails extends Component {
                                 })}
                                 <Grid item className="comment flex">
                                     {byMember && <Avatar src={byMember.imgUrl} className="avatar">{!byMember.imgUrl && utilService.getNameInitials(byMember.fullname)}</Avatar>}
-                                    <Input id="input-with-icon-grid " placeholder="Write a comment..." value=''
+                                    <Input id="input-with-icon-grid " placeholder="Write a comment..." value={this.state.comment.txt}
                                         disableUnderline
                                         fullWidth
+                                        name="txt"
+                                        // onChange={this.addComment}
                                     />
                                 </Grid>
                             </div>
@@ -172,8 +203,8 @@ class _TaskDetails extends Component {
                             <button className="btn flex" onClick={() => this.toggleModal('isMembersModalShow')}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isLabelsModalShow')}><LabelOutlinedIcon className="icon" /> Labels</button>
                             <button className="btn flex"><ListOutlinedIcon className="icon" /> Checklist</button>
-                            <button className="btn flex"><TodayOutlinedIcon className="icon" /> Dates</button>
-                            <button className="btn flex"><AttachFileOutlinedIcon className="icon" /> Attachment</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isEditDateShow')}><TodayOutlinedIcon className="icon" /> Dates</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isAttachmentShow')}><AttachFileOutlinedIcon className="icon" /> Attachment</button>
                         </div>
                     </div>
                 </div>
@@ -191,13 +222,28 @@ class _TaskDetails extends Component {
                         {labelIds?.map(labelId => {
                             const labelProperty = this.getLabelProperty(labelId)
                             console.log(labelProperty)
-                            return <div className="label" style={{ backgroundColor: labelProperty.color }}>
-                                {labelProperty.title || ''}
+                            return <div className="flex">
+                                <div className="label" style={{ backgroundColor: labelProperty.color }}>
+                                    {labelProperty.title || ''}
+                                </div>
+                                <EditOutlinedIcon onClick={() => this.toggleEditLabel(labelProperty)} color="disabled" />
                             </div>
                         })
                         }
                     </div>}
-
+                {this.state.isEditLabelsShow && <LabelEdit toggleEditLabel={this.toggleEditLabel} updateLabel={this.updateLabel} currLabel={currLabel}></LabelEdit>}
+                {this.state.isEditDateShow && <form className='dates-form flex' noValidate>
+                    <TextField className="dates"
+                        id="datetime-local"
+                        label="Due date"
+                        type="datetime-local"
+                        defaultValue="2021-05-30T10:30"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </form>}
+                {/* {this.state.isAttachmentShow && <AddFile/>} */}
             </section>
         )
     }
