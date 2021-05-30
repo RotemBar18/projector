@@ -3,8 +3,9 @@
         background-origin: content-box;
         padding: 0px;
         box-sizing: border-box;
-        align-items: flex-start;
-        justify-content: space-around;
+        .details {
+            margin-left: 10px;
+        }
         .window {
             position: fixed;
             width: 100%;
@@ -35,7 +36,7 @@
         }
         textarea {
             // width: 90%;
-            width: 300px;
+            width: 450px;
             height: 70px;
             border: none;
         }
@@ -141,5 +142,7 @@
             margin-top: 5px;
             width: 80%;
             border: 1 px solid black;
+            margin-right: 5px;
+            align-self: baseline;
         }
     }
