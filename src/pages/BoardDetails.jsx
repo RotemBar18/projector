@@ -115,10 +115,16 @@ class _BoardDetails extends React.Component {
 
     handleOnDragEnd = (result) => {
         const board = this.props.currBoard;
-        const items = Array.from(board.groups);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem)
-        board.groups = items
+        if (result.type === 'list') {
+            const groups = board.groups
+            const [reorderedItem] = groups.splice(result.source.index, 1);
+            groups.splice(result.destination.index, 0, reorderedItem)
+        } else {
+            const groupSource = board.groups.find(group => group.id === result.source.droppableId)
+            const [reorderedItem] = groupSource.tasks.splice(result.source.index, 1);
+            const groupDes = board.groups.find(group => group.id === result.destination.droppableId)
+            groupDes.tasks.splice(result.destination.index, 0, reorderedItem)
+        }
         this.props.saveBoard(board)
     }
     
@@ -147,7 +153,7 @@ class _BoardDetails extends React.Component {
             }
 
             <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                <Droppable droppableId={board._id} direction="horizontal">
+                <Droppable droppableId={board._id} direction="horizontal" type='list' >
                     {(provided) => (
                         <div className="board-container"{...provided.droppableProps} ref={provided.innerRef}>
                             {(board.groups) && board.groups.map((group, index) => {
