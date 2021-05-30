@@ -59,6 +59,22 @@ var gBoards = [{
             "id": "c5nVjK",
             "title": "Operation: All The Bugs",
             "description": "One week, all outstanding bugs!",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
+            "comments": [{
+                "id": "ZdPnm",
+                "txt": "also @yaronb please CR this",
+                "createdAt": 1590999817436.0,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Tal Tarablus",
+                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                }
+            }],
             "labelIds": ["F2mRT"],
             "style": {
                 "bgColor": "blue"
@@ -83,6 +99,12 @@ var gBoards = [{
         }, {
             "id": "covUhe",
             "title": "Multiple Emojis select",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "members": [{
                 "_id": "u101",
                 "fullname": "Roey Barda",
@@ -97,6 +119,12 @@ var gBoards = [{
         }, {
             "id": "cvb1Rn",
             "title": "Company RoadMap",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["F2mRT"],
             "style": {
                 "imgUrl": "https://i.pinimg.com/originals/f6/b0/8e/f6b08efbe82b77db463cee9770223d5e.gif"
@@ -113,6 +141,12 @@ var gBoards = [{
         }, {
             "id": "c8m7vF",
             "title": "Metrics and KPI ",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["F2mRT"],
             "members": [{
                 "_id": "u103",
@@ -126,6 +160,12 @@ var gBoards = [{
         }, {
             "id": "cgjwZ3",
             "title": "Add Tab to react on images",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "1.Open any image\n2.Press 'tab'\nExpected: Focus on the emoji reaction field",
             "labelIds": ["F2mRT"],
             "style": {
@@ -147,7 +187,23 @@ var gBoards = [{
         "tasks": [{
             "id": "ccwPce",
             "title": "Emoji Reaction on comments",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "The Emoji Guide To Team Productivity [Infographic]",
+            "comments": [{
+                "id": "ZdPnm",
+                "txt": "also @yaronb please CR this",
+                "createdAt": 1590999817436.0,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Tal Tarablus",
+                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                }
+            }],
             "labelIds": ["OmqYf"],
             "style": {
                 "imgUrl": "https://bit.ly/3c3kTGr"
@@ -160,6 +216,12 @@ var gBoards = [{
         }, {
             "id": "cuvFE9",
             "title": "The Emoji Guide To Team Productivity [Infographic]",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["OmqYf"],
             "members": [{
                 "_id": "u101",
@@ -169,6 +231,12 @@ var gBoards = [{
         }, {
             "id": "cGnBxQ",
             "title": "Build Emoji Reactions in our tool - Project Overview",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "Let's add Emoji reaction capabilities to our tools",
             "labelIds": ["OmqYf"],
             "members": [{
@@ -179,6 +247,12 @@ var gBoards = [{
         }, {
             "id": "cxSDAj",
             "title": "Localization",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["OmqYf"],
             "style": {
                 "bgColor": "green"
@@ -191,6 +265,12 @@ var gBoards = [{
         }, {
             "id": "cE1n29",
             "title": "Allow Custom Emojis",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["OmqYf"],
             "members": [{
                 "_id": "u104",
@@ -216,6 +296,12 @@ var gBoards = [{
         }, {
             "id": "chMMKG",
             "title": "Add Emoji Reactions on images",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "1. log in.\n2. go to any board.\n3. change the board name upper left corner\nexpeted: board name change\nactual: board name change but not save",
             "members": [{
                 "_id": "u103",
@@ -229,6 +315,12 @@ var gBoards = [{
         }, {
             "id": "cyg5R9",
             "title": "Team Members Responsibilities",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "Project manager\nAlexia\n\nDev team:\nAmy, Samantha and Chris T\n\nDesign:\nAndre\n\nMarketing\nMarques\n\nSupport\nPriscilla",
             "members": [{
                 "_id": "u101",
@@ -250,6 +342,12 @@ var gBoards = [{
         "tasks": [{
             "id": "c9pckh",
             "title": "Video load issues on IE 11",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "description": "Repro Windows on IE 11\n\nUpload a video greater than 100mb\n1.Play video\n2.Expected: Video streams in player\n\nActual: Video does not load or stream",
             "style": {
                 "bgColor": "red"
@@ -263,9 +361,21 @@ var gBoards = [{
     }, {
         "id": "gT1WXg",
         "title": "Live",
+        "byMember": {
+            "_id": "u101",
+            "username": "Roey",
+            "fullname": "Roey Barda",
+            "imgUrl": "https://bit.ly/3fxLayU"
+        },
         "tasks": [{
             "id": "c50q9s",
             "title": "Custom emoji for web",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "members": [{
                 "_id": "u103",
                 "fullname": "Noa Kaplan",
@@ -274,6 +384,12 @@ var gBoards = [{
         }, {
             "id": "cEbkg4",
             "title": "Emoji support",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "members": [{
                 "_id": "u102",
                 "fullname": "Rotem Bar",
@@ -286,6 +402,12 @@ var gBoards = [{
         }, {
             "id": "cipfRb",
             "title": "Material design for Android",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "members": [{
                 "_id": "u101",
                 "fullname": "Roey Barda",
@@ -298,6 +420,12 @@ var gBoards = [{
         "tasks": [{
             "id": "cogeY9",
             "title": "Create demo data",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["101"],
             "members": [{
                 "_id": "u101",
@@ -330,6 +458,7 @@ var gBoards = [{
         "task": {
             "id": "c101",
             "title": "Replace Logo"
+
         }
     }]
 }, {
@@ -352,6 +481,12 @@ var gBoards = [{
         "tasks": [{
             "id": "cG2KTJ",
             "title": "Adding a login page",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "members": [{
                 "_id": "u101",
@@ -361,6 +496,12 @@ var gBoards = [{
         }, {
             "id": "cT1jJ4",
             "title": "Adding a drag & drop option",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "style": {
                 "bgColor": "#ffcc99"
@@ -373,6 +514,12 @@ var gBoards = [{
         }, {
             "id": "c9pIp2",
             "title": "Adding Attachments",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "style": {
                 "bgColor": "purple"
@@ -385,6 +532,12 @@ var gBoards = [{
         }, {
             "id": "c8lT6S",
             "title": "Adding Checklists",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "style": {
                 "bgColor": "#cc99ff"
@@ -397,6 +550,12 @@ var gBoards = [{
         }, {
             "id": "cjkAPd",
             "title": "Creating a logo",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "members": [{
                 "_id": "u101",
@@ -406,10 +565,22 @@ var gBoards = [{
         }, {
             "id": "c6nx4D",
             "title": "Change buttons text to icons",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"]
         }, {
             "id": "cqxmAn",
             "title": "Having some drinks and go to the beach once the sprint is over",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["kk92g"],
             "style": {
                 "imgUrl": "https://bit.ly/3wJ6ffy"
@@ -434,6 +605,12 @@ var gBoards = [{
         "tasks": [{
             "id": "cGLmGX",
             "title": "Creating activity log",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["RH4XC"],
             "members": [{
                 "_id": "u104",
@@ -447,6 +624,12 @@ var gBoards = [{
         }, {
             "id": "cxqw5C",
             "title": "Trying not to go crazy during the sprint",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["RH4XC"],
             "style": {
                 "imgUrl": "https://bit.ly/2SIkSkc"
@@ -471,6 +654,12 @@ var gBoards = [{
         }, {
             "id": "cPcuox",
             "title": "Trying really hard not go crazy during the sprint",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["RH4XC"],
             "style": {
                 "imgUrl": "https://bit.ly/34tMKeL"
@@ -499,6 +688,12 @@ var gBoards = [{
         "tasks": [{
             "id": "cA02R6",
             "title": "Creating Demo Data",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["2dqpH"],
             "members": [{
                 "_id": "u104",
@@ -512,6 +707,12 @@ var gBoards = [{
         }, {
             "id": "cvumru",
             "title": "Building a Homepage",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["2dqpH"],
             "members": [{
                 "_id": "u103",
@@ -525,6 +726,12 @@ var gBoards = [{
         }, {
             "id": "cLnvy7",
             "title": "Adding custom labels",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["2dqpH"],
             "members": [{
                 "_id": "u102",
@@ -534,6 +741,12 @@ var gBoards = [{
         }, {
             "id": "cNm0P8",
             "title": "Come up with a name",
+            "byMember": {
+                "_id": "u101",
+                "username": "Roey",
+                "fullname": "Roey Barda",
+                "imgUrl": "https://bit.ly/3fxLayU"
+            },
             "labelIds": ["2dqpH"],
             "style": {
                 "bgColor": "#0099ff"
