@@ -475,12 +475,12 @@ var gBoards = [{
     ]
 }, {
     "title": "Sprint 4",
-    "bgColor": "#000",
     "_id": "b102",
     "style": {
-        "imgUrl": "https://bit.ly/3yLM7uN"
+        "bgColor": "#ffffff",
+        // "imgUrl": "https://bit.ly/3yLM7uN"
     },
-    "activities": {},
+    "activities": [],
     "createdAt": 1622312265790,
     "createdBy": {
         "_id": "u101",

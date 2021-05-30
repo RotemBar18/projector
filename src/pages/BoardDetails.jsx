@@ -9,6 +9,7 @@ import { taskService } from '../services/taskService.js';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { labelService } from '../services/labelService.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { boardService } from '../services/boardService.js';
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -120,11 +121,19 @@ class _BoardDetails extends React.Component {
         board.groups = items
         this.props.saveBoard(board)
     }
+    
+    onChangeBg = (pick, imgUrl, bgColor) => {
+        const board = this.props.currBoard;
+        boardService.changeBg(pick, imgUrl, bgColor, board)
+        this.props.saveBoard(board)
+    }
 
     render() {
+
         const { isAddGroupOpen, isSideBarOpen } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
+        console.log(board);
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
@@ -133,7 +142,8 @@ class _BoardDetails extends React.Component {
                 <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
             }
             {isSideBarOpen &&
-                <SideBar getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
+
+                <SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
             }
 
             <DragDropContext onDragEnd={this.handleOnDragEnd}>

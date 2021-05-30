@@ -5,6 +5,7 @@ export const boardService = {
     query,
     getById,
     save,
+    changeBg,
     remove,
 }
 
@@ -25,10 +26,16 @@ function remove(boardId) {
 
 async function save(board, lastBoardId) {
     if (board._id) {
-        return await storageService.put('board_db',board)
+        return await storageService.put('board_db', board)
     } else {
-        return await storageService.post('board_db',board, lastBoardId)
+        return await storageService.post('board_db', board, lastBoardId)
     }
+}
+
+function changeBg(pick, imgUrl, bgColor, board) {
+    if (pick === 'photos') return board.style = { ...board.style, imgUrl }
+    console.log('pick', pick)
+    board.style = { bgColor }
 }
 
 
