@@ -10,7 +10,8 @@ class _BoardCreate extends React.Component {
         board: {
             title: '',
             style: {
-                imgUrl: 'https://bit.ly/3yLM7uN'
+                imgUrl: '',
+                bgColor: ''
             }
         }
     }
@@ -24,18 +25,16 @@ class _BoardCreate extends React.Component {
     }
 
     handleBackground = (ev) =>{
-        const imgUrl = {imgUrl: ev.target.src}
-        this.setState({ board: { ...this.state.board, ['style']: imgUrl}})
+        const style = {imgUrl: ev.target.src, bgColor: ev.target.style.backgroundColor}
+        this.setState({ board: { ...this.state.board, ['style']: style}})
     }
 
     onCreateBoard = (ev) => {
-        const { boards } = this.props
-        const lastBoardId = boards[boards.length - 1]._id
 
         ev.preventDefault()
         if (!this.state.board.title) return
-        this.props.saveBoard(this.state.board, lastBoardId)
-        this.setState({isCreateHidden: true, board: { ...this.state.board, title: ''}})
+        this.props.saveBoard(this.state.board)
+        this.setState({isCreateHidden: true, board: { title: '', style: {imgUrl: '', bgColor: ''}}})
     }
 
     render() {
@@ -47,14 +46,14 @@ class _BoardCreate extends React.Component {
                 <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autoComplete="off">
                     <input type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
                     <div className="board-background-options">
-                        <div className="board-background-thumb" style={{backgroundColor: '#60be50'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#60be50'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yLM7uN" alt=""/></div>
-                        <div className="board-background-thumb" style={{backgroundColor: '#0279bf'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#0279bf'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yQz8rN" alt=""/></div>
-                        <div className="board-background-thumb" style={{backgroundColor: '#ff9f1a'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#ff9f1a'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3i3i4c9" alt=""/></div>
-                        <div className="board-background-thumb" style={{backgroundColor: '#eb5a46'}}></div>
-                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3uAGJY4" alt=""/></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#eb5a46'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3c574Hw" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3p5Xiuc" alt=""/></div>
                     </div>
                     <button>Create</button>
