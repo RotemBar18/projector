@@ -8,9 +8,9 @@
     width: 100vw;
 }
 .task-options-container {
-    position: absolute;
+    position: fixed;
     top: 50px;
-    z-index: 99;
+    z-index: 100;
     display: flex;
     padding: 20px;
     border-radius: 5px;
