@@ -871,7 +871,7 @@ function _makeNewId(lastdId) {
 function _makeNewBoard(newEntity, lastdId) {
     newEntity._id = _makeNewId(lastdId)
     newEntity.style = {
-        "imgUrl": "https://bit.ly/3yLM7uN"
+        "imgUrl": newEntity.style.imgUrl
     }
     newEntity.activities = {}
     newEntity.createdAt = Date.now()

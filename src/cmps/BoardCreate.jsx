@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { saveBoard } from '../store/actions/boardActions.js'
 import Plus from '../assets/imgs/plus.png'
-import tempImg from '../assets/imgs/uc.png'
 
 class _BoardCreate extends React.Component {
 
@@ -10,7 +9,9 @@ class _BoardCreate extends React.Component {
         isCreateHidden: true,
         board: {
             title: '',
-            bgColor: '#000',
+            style: {
+                imgUrl: 'https://bit.ly/3yLM7uN'
+            }
         }
     }
 
@@ -20,6 +21,11 @@ class _BoardCreate extends React.Component {
 
     handleChange = (ev) => {
         this.setState({ board: { ...this.state.board, [ev.target.name]: ev.target.value } })
+    }
+
+    handleBackground = (ev) =>{
+        const imgUrl = {imgUrl: ev.target.src}
+        this.setState({ board: { ...this.state.board, ['style']: imgUrl}})
     }
 
     onCreateBoard = (ev) => {
@@ -38,18 +44,18 @@ class _BoardCreate extends React.Component {
                 <div className="board-create" onClick={() => { this.toggleModalVisibility(false) }}>
                     <img className="plus-icon" src={Plus} />
                 </div>
-                <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autocomplete="off">
+                <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autoComplete="off">
                     <input type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
                     <div className="board-background-options">
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
-                        <div className="board-background-thumb"><img src={tempImg} /></div>
+                        <div className="board-background-thumb" style={{backgroundColor: '#60be50'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yLM7uN" /></div>
+                        <div className="board-background-thumb" style={{backgroundColor: '#0279bf'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yQz8rN" /></div>
+                        <div className="board-background-thumb" style={{backgroundColor: '#ff9f1a'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3i3i4c9" /></div>
+                        <div className="board-background-thumb" style={{backgroundColor: '#eb5a46'}}></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3uAGJY4" /></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3p5Xiuc" /></div>
                     </div>
                     <button>Create</button>
                     <button onClick={() => { this.toggleModalVisibility(true) }}>Cancel</button>

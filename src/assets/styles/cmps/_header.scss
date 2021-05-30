@@ -3,11 +3,14 @@
     background-color: #7f7f7f;
     display: flex;
     justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: rem(30px);
     padding-right: rem(30px);
     width: 100%;
     position: fixed;
     opacity: 0.75;
+    align-items: center;
     a {
         color: #fff;
     }
