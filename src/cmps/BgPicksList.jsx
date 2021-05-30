@@ -3,7 +3,7 @@ export function BgPicksList({ bgPicks, onChangeBg }) {
     const pick = bgPicks
     return (
         <div className='picks'>
-            <div className='pick 1' onClick={() => onChangeBg(pick, '../assets/imgs/photosPreview.jpg', '#61bd4f')} style={(pick === 'photos') ? { backgroundImage: `url(../assets/imgs/photosPreview.jpg)` } : { backgroundColor: '#61bd4f' }}></div >
+            <div className='pick 1' onClick={() => onChangeBg(pick, 'https://bit.ly/3yLM7uN', '#61bd4f')} style={(pick === 'photos') ? { backgroundImage: `url('https://bit.ly/3yLM7uN')` } : { backgroundColor: '#61bd4f' }}></div >
             <div className='pick 2' onClick={() => onChangeBg(pick, '../assets/imgs/photosPreview.jpg', '#f2d600')} style={(pick === 'photos') ? { backgroundImage: `url(../assets/imgs/photosPreview.jpg)` } : { backgroundColor: '#f2d600' }}></div >
             <div className='pick 3' onClick={() => onChangeBg(pick, '../assets/imgs/photosPreview.jpg', '#ff9f1a')} style={(pick === 'photos') ? { backgroundImage: `url(../assets/imgs/photosPreview.jpg)` } : { backgroundColor: '#ff9f1a' }}></div >
             <div className='pick 4' onClick={() => onChangeBg(pick, '../assets/imgs/photosPreview.jpg', '#eb5a46')} style={(pick === 'photos') ? { backgroundImage: `url(../assets/imgs/photosPreview.jpg)` } : { backgroundColor: '#eb5a46' }}></div >
