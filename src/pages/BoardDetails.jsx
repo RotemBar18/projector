@@ -112,16 +112,6 @@ class _BoardDetails extends React.Component {
         return taskService.getDatePreview(dateNum)
     }
 
-    // handleOnDragEnd = (result) => {
-    //     console.log(result)
-    //     const { board, group } = this.props
-    //     const items = Array.from(group.tasks);
-    //     const [reorderedItem] = items.splice(result.source.index, 1);
-    //     items.splice(result.destination.index, 0, reorderedItem)
-    //     group.tasks = items
-    //     this.props.saveBoard(board)
-    // }
-
     handleOnDragEnd = (result) => {
         const board = this.props.currBoard;
         if (result.type === 'list') {
