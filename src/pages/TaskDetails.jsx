@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Avatar, TextField, Input, Grid} from '@material-ui/core';
+import { Avatar, TextField, Input, Grid } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
@@ -11,15 +11,15 @@ import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
 import { LabelPreview } from '../cmps/LabelPreview.jsx';
-import { LabelEdit } from '../cmps/LabelEdit';
 import { labelService } from '../services/labelService.js';
+import { MembersList } from '../cmps/MembersList';
+import { LabelsList } from '../cmps/LabelsList';
+import { Dates } from '../cmps/Dates';
 
 class _TaskDetails extends Component {
 
@@ -30,8 +30,7 @@ class _TaskDetails extends Component {
         isEditLabelsShow: false,
         isEditDateShow: false,
         isAttachmentShow: true,
-        currLabel: null,
-        comment:{
+        comment: {
             txt: '',
         }
     }
@@ -83,9 +82,9 @@ class _TaskDetails extends Component {
         this.setState({ ...this.state, [modal]: !this.state[modal] })
     }
 
-    toggleTaskMember = (member) => {
+    toggleTaskMember = (task, member) => {
         const board = this.props.currBoard;
-        const { task } = this.state
+        // const { task } = this.state
         taskService.toggleTaskMember(task, member)
         this.setState({ ...this.state, task }, () => {
             this.props.saveBoard(board)
@@ -99,14 +98,18 @@ class _TaskDetails extends Component {
         })
     }
 
-    toggleEditLabel = (currLabel = null) => {
-        this.setState({ ...this.state, isEditLabelsShow: !this.state.isEditLabelsShow, currLabel })
+    checkIfLabelInTask = (taskId, labelId) => {
+        if (labelId.charAt() === 'l') labelId = labelId.substring(1)
+        return this.state.task.labelIds?.some(taskLabelId => {
+            console.log(this.state.task)
+            console.log(taskLabelId)
+            console.log(labelId)
+            return taskLabelId === labelId
+        })
     }
 
-    updateLabel = (currLabel, labelUpdates) => {
-        const board = this.props.currBoard
-        labelService.updateLabel(board, currLabel, labelUpdates)
-        this.props.saveBoard(board)
+    toggleEditLabel = (currLabel = null) => {
+        this.setState({ ...this.state, isEditLabelsShow: !this.state.isEditLabelsShow, currLabel })
     }
 
     getLableById = (labelId) => {
@@ -118,10 +121,50 @@ class _TaskDetails extends Component {
         return board.labels?.find(label => label.id === 'l' + labelId)
     }
 
+    onRemoveLabel = (taskId, labelId) => {
+        const board = this.props.currBoard
+        const { groupId } = this.props.match.params
+        taskService.onRemoveLabel(board, groupId, taskId, labelId)
+        this.props.saveBoard(board)
+    }
+
+    onAddLabel = (taskId, labelId) => {
+        const board = this.props.currBoard
+        const { groupId } = this.props.match.params
+        taskService.addLabel(board, groupId, taskId, labelId)
+        this.props.saveBoard(board)
+    }
+
+    updateLabel = (currLabel, labelUpdates) => {
+        const board = this.props.currBoard
+        labelService.updateLabel(board, currLabel, labelUpdates)
+        this.props.saveBoard(board)
+    }
+
+    addLabelToBoard = (newLabel) => {
+        const board = this.props.currBoard
+        labelService.addLabelToBoard(board, newLabel)
+        this.props.saveBoard(board)
+    }
+
+    convertNumToDate = (deuDate) => {
+        if (!deuDate) return
+        const deuDatePreview = taskService.getDatePreview(deuDate)
+        return deuDatePreview
+    }
+
+    setDate = (date) => {
+        const board = this.props.currBoard
+        const {task} = this.state
+        taskService.setTaskDate(task, date);
+        this.setState({ ...this.state, task })
+        this.props.saveBoard(board)
+    }
 
     render() {
-        const { task, currLabel } = this.state
+        const { task } = this.state
         if (!task) return <div>loading</div>
+        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style } = task;
         const board = this.props.currBoard;
@@ -155,6 +198,10 @@ class _TaskDetails extends Component {
                                     })}
                                 </AvatarGroup>
                             </div>}
+                            {(task.dueDate) &&
+                                <div className='dew-date'>
+                                    {this.convertNumToDate(task.dueDate)}
+                                </div>}
                             {labelIds && <div className="labels flex">
                                 {labelIds.map(labelId => {
                                     const label = this.getLableById(labelId)
@@ -191,7 +238,7 @@ class _TaskDetails extends Component {
                                         disableUnderline
                                         fullWidth
                                         name="txt"
-                                        // onChange={this.addComment}
+                                    // onChange={this.addComment}
                                     />
                                 </Grid>
                             </div>
@@ -205,30 +252,22 @@ class _TaskDetails extends Component {
                         </div>
                     </div>
                 </div>
-                {this.state.isMembersModalShow && <div className="modal members flex column">
-                    {board.members && board.members.map(member => {
-                        return <div className="member flex" onClick={() => this.toggleTaskMember(member)}><Avatar className="avatar"
-                            key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
-                            <p>{member.fullname}</p>
-                            {this.checkIfMemberInTask(member.fullname) && <DoneOutlinedIcon />}
-                        </div>
-                    })}
-                </div>}
-                {this.state.isLabelsModalShow &&
-                    <div className="modal labels-list">
-                        {labelIds?.map(labelId => {
-                            const labelProperty = this.getLabelProperty(labelId)
-                            return <div className="flex">
-                                <div className="label" style={{ backgroundColor: labelProperty.color }}>
-                                    {labelProperty.title || ''}
-                                </div>
-                                <EditOutlinedIcon onClick={() => this.toggleEditLabel(labelProperty)} color="disabled" />
-                            </div>
-                        })
-                        }
-                    </div>}
-                {this.state.isEditLabelsShow && <LabelEdit toggleEditLabel={this.toggleEditLabel} updateLabel={this.updateLabel} currLabel={currLabel}></LabelEdit>}
-                {this.state.isEditDateShow && <form className='dates-form flex' noValidate>
+                {this.state.isMembersModalShow && <MembersList board={board}
+                    task={task}
+                    toggleEditMembers={() => { this.toggleModal('isMembersModalShow') }}
+                    toggleTaskMember={this.toggleTaskMember}></MembersList>}
+
+                {this.state.isLabelsModalShow && <LabelsList
+                    task={task} board={board}
+                    toggleEditLabels={() => { this.toggleModal('isLabelsModalShow') }}
+                    checkLabel={this.checkIfLabelInTask}
+                    onRemoveLabel={this.onRemoveLabel}
+                    onAddLabel={this.onAddLabel}
+                    updateLabel={this.updateLabel}
+                    addLabelToBoard={this.addLabelToBoard}
+                ></LabelsList>}
+                {this.state.isEditDateShow && <Dates task={task} setDate={this.setDate}></Dates>}
+                {/* {this.state.isEditDateShow && <form className='dates-form flex' noValidate>
                     <TextField className="dates"
                         id="datetime-local"
                         label="Due date"
@@ -238,8 +277,7 @@ class _TaskDetails extends Component {
                             shrink: true,
                         }}
                     />
-                </form>}
-                {/* {this.state.isAttachmentShow && <AddFile/>} */}
+                </form>} */}
             </section>
         )
     }

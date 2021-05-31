@@ -25,7 +25,7 @@ class _TaskList extends React.Component {
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
                                             ref={provided.innerRef}>
-                                            <TaskPreview toggleDroppable= {this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard} checkLabel={this.props.checkLabel} onRemoveLabel={this.props.onRemoveLabel} onUpdateTask={this.props.onUpdateTask} onAddLabel={this.props.onAddLabel} onDeleteTask={this.props.onDeleteTask} board={this.props.board} task={task} group={this.props.group} />
+                                            <TaskPreview setDate={this.props.setDate} toggleDroppable= {this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard} checkLabel={this.props.checkLabel} onRemoveLabel={this.props.onRemoveLabel} onUpdateTask={this.props.onUpdateTask} onAddLabel={this.props.onAddLabel} onDeleteTask={this.props.onDeleteTask} board={this.props.board} task={task} group={this.props.group} />
                                         </div>
                                     )}
                                 </Draggable>

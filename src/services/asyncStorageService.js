@@ -88,7 +88,7 @@ var gBoards = [{
                     "isDone": false
                 }]
             }],
-            "dueDate": 1622370903876,
+            "dueDate": '2021-12-04T11:22',
             "members": [{
                 "_id": "u101",
                 "fullname": "Roey Barda",
