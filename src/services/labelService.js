@@ -18,6 +18,5 @@ function updateLabel(board, currLabel, labelUpdates) {
 function addLabelToBoard(board, newLabel) {
     if (!newLabel.color) newLabel = { ...newLabel, color: '#b3bac5' }
     newLabel = { ...newLabel, id: 'l' + utilService.makeId() }
-    console.log('newLabel', newLabel)
     board.labels.push(newLabel)
 }

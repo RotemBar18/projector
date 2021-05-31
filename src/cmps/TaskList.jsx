@@ -7,17 +7,19 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 class _TaskList extends React.Component {
 
     state = {
-        isDragDisabled : false
+        isDragDisabled: false
     }
 
     render() {
-        const {isDragDisabled} = this.state;
-        const { toggleTaskMember } = this.props;
+        const { toggleTaskMember, isAddTaskOpen, onToggleAddTask, handleTaskChange, onAddTask, group, newTaskTitle } = this.props
+        const { isDragDisabled } = this.state;
         return (
+
             <Droppable droppableId={this.props.group.id}>
+
                 {(provided) => (
                     <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
-                        {this.props.tasks.map((task, index) => {
+                        {group.tasks && this.props.tasks.map((task, index) => {
                             return (
                                 <Draggable isDragDisabled={this.props.isDragDisabled} key={task.id} draggableId={task.id} index={index}>
                                     {(provided) => (
@@ -32,9 +34,22 @@ class _TaskList extends React.Component {
                             )
                         })
                         }
+
+
+                        {isAddTaskOpen &&
+
+                            <form className='add-task-form' onSubmit={onToggleAddTask}>
+                                <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={handleTaskChange}></textarea>
+                                <div className='add-task-controls'>
+                                    <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}>Add card</button>
+                                    <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
+                                </div>
+                            </form>
+                        }
                         {provided.placeholder}
                     </div>
-                )}
+                )
+                }
             </Droppable>
             // </DragDropContext>
 

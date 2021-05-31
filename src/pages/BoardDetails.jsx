@@ -10,6 +10,7 @@ import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { labelService } from '../services/labelService.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { boardService } from '../services/boardService.js';
+import { BoardHeader } from '../cmps/BoardHeader'
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -21,7 +22,6 @@ class _BoardDetails extends React.Component {
             title: ''
         }
     }
-
 
     componentDidMount() {
         this.getBoardDetails()
@@ -35,7 +35,6 @@ class _BoardDetails extends React.Component {
     }
 
     onToggleSideBar = () => {
-        console.log('toggi')
         this.setState({ isSideBarOpen: !this.state.isSideBarOpen })
     }
 
@@ -54,6 +53,12 @@ class _BoardDetails extends React.Component {
         groupService.copyGroup(board, group)
         this.props.saveBoard(board)
     }
+    changeGroupName = (newGroupTitle, group) => {
+        const board = this.props.currBoard
+        groupService.changeGroupName(board, newGroupTitle, group)
+        this.props.saveBoard(board)
+    }
+
     onToggleAddGroup = () => {
         this.setState({ isAddGroupOpen: !this.state.isAddGroupOpen })
     }
@@ -142,8 +147,8 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
 
-    toggleDroppable = () =>{
-        this.setState({...this.state, isDragDisabled: !this.state.isDragDisabled});
+    toggleDroppable = () => {
+        this.setState({ ...this.state, isDragDisabled: !this.state.isDragDisabled });
     }
 
     setDate = (date, task) => {
@@ -161,9 +166,11 @@ class _BoardDetails extends React.Component {
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
-            {!isSideBarOpen &&
-                <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
-            }
+
+            <div className="board-header-container">
+                <BoardHeader board={board} onToggleSideBar={this.onToggleSideBar} />
+            </div>
+
             {isSideBarOpen &&
 
                 <SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
@@ -181,7 +188,7 @@ class _BoardDetails extends React.Component {
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                                 ref={provided.innerRef}>
-                                                <Group setDate={this.setDate} toggleDroppable= {this.toggleDroppable} isDragDisabled ={isDragDisabled} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                                                <Group setDate={this.setDate} toggleDroppable= {this.toggleDroppable} isDragDisabled ={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                                             </div>
                                         )}
                                     </Draggable>

@@ -1,0 +1,41 @@
+.board-header {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    padding: 0 5px;
+    min-height: 49px;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    height: 32px;
+    background-color: rgba(34, 34, 34, 0.411);
+    margin-top: 9px;
+    width: 100%;
+
+    .header-options {
+        display: grid;
+        width: 100%;
+        align-items: center;
+        grid-template-columns: max-content max-content max-content auto;
+        > *:not(:first-child) {
+            margin-left: 40px;
+        }
+        .header-avatars {
+            display: flex;
+
+            > *{
+               border: 0.5px solid rgba(0, 0, 0, 0.37);
+            }
+            > *:not(:first-child) {
+                margin-left: -15px;
+            }
+        }
+        .open-side-bar-btn {
+            background-color: magenta;
+            justify-self: flex-end;
+        }
+    }
+}

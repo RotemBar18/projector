@@ -80,11 +80,8 @@ function updateTask(board, groupId, updatedTask) {
 }
 
 function deleteTask(board, groupId, taskId) {
-    console.log('taskId', taskId)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
-    console.log('board.groups[groupIdx].tasks', board.groups[groupIdx].tasks)
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-    console.log('taskIdx', taskIdx)
     board.groups[groupIdx].tasks.splice(taskIdx, 1)
 }
 
