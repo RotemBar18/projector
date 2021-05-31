@@ -28,11 +28,13 @@ export class Group extends React.Component {
     }
 
     onToggleAddTask = () => {
+        this.props.toggleDroppable()
         this.setState({ isGroupOptionOpen: false })
         this.setState({ isAddTaskOpen: !this.state.isAddTaskOpen })
     }
   
     onToggleGroupOptions = () => {
+        this.props.toggleDroppable()
         this.setState({ isAddTaskOpen: false })
         this.setState({ isGroupOptionOpen: !this.state.isGroupOptionOpen })
     }
@@ -82,7 +84,6 @@ export class Group extends React.Component {
 
         return (
             <React.Fragment>
-
                 <div className="group">
                     <div className='header'>
                         {!isChangeGroupNameOpen &&
@@ -94,7 +95,7 @@ export class Group extends React.Component {
 
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
-                    {(group.tasks) ? <TaskList isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={this.onAddTask} group={group} newTaskTitle={newTaskTitle} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
+                    {(group.tasks) ? <TaskList isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={this.onAddTask} group={group} newTaskTitle={newTaskTitle} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                     {isGroupOptionOpen &&
