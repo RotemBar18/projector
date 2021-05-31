@@ -1,13 +1,13 @@
 .picks {
     display: grid;
-    margin-top: 20px;
-    grid-template-columns: repeat(2, 120px);
-    gap: 15px;
+    margin-top: 25px;
+    grid-template-columns: repeat(2, 115px);
+    gap: 25px 25px;
     height: 100%;
     .pick {
         align-self: center;
         width: 100%;
-        height: 75px;
+        height: 100%;
         object-fit: cover;
         border-radius: 10px;
         opacity: 1;

@@ -11,7 +11,7 @@
     font-weight: 700;
     font-size: 1.25rem;
     height: 32px;
-    background-color: rgba(34, 34, 34, 0.411);
+    background-color: rgba(34, 34, 34, 0.205);
     margin-top: 9px;
     width: 100%;
 
@@ -26,16 +26,20 @@
         .header-avatars {
             display: flex;
 
-            > *{
-               border: 0.5px solid rgba(0, 0, 0, 0.37);
+            > * {
+                border: 0.5px solid rgba(0, 0, 0, 0.37);
             }
             > *:not(:first-child) {
                 margin-left: -15px;
             }
         }
         .open-side-bar-btn {
-            background-color: magenta;
+            background-color: rgba(0, 0, 0, 0.089);
+            box-shadow: inset 0 0 10px #0000001e;
+
+            border-radius: 5px;
             justify-self: flex-end;
+            color: #ffffff;
         }
     }
 }
