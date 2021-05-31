@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
+import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 
 
 export class TaskPreview extends Component {
@@ -36,13 +37,17 @@ export class TaskPreview extends Component {
         return (preview)
     }
 
+    setDate = (date) =>{
+        this.props.setDate(date, this.props.task)
+    }
+
     render() {
         const { toggleTaskMember, checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
         const { isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 {isTaskOptionsShow &&
-                    <TaskOptions toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
+                    <TaskOptions setDate={this.setDate} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
                 {(task.style) ? (task.style.bgColor || task.style.imgUrl) ? <div className='task-cover'>
                     {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt="" /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div> : '' : ''}
@@ -55,7 +60,8 @@ export class TaskPreview extends Component {
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
                     {(task.dueDate || task.checklists || task.members) ? <div className='badges'>
                         {(task.dueDate) &&
-                            <div className='dew-date'>
+                            <div className='dew-date flex'>
+                                <AccessTimeOutlinedIcon className= "clock"></AccessTimeOutlinedIcon>
                                 {this.convertNumToDate(task.dueDate)}
                             </div>}
 

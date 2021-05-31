@@ -12,6 +12,7 @@ export const taskService = {
     checkLabel,
     toggleTaskMember,
     addComment,
+    setTaskDate,
 }
 
 function getPreview(checklists) {
@@ -28,14 +29,18 @@ function getPreview(checklists) {
 }
 
 function getDatePreview(currDate) {
-    const date = new Date(currDate * 1000);
-    const month = date.getUTCMonth()
+    const month = +currDate.substring(5,7)
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    const subMonth = monthNames[month].substring(0, 3)
-    const day = date.getUTCDate()
-    return `${subMonth} ${day} `
+    const monthName = monthNames[month-1].substring(0, 3)
+    const day = +currDate.substring(8,10)
+    return `${monthName} ${day} `
+
+}
+
+function setTaskDate(task, date){
+    task.dueDate = date
 }
 
 function addTask(board, groupId, newTitle) {
@@ -116,7 +121,6 @@ function checkLabel(board, groupId, taskId, labelId) {
 }
 
 function toggleTaskMember(task, member) {
-    console.log('task', task)
     var memberIdx = -1
     memberIdx = task.members?.findIndex(taskMember => taskMember._id === member._id)
     if (memberIdx >= 0) {

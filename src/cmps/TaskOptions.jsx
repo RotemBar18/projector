@@ -1,14 +1,15 @@
 import { Component } from 'react';
 import { LabelsList } from './LabelsList.jsx'
 import { MembersList } from './MembersList.jsx'
-import { Draggable } from 'react-beautiful-dnd';
 import React from 'react'
+import { Dates } from './Dates';
 // import { Link } from 'react-router-dom'
 
 export class TaskOptions extends Component {
     state = {
         isEditLabelsOpen: false,
         isEditMembersOpen: false,
+        isEditDueDateOpen: false,
         task: {
             title: ''
         }
@@ -31,18 +32,23 @@ export class TaskOptions extends Component {
     toggleEditMembers = () => {
         this.setState({ isEditMembersOpen: !this.state.isEditMembersOpen })
     }
+    toggleChangeDueDate = () => {
+        this.setState({ isEditDueDateOpen: !this.state.isEditDueDateOpen })
+    }
 
     preventDragHandler = (e) => {
         console.log(e)
         e.preventDefault();
-      }
+    }
+
+    
 
     render() {
-        const { isEditLabelsOpen, isEditMembersOpen} = this.state
+        const { isEditLabelsOpen, isEditMembersOpen, isEditDueDateOpen } = this.state
         const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, toggleTaskMember } = this.props
         return (
             <React.Fragment>
-                <div  onClick={onToggleTaskOptions} className='task-options-window' ></div>
+                <div onClick={onToggleTaskOptions} className='task-options-window' ></div>
                 <div className='task-options-container'>
                     <div className='change-task-title'>
                         <textarea cols='1' rows='8' type="text" className='new-title-input' placeholder={task.title} name='title' onChange={this.handleChange}></textarea>
@@ -56,7 +62,9 @@ export class TaskOptions extends Component {
                         {isEditMembersOpen &&
                             <MembersList toggleTaskMember={toggleTaskMember} board={board} task={task} toggleEditMembers={this.toggleEditMembers} />
                         }
-
+                        {isEditDueDateOpen &&
+                            <Dates task={task} setDate={this.props.setDate}></Dates>
+                        }
                         <button className='options-btn' onClick={this.toggleEditMembers} >Change Members</button>
                         <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
                         <button className='options-btn' onClick={() => onDeleteTask(task.id)}>Delete</button>

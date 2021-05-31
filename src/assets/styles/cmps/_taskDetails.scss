@@ -81,17 +81,6 @@
             top: 129px;
             border-radius: 10px;
             z-index: 3;
-            .member {
-                background-color: #efefef;
-                height: 30px;
-                margin-bottom: 10px;
-                .avatar {
-                    width: 30px;
-                    height: 30px;
-                    font-size: 0.8rem;
-                    margin-right: 10px;
-                }
-            }
         }
         .members {
             margin-bottom: 10px;
@@ -116,20 +105,13 @@
             width: 70px;
             text-align: center;
         }
-        .labels-list {
-            right: -135px;
-            top: 173px;
-        }
-        .edit-label-container {
-            position: fixed;
-        }
         .dates-form {
             z-index: 3;
             background-color: #efefef;
             flex-wrap: wrap;
-            position: relative;
-            right: -72px;
-            top: 255.7px;
+            position: absolute;
+            right: 293px;
+            top: 288.7px;
             border-radius: 5px;
             padding: 5px;
             .dates {
@@ -144,5 +126,14 @@
             border: 1 px solid black;
             margin-right: 5px;
             align-self: baseline;
+        }
+        .dew-date {
+            background-color: #eb5a46;
+            color: white;
+            border-radius: 3px;
+            padding: 1px 2px;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            width: fit-content;
         }
     }

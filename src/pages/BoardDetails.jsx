@@ -23,7 +23,6 @@ class _BoardDetails extends React.Component {
         }
     }
 
-
     componentDidMount() {
         this.getBoardDetails()
     }
@@ -152,6 +151,12 @@ class _BoardDetails extends React.Component {
         this.setState({ ...this.state, isDragDisabled: !this.state.isDragDisabled });
     }
 
+    setDate = (date, task) => {
+        const board = this.props.currBoard;
+        taskService.setTaskDate(task, date);
+        this.props.saveBoard(board)
+    }
+
     render() {
 
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
@@ -183,7 +188,7 @@ class _BoardDetails extends React.Component {
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                                 ref={provided.innerRef}>
-                                                <Group toggleDroppable={this.toggleDroppable} isDragDisabled={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                                                <Group setDate={this.setDate} toggleDroppable= {this.toggleDroppable} isDragDisabled ={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                                             </div>
                                         )}
                                     </Draggable>
