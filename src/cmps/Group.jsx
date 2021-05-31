@@ -31,6 +31,7 @@ export class Group extends React.Component {
         this.setState({ isGroupOptionOpen: false })
         this.setState({ isAddTaskOpen: !this.state.isAddTaskOpen })
     }
+  
     onToggleGroupOptions = () => {
         this.setState({ isAddTaskOpen: false })
         this.setState({ isGroupOptionOpen: !this.state.isGroupOptionOpen })
@@ -68,9 +69,9 @@ export class Group extends React.Component {
         this.props.onRemoveLabel(this.props.group.id, taskId, labelId)
     }
 
-    onChangeGroupName = (newGroupName) => {
-        console.log(newGroupName);
+    onChangeGroupName = (newGroupTitle) => {
         this.toggleChangeGroupName()
+        this.props.changeGroupName(newGroupTitle, this.props.group)
     }
     render() {
 
@@ -85,26 +86,17 @@ export class Group extends React.Component {
                 <div className="group">
                     <div className='header'>
                         {!isChangeGroupNameOpen &&
-                            <h4 onClick={this.toggleChangeGroupName}>{group.title}</h4>}
+                            <div className='title' onClick={this.toggleChangeGroupName}>{group.title}</div>}
                         {isChangeGroupNameOpen &&
-                            <input onChange={this.handleGroupChange} onSubmit={() => this.onChangeGroupName(newGroupTitle)} type="text" name='title' placeholder={group.title} />}
+                            <form onSubmit={() => this.onChangeGroupName(newGroupTitle)}>
+                                <input onChange={this.handleGroupChange} type="text" name='title' placeholder={group.title} />
+                            </form>}
 
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
-
-                    {(group.tasks) ? <TaskList toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
+                    {(group.tasks) ? <TaskList isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={this.onAddTask} group={group} newTaskTitle={newTaskTitle} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} /> : ''}
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
-                    {isAddTaskOpen &&
-                        <form className='add-task-form' onSubmit={this.onToggleAddTask}>
-                            <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={this.handleTaskChange}></textarea>
-                            <div className='add-task-controls'>
-                                <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}>Add card</button>
-                                <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
-                            </div>
-                        </form>
-
-                    }
                     {isGroupOptionOpen &&
                         <GroupOptions onToggleGroupOptions={this.onToggleGroupOptions} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} group={group} onToggleAddTask={this.onToggleAddTask} />}
                 </div>

@@ -34,7 +34,7 @@ export class TaskOptions extends Component {
 
 
     render() {
-        const { isEditLabelsOpen, isEditMembersOpen, isChangeDueDateOpen } = this.state
+        const { isEditLabelsOpen, isEditMembersOpen } = this.state
         const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, toggleTaskMember } = this.props
         return (
             <React.Fragment>

@@ -44,7 +44,6 @@ export class SideBar extends React.Component {
                                 {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
 
                                     return <div key={activity.id} className='activity-preview'>
-                                        {console.log(activity)}
                                         <Avatar className='avatar' alt={activity.byMember.fullname} src={activity.byMember.imgUrl} />
                                         <div className='activity-txt'>{activity.byMember.fullname}: {activity.txt} to {activity.task.title}
                                             <div className='at'>{getDatePreview(activity.createdAt)}</div>

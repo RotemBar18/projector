@@ -27,7 +27,6 @@ export class TaskPreview extends Component {
     }
 
     convertNumToDate = (deuDate) => {
-        console.log(deuDate);
         if (!deuDate) return
         const deuDatePreview = taskService.getDatePreview(deuDate)
         return deuDatePreview

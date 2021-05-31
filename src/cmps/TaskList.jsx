@@ -9,13 +9,14 @@ class _TaskList extends React.Component {
     state = {}
 
     render() {
-        const { toggleTaskMember } = this.props
+        const { toggleTaskMember, isAddTaskOpen, onToggleAddTask, handleTaskChange, onAddTask, group, newTaskTitle } = this.props
         return (
             <Droppable droppableId={this.props.group.id}>
                 {(provided) => (
                     <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
                         {this.props.tasks.map((task, index) => {
                             return (
+
                                 <Draggable key={task.id} draggableId={task.id} index={index}>
                                     {(provided) => (
                                         <div
@@ -28,6 +29,16 @@ class _TaskList extends React.Component {
                                 </Draggable>
                             )
                         })
+                        }
+                        {isAddTaskOpen &&
+                        
+                            <form className='add-task-form' onSubmit={onToggleAddTask}>
+                                <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={handleTaskChange}></textarea>
+                                <div className='add-task-controls'>
+                                    <button className='add-task-add-btn' onClick={() => onAddTask(group.id, newTaskTitle)}>Add card</button>
+                                    <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>
+                                </div>
+                            </form>
                         }
                         {provided.placeholder}
                     </div>
