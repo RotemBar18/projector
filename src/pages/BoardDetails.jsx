@@ -116,6 +116,7 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
     getDatePreview = (dateNum) => {
+        console.log(dateNum);
         return taskService.getDatePreview(dateNum)
     }
 
