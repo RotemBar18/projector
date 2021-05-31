@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { LabelEdit } from './LabelEdit.jsx'
+import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 
 import React from 'react'
 
@@ -20,6 +21,15 @@ export class LabelsList extends Component {
         this.setState({ isEditLabelOpen: !this.state.isEditLabelOpen })
         this.setState({ currLabel: label })
     }
+    checkIfLabelInTask = (currLabelId) => {
+        const fitLabelId = currLabelId.substring(1)
+        console.log(fitLabelId);
+        return this.props.task.labelIds?.find(labelId => {
+            console.log(labelId);
+            if (labelId === fitLabelId) return true
+        })
+    }
+
 
     render() {
         const { isEditLabelOpen } = this.state
@@ -36,7 +46,9 @@ export class LabelsList extends Component {
                         <div className='labels'>
                             {board.labels.map(label => {
                                 return <div key={label.id} className='label-preview'>
-                                    <div style={{ backgroundColor: label.color }} className='label-title' onClick={() => this.onLabelToggle(task.id, label.id)}>{label.title}</div>
+                                    <div style={{ backgroundColor: label.color }} className='label-title' onClick={() => this.onLabelToggle(task.id, label.id)}>{label.title}
+                                        {this.checkIfLabelInTask(label.id) && <DoneOutlinedIcon />}</div>
+
                                     <button className='open-edit-label-btn' onClick={() => this.toggleEditLabel(label)}>Edit</button>
                                 </div>
 
@@ -45,7 +57,7 @@ export class LabelsList extends Component {
                     <button className='create-label-btn' onClick={() => this.toggleEditLabel()}>+Create New Label</button>
                 </div>}
             {isEditLabelOpen &&
-                <LabelEdit updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard}  toggleEditLabel={this.toggleEditLabel} currLabel={this.state.currLabel} />
+                <LabelEdit updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard} toggleEditLabel={this.toggleEditLabel} currLabel={this.state.currLabel} />
             }
         </React.Fragment>
         )

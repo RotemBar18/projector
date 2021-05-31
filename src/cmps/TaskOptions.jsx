@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { LabelsList } from './LabelsList.jsx'
+import { MembersList } from './MembersList.jsx'
 
 import React from 'react'
 // import { Link } from 'react-router-dom'
@@ -7,8 +8,7 @@ import React from 'react'
 export class TaskOptions extends Component {
     state = {
         isEditLabelsOpen: false,
-        isChangeMembersOpen: false,
-        isChangeDueDateOpen: false,
+        isEditMembersOpen: false,
         task: {
             title: ''
         }
@@ -28,17 +28,14 @@ export class TaskOptions extends Component {
     toggleEditLabels = () => {
         this.setState({ isEditLabelsOpen: !this.state.isEditLabelsOpen })
     }
-    toggleChangeMembers = () => {
-        this.setState({ isChangeMembersOpen: !this.state.isChangeMembersOpen })
+    toggleEditMembers = () => {
+        this.setState({ isEditMembersOpen: !this.state.isEditMembersOpen })
     }
 
-    toggleChangeDueDate = () => {
-        this.setState({ isChangeDueDateOpen: !this.state.isChangeDueDateOpen })
-    }
 
     render() {
-        const { isEditLabelsOpen, isChangeMembersOpen, isChangeDueDateOpen } = this.state
-        const { checkLabel,updateLabel,addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, } = this.props
+        const { isEditLabelsOpen, isEditMembersOpen, isChangeDueDateOpen } = this.state
+        const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, toggleTaskMember } = this.props
         return (
             <React.Fragment>
                 <div onClick={onToggleTaskOptions} className='task-options-window'></div>
@@ -52,9 +49,13 @@ export class TaskOptions extends Component {
                         {isEditLabelsOpen &&
                             <LabelsList updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
                         }
-                        <button className='options-btn' onClick={this.toggleChangeMembers} >Change Members</button>
+                        {isEditMembersOpen &&
+                            <MembersList toggleTaskMember={toggleTaskMember} board={board} task={task} toggleEditMembers={this.toggleEditMembers} />
+                        }
+
+                        <button className='options-btn' onClick={this.toggleEditMembers} >Change Members</button>
                         <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
-                        <button className='options-btn' onClick={()=>onDeleteTask(task.id)}>Delete</button>
+                        <button className='options-btn' onClick={() => onDeleteTask(task.id)}>Delete</button>
                     </div>
 
                     {/* <button onClick={onDeleteTask}>Delete List</button> */}

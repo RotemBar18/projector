@@ -119,6 +119,7 @@ function checkLabel(board, groupId, taskId, labelId) {
 }
 
 function toggleTaskMember(task, member) {
+    console.log('task', task)
     var memberIdx = -1
     memberIdx = task.members?.findIndex(taskMember => taskMember._id === member._id)
     if (memberIdx >= 0) {

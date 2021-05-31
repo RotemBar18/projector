@@ -9,29 +9,30 @@ class _TaskList extends React.Component {
     state = {}
 
     render() {
+        const { toggleTaskMember } = this.props
         return (
-                <Droppable droppableId={this.props.group.id}>
-                    {(provided) => (
-                        <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
-                            {this.props.tasks.map((task, index) => {
-                                return (
-                                    <Draggable key={task.id} draggableId={task.id} index={index}>
-                                        {(provided) => (
-                                            <div
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                ref={provided.innerRef}>
-                                                <TaskPreview updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard} checkLabel={this.props.checkLabel} onRemoveLabel={this.props.onRemoveLabel} onUpdateTask={this.props.onUpdateTask} onAddLabel={this.props.onAddLabel} onDeleteTask={this.props.onDeleteTask} board={this.props.board} task={task} group={this.props.group} />
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                )
-                            })
-                            }
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+            <Droppable droppableId={this.props.group.id}>
+                {(provided) => (
+                    <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
+                        {this.props.tasks.map((task, index) => {
+                            return (
+                                <Draggable key={task.id} draggableId={task.id} index={index}>
+                                    {(provided) => (
+                                        <div
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            ref={provided.innerRef}>
+                                            <TaskPreview toggleTaskMember={toggleTaskMember} updateLabel={this.props.updateLabel} addLabelToBoard={this.props.addLabelToBoard} checkLabel={this.props.checkLabel} onRemoveLabel={this.props.onRemoveLabel} onUpdateTask={this.props.onUpdateTask} onAddLabel={this.props.onAddLabel} onDeleteTask={this.props.onDeleteTask} board={this.props.board} task={task} group={this.props.group} />
+                                        </div>
+                                    )}
+                                </Draggable>
+                            )
+                        })
+                        }
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
             // </DragDropContext>
 
         )

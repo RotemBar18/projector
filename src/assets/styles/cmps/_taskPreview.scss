@@ -15,21 +15,27 @@
             object-fit: cover;
             width: 100%;
             border-radius: 3px;
+            margin-bottom: 3px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            margin-bottom: -4px;
         }
         .bgc-cover {
             height: 32px;
             width: 100%;
             border-radius: 3px;
+            margin-bottom: 3px;
         }
     }
     .label-list {
         display: flex;
         flex-wrap: wrap;
-        margin: 3px 6px;
+        margin: 3px 0px 3px 6px;
         .label {
             font-size: 0.8rem;
             border-radius: 5px;
-            margin: 3px;
+            margin-inline: 3px;
             color: white;
             font-weight: 600;
             padding-inline: 5px;
@@ -42,15 +48,16 @@
             font-weight: 400;
             color: #00395aec;
             text-decoration: none;
-            margin: 0;
+            margin: 0px 0px 0px 0px;
         }
         .badges {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-top: 7px;
+            margin-bottom: 3px;
             > * {
                 color: #6d798e;
-                margin-top: 5px;
                 margin-right: 5px;
                 font-size: 12px;
                 height: fit-content;

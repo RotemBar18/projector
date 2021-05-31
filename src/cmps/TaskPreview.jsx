@@ -27,6 +27,7 @@ export class TaskPreview extends Component {
     }
 
     convertNumToDate = (deuDate) => {
+        console.log(deuDate);
         if (!deuDate) return
         const deuDatePreview = taskService.getDatePreview(deuDate)
         return deuDatePreview
@@ -37,26 +38,27 @@ export class TaskPreview extends Component {
     }
 
     render() {
-        const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
+        const { toggleTaskMember, checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
         const { isTaskOptionsShow } = this.state
         return (
             <article className={`task-container`}>
                 {isTaskOptionsShow &&
-                    <TaskOptions updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
-                <div className='task-cover'>
+                    <TaskOptions toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} onAddLabel={onAddLabel} board={board} onDeleteTask={onDeleteTask} onUpdateTask={onUpdateTask} task={task} onToggleTaskOptions={this.toggleTaskOptions} />}
+                {(task.style) ? (task.style.bgColor || task.style.imgUrl) ? <div className='task-cover'>
                     {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt="" /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
-                </div>
-                <div className='label-list'>
+                </div> : '' : ''}
+                {(task.labelIds) ? <div className='label-list'>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
                         const label = this.getLableById(labelId)
                         return <LabelPreview key={label.id} lable={label} />
                     }) : ''}
-                </div>
+                </div> : ''}
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
-                    <div className='badges'>
-                    {(task.checklists) ?  <div className='dew-date'>
-                            {this.convertNumToDate(task.dueDate)}
-                        </div>:''}
+                    {(task.dueDate || task.checklists || task.members) ? <div className='badges'>
+                        {(task.dueDate) &&
+                            <div className='dew-date'>
+                                {this.convertNumToDate(task.dueDate)}
+                            </div>}
 
                         {(task.checklists) ? <div className='checklists-preview'>
                             {this.getChecklistsPreview(task.checklists)}
@@ -66,7 +68,7 @@ export class TaskPreview extends Component {
                                 return <Avatar key={member._id} className='avatar' alt={member.fullName} src={member.imgUrl} />
                             }) : ''}
                         </div>
-                    </div>
+                    </div> : ''}
                 </Link>
                 <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
 
