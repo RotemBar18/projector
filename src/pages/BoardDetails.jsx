@@ -17,6 +17,7 @@ class _BoardDetails extends React.Component {
     state = {
         isSideBarOpen: false,
         isAddGroupOpen: false,
+        isDragDisabled: false,
         group: {
             title: ''
         }
@@ -35,7 +36,6 @@ class _BoardDetails extends React.Component {
     }
 
     onToggleSideBar = () => {
-        console.log('toggi')
         this.setState({ isSideBarOpen: !this.state.isSideBarOpen })
     }
 
@@ -54,6 +54,12 @@ class _BoardDetails extends React.Component {
         groupService.copyGroup(board, group)
         this.props.saveBoard(board)
     }
+    changeGroupName = (newGroupTitle, group) => {
+        const board = this.props.currBoard
+        groupService.changeGroupName(board, newGroupTitle, group)
+        this.props.saveBoard(board)
+    }
+
     onToggleAddGroup = () => {
         this.setState({ isAddGroupOpen: !this.state.isAddGroupOpen })
     }
@@ -142,12 +148,15 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
 
+    toggleDroppable = () => {
+        this.setState({ ...this.state, isDragDisabled: !this.state.isDragDisabled });
+    }
+
     render() {
 
-        const { isAddGroupOpen, isSideBarOpen } = this.state
+        const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
-        console.log(this.toggleTaskMember);
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
@@ -169,13 +178,13 @@ class _BoardDetails extends React.Component {
                         <div className="board-container"{...provided.droppableProps} ref={provided.innerRef}>
                             {(board.groups) && board.groups.map((group, index) => {
                                 return (
-                                    <Draggable key={group.id} draggableId={group.id} index={index}>
+                                    <Draggable isDragDisabled={isDragDisabled} key={group.id} draggableId={group.id} index={index}>
                                         {(provided) => (
                                             <div
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                                 ref={provided.innerRef}>
-                                                <Group toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                                                <Group toggleDroppable={this.toggleDroppable} isDragDisabled={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                                             </div>
                                         )}
                                     </Draggable>

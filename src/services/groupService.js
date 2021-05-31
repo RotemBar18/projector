@@ -3,7 +3,8 @@ import { utilService } from './utilService.js'
 export const groupService = {
     deleteGroup,
     copyGroup,
-    addGroup
+    addGroup,
+    changeGroupName
 }
 
 
@@ -25,4 +26,11 @@ function copyGroup(board, group) {
     const groupCopy = { ...group, id: utilService.makeId() }
     const groupIdx = board.groups.findIndex(currGroup => group.id === currGroup.id)
     board.groups.splice(groupIdx, 0, groupCopy)
+}
+
+function changeGroupName(board, newGroupTitle, group) {
+    if (!newGroupTitle) return
+    const newGroup = { ...group, title: newGroupTitle }
+    const groupIdx = board.groups.findIndex(currGroup => group.id === currGroup.id)
+    board.groups.splice(groupIdx, 1, newGroup)
 }

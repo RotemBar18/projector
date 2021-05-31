@@ -23,11 +23,7 @@ export class LabelsList extends Component {
     }
     checkIfLabelInTask = (currLabelId) => {
         const fitLabelId = currLabelId.substring(1)
-        console.log(fitLabelId);
-        return this.props.task.labelIds?.find(labelId => {
-            console.log(labelId);
-            if (labelId === fitLabelId) return true
-        })
+        return this.props.task.labelIds?.some(labelId => labelId === fitLabelId)
     }
 
 

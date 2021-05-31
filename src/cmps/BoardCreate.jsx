@@ -26,7 +26,7 @@ class _BoardCreate extends React.Component {
 
     handleBackground = (ev) =>{
         const style = {imgUrl: ev.target.src, bgColor: ev.target.style.backgroundColor}
-        this.setState({ board: { ...this.state.board, ['style']: style}})
+        this.setState({ board: { ...this.state.board, style}})
     }
 
     onCreateBoard = (ev) => {

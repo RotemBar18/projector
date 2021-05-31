@@ -13,7 +13,6 @@ export class MembersList extends Component {
     }
 
     checkIfMemberInTask = (name) => {
-        console.log(name);
         var patten = new RegExp(name);
         return this.props.task.members?.some(member => {
             return patten.test(member.fullname)
@@ -22,7 +21,6 @@ export class MembersList extends Component {
 
     render() {
         const { board, task, toggleEditMembers, toggleTaskMember } = this.props
-        console.log(toggleTaskMember);
         return (
             <div className="edit-members-container">
                 <div className='edit-members-header'>

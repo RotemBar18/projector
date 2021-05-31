@@ -34,10 +34,6 @@ async function save(board) {
 
 function changeBg(pick, imgUrl, bgColor, board) {
     if (pick === 'photos') return board.style = { ...board.style, imgUrl }
-    console.log('pick', pick)
     board.style = { bgColor }
 }
 
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 500}).then(x => console.log(x))
