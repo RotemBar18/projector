@@ -114,6 +114,7 @@ class _BoardDetails extends React.Component {
 
     handleOnDragEnd = (result) => {
         const board = this.props.currBoard;
+        if (!result.destination) return
         if (result.type === 'list') {
             const groups = board.groups
             const [reorderedItem] = groups.splice(result.source.index, 1);
