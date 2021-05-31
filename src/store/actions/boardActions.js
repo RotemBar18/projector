@@ -14,11 +14,11 @@ export function loadBoards() {
     }
 }
 
-export function saveBoard(board, lastBoardId) {
+export function saveBoard(board) {
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
     return async dispatch => { 
         try {
-            const savedBoard = await boardService.save(board, lastBoardId)
+            const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
         } catch (err) {
             console.log('BoardActions: err in save/update board', err)

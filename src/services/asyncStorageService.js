@@ -68,7 +68,7 @@ var gBoards = [{
             "comments": [{
                 "id": "ZdPnm",
                 "txt": "also @yaronb please CR this",
-                "createdAt": 1590999817436.0,
+                "createdAt": 1590999817436,
                 "byMember": {
                     "_id": "u101",
                     "fullname": "Tal Tarablus",
@@ -207,7 +207,7 @@ var gBoards = [{
             "comments": [{
                 "id": "ZdPnm",
                 "txt": "also @yaronb please CR this",
-                "createdAt": 1590999817436.0,
+                "createdAt": 1590999817436,
                 "byMember": {
                     "_id": "u101",
                     "fullname": "Tal Tarablus",
@@ -456,31 +456,28 @@ var gBoards = [{
             }]
         }]
     }],
-    "activities": [
-        {
-            "id": "a101",
-            "txt": "Changed Color",
-            "createdAt": 1622114211778,
-            "byMember": {
-                "_id": "u101",
-                "fullname": "Abi Abambi",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c101",
-                "title": "Replace Logo"
-
-            }
+    "activities": [{
+        "id": "a101",
+        "txt": "Changed Color",
+        "createdAt": 1622114211778,
+        "byMember": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c101",
+            "title": "Replace Logo"
         }
-    ]
+    }]
 }, {
     "title": "Sprint 4",
-    "bgColor": "#000",
     "_id": "b102",
     "style": {
+        "bgColor": "#ffffff",
         "imgUrl": "https://bit.ly/3yLM7uN"
     },
-    "activities": {},
+    "activities": [],
     "createdAt": 1622312265790,
     "createdBy": {
         "_id": "u101",
@@ -800,6 +797,191 @@ var gBoards = [{
         "fullname": "Hila Meri",
         "imgUrl": ""
     }]
+}, {
+    "title": "Moving Out",
+    "style": {
+        "bgColor": "rgb(96, 190, 80)"
+    },
+    "_id": "pGkYm",
+    "activities": [],
+    "createdAt": 1622404972472,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "CIeP8",
+        "style": {},
+        "tasks": [{
+            "id": "O93qj",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Learning to Code",
+    "style": {
+        "imgUrl": "https://bit.ly/3i3i4c9",
+        "bgColor": ""
+    },
+    "_id": "ITzjh",
+    "activities": [],
+    "createdAt": 1622404981198,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "HKVWe",
+        "style": {},
+        "tasks": [{
+            "id": "5AjDQ",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Renovating the House",
+    "style": {
+        "bgColor": "rgb(2, 121, 191)"
+    },
+    "_id": "skpFX",
+    "activities": [],
+    "createdAt": 1622405010202,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "z96nN",
+        "style": {},
+        "tasks": [{
+            "id": "dFXaP",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Planning the Trip",
+    "style": {
+        "imgUrl": "https://bit.ly/3p5Xiuc",
+        "bgColor": ""
+    },
+    "_id": "rgwwY",
+    "activities": [],
+    "createdAt": 1622405044526,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "YpsFW",
+        "style": {},
+        "tasks": [{
+            "id": "9wwkG",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Baking a Cake",
+    "style": {
+        "bgColor": "rgb(255, 159, 26)"
+    },
+    "_id": "W3DV7",
+    "activities": [],
+    "createdAt": 1622405075137,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "FUr5q",
+        "style": {},
+        "tasks": [{
+            "id": "x1AIZ",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Watch Every MCU Movie",
+    "style": {
+        "imgUrl": "https://bit.ly/3c574Hw",
+        "bgColor": ""
+    },
+    "_id": "5iiUS",
+    "activities": [],
+    "createdAt": 1622405087675,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "iv8SR",
+        "style": {},
+        "tasks": [{
+            "id": "z0CQe",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
+}, {
+    "title": "Building a New PC",
+    "style": {
+        "bgColor": "rgb(235, 90, 70)"
+    },
+    "_id": "U6NXw",
+    "activities": [],
+    "createdAt": 1622405126183,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Roey Barda",
+        "imgUrl": "https://bit.ly/3p16jEB"
+    },
+    "groups": [{
+        "id": "5qPNf",
+        "style": {},
+        "tasks": [{
+            "id": "QTG6J",
+            "labelsIds": [],
+            "style": {},
+            "title": "task 1"
+        }],
+        "title": "Group 1"
+    }],
+    "labels": [],
+    "members": []
 }]
 
 const STORAGE_KEY = 'board_db'
@@ -820,8 +1002,8 @@ function get(entityType, entityId) {
         })
 }
 
-function post(entityType, newEntity, lastBoardId) {
-    newEntity = _makeNewBoard(newEntity, lastBoardId)
+function post(entityType, newEntity) {
+    newEntity = _makeNewBoard(newEntity)
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
@@ -862,20 +1044,10 @@ function _makeId(length = 5) {
     return text
 }
 
-function _makeNewId(lastdId) {
-    let IdLetter = lastdId.substring(0, 1)
-    let lastId = +(lastdId.substring(1, lastdId.length))
-    lastId = lastId + 1
-    let newId = IdLetter + lastId
-    return newId
-}
 
 function _makeNewBoard(newEntity, lastdId) {
-    newEntity._id = _makeNewId(lastdId)
-    newEntity.style = {
-        "imgUrl": newEntity.style.imgUrl
-    }
-    newEntity.activities = {}
+    newEntity._id = _makeId()
+    newEntity.activities = []
     newEntity.createdAt = Date.now()
     newEntity.createdBy = {
         "_id": "u101",

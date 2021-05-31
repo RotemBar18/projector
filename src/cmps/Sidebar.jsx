@@ -17,9 +17,10 @@ export class SideBar extends React.Component {
     }
     render() {
         const { isChangeBgOpen, isBgPickOpen, bgPicks } = this.state
-        const { onToggleSideBar, board, getDatePreview } = this.props
+        const { onToggleSideBar, board, getDatePreview , onChangeBg} = this.props
         return (
             <React.Fragment>
+
                 <div onClick={onToggleSideBar} className='side-bar-window'></div>
                 <div className="side-bar">
                     <div className='side-bar-header'>
@@ -40,7 +41,8 @@ export class SideBar extends React.Component {
                             </div>
                             <div className='activities-list'>
                                 <h3 className='activities-title'>Activity</h3>
-                                {(board.activities) ? board.activities.map(activity => {
+                                {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
+
                                     return <div key={activity.id} className='activity-preview'>
                                         {console.log(activity)}
                                         <Avatar className='avatar' alt={activity.byMember.fullname} src={activity.byMember.imgUrl} />
@@ -65,7 +67,7 @@ export class SideBar extends React.Component {
                         </div>
                     }
                     {isBgPickOpen &&
-                        <BgPicksList bgPicks={bgPicks} isBgPickOpen={isBgPickOpen} />}
+                        <BgPicksList onChangeBg={onChangeBg} bgPicks={bgPicks} isBgPickOpen={isBgPickOpen} />}
 
                 </div>
 
