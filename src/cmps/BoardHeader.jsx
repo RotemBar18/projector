@@ -4,7 +4,7 @@ import { utilService } from '../services/utilService.js'
 
 export class BoardHeader extends React.Component {
     render() {
-        const { board } = this.props
+        const { board,onToggleSideBar } = this.props
         const { members } = board
         return (
             <div className="board-header">
@@ -17,8 +17,8 @@ export class BoardHeader extends React.Component {
                                 {utilService.getNameInitials(member.fullname)}
                             </Avatar>)}
                     </div>
+                    <button onClick={onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
                 </div>
-                <button>Menu</button>
             </div>
         )
     }

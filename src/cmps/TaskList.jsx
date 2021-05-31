@@ -14,10 +14,12 @@ class _TaskList extends React.Component {
         const { toggleTaskMember, isAddTaskOpen, onToggleAddTask, handleTaskChange, onAddTask, group, newTaskTitle } = this.props
         const { isDragDisabled } = this.state;
         return (
+
             <Droppable droppableId={this.props.group.id}>
+
                 {(provided) => (
                     <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
-                        {this.props.tasks.map((task, index) => {
+                        {group.tasks && this.props.tasks.map((task, index) => {
                             return (
                                 <Draggable isDragDisabled={this.props.isDragDisabled} key={task.id} draggableId={task.id} index={index}>
                                     {(provided) => (
@@ -32,6 +34,8 @@ class _TaskList extends React.Component {
                             )
                         })
                         }
+
+
                         {isAddTaskOpen &&
 
                             <form className='add-task-form' onSubmit={onToggleAddTask}>

@@ -1,6 +1,6 @@
 .board-header {
     display: flex;
-    position: sticky;
+    position: fixed;
     justify-content: space-between;
     padding: 0 5px;
     min-height: 49px;
@@ -11,25 +11,31 @@
     font-weight: 700;
     font-size: 1.25rem;
     height: 32px;
-    background-color: rgba(34, 34, 34, .411);
+    background-color: rgba(34, 34, 34, 0.411);
     margin-top: 9px;
+    width: 100%;
 
     .header-options {
-        display: flex;
+        display: grid;
+        width: 100%;
         align-items: center;
-
-        &>* {
-            margin: 50px;
+        grid-template-columns: max-content max-content max-content auto;
+        > *:not(:first-child) {
+            margin-left: 40px;
         }
-
         .header-avatars {
             display: flex;
-            
-            &>* {
-                margin-left: -10px;
-            }
 
+            > *{
+               border: 0.5px solid rgba(0, 0, 0, 0.37);
+            }
+            > *:not(:first-child) {
+                margin-left: -15px;
+            }
+        }
+        .open-side-bar-btn {
+            background-color: magenta;
+            justify-self: flex-end;
         }
     }
-
 }

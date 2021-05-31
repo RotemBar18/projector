@@ -161,12 +161,11 @@ class _BoardDetails extends React.Component {
         return <React.Fragment>
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
-            {!isSideBarOpen &&
-                <div className="board-header-container">
-                <BoardHeader board={board}/>
-                <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
-                </div>
-            }
+
+            <div className="board-header-container">
+                <BoardHeader board={board} onToggleSideBar={this.onToggleSideBar} />
+            </div>
+
             {isSideBarOpen &&
 
                 <SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
