@@ -11,7 +11,6 @@ import { TaskOptions } from './TaskOptions.jsx';
 export class TaskPreview extends Component {
 
     state = {
-        isTaskOptionsShow: false
     }
 
     getLableById = (labelId) => {
@@ -22,12 +21,12 @@ export class TaskPreview extends Component {
         this.setState({ isTaskDetailsShow: !this.state.isTaskDetailsShow })
     }
     toggleTaskOptions = () => {
+        this.props.toggleDroppable()
         this.setState({ isTaskOptionsShow: !this.state.isTaskOptionsShow })
 
     }
 
     convertNumToDate = (deuDate) => {
-        console.log(deuDate);
         if (!deuDate) return
         const deuDatePreview = taskService.getDatePreview(deuDate)
         return deuDatePreview

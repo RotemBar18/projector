@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { LabelsList } from './LabelsList.jsx'
 import { MembersList } from './MembersList.jsx'
-
+import { Draggable } from 'react-beautiful-dnd';
 import React from 'react'
 // import { Link } from 'react-router-dom'
 
@@ -32,13 +32,17 @@ export class TaskOptions extends Component {
         this.setState({ isEditMembersOpen: !this.state.isEditMembersOpen })
     }
 
+    preventDragHandler = (e) => {
+        console.log(e)
+        e.preventDefault();
+      }
 
     render() {
-        const { isEditLabelsOpen, isEditMembersOpen, isChangeDueDateOpen } = this.state
+        const { isEditLabelsOpen, isEditMembersOpen} = this.state
         const { checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, onDeleteTask, onToggleTaskOptions, task, board, onAddLabel, toggleTaskMember } = this.props
         return (
             <React.Fragment>
-                <div onClick={onToggleTaskOptions} className='task-options-window'></div>
+                <div  onClick={onToggleTaskOptions} className='task-options-window' ></div>
                 <div className='task-options-container'>
                     <div className='change-task-title'>
                         <textarea cols='1' rows='8' type="text" className='new-title-input' placeholder={task.title} name='title' onChange={this.handleChange}></textarea>
