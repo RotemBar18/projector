@@ -1,0 +1,35 @@
+.board-header {
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    padding: 0 5px;
+    min-height: 49px;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    height: 32px;
+    background-color: rgba(34, 34, 34, .411);
+    margin-top: 9px;
+
+    .header-options {
+        display: flex;
+        align-items: center;
+
+        &>* {
+            margin: 50px;
+        }
+
+        .header-avatars {
+            display: flex;
+            
+            &>* {
+                margin-left: -10px;
+            }
+
+        }
+    }
+
+}

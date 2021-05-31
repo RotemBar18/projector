@@ -10,6 +10,7 @@ import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { labelService } from '../services/labelService.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { boardService } from '../services/boardService.js';
+import { BoardHeader } from '../cmps/BoardHeader'
 // import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
@@ -152,7 +153,10 @@ class _BoardDetails extends React.Component {
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
             {!isSideBarOpen &&
+                <div className="board-header-container">
+                <BoardHeader board={board}/>
                 <button onClick={this.onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
+                </div>
             }
             {isSideBarOpen &&
 
