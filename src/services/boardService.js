@@ -21,14 +21,14 @@ function getById(boardId) {
 }
 
 function remove(boardId) {
-    return storageService.remove(boardId)
+    return storageService.remove(dataBase, boardId)
 }
 
 async function save(board) {
     if (board._id) {
-        return await storageService.put('board_db', board)
+        return await storageService.put(dataBase, board)
     } else {
-        return await storageService.post('board_db',board)
+        return await storageService.post(dataBase,board)
     }
 }
 

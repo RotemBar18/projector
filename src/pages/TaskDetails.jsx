@@ -101,7 +101,6 @@ class _TaskDetails extends Component {
 
     toggleEditLabel = (currLabel = null) => {
         this.setState({ ...this.state, isEditLabelsShow: !this.state.isEditLabelsShow, currLabel })
-        console.log(this.state)
     }
 
     updateLabel = (currLabel, labelUpdates) => {
@@ -219,7 +218,6 @@ class _TaskDetails extends Component {
                     <div className="modal labels-list">
                         {labelIds?.map(labelId => {
                             const labelProperty = this.getLabelProperty(labelId)
-                            console.log(labelProperty)
                             return <div className="flex">
                                 <div className="label" style={{ backgroundColor: labelProperty.color }}>
                                     {labelProperty.title || ''}
