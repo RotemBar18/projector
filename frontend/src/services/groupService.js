@@ -11,10 +11,12 @@ export const groupService = {
 
 
 function addGroup(board, newTitle) {
-    board.groups.push({
+    const newGroup = {
         id: 'g' + utilService.makeId(),
         title: newTitle,
-    })
+    }
+    board.groups = [...board.groups, newGroup]
+    return newGroup
 }
 
 function deleteGroup(board, groupId) {
