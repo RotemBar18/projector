@@ -43,9 +43,10 @@ class _BoardDetails extends React.Component {
         this.props.setBoard(boardId)
     }
 
-    onDeleteGroup = (groupId) => {
+    onDeleteGroup = (group) => {
         const board = this.props.currBoard
-        groupService.deleteGroup(board, groupId)
+        groupService.deleteGroup(board, group.id)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'Deleted')
         this.props.saveBoard(board)
     }
     onCopyGroup = (group) => {
@@ -78,9 +79,9 @@ class _BoardDetails extends React.Component {
         taskService.addTask(board, groupId, newTitle)
         this.props.saveBoard(board)
     }
-    onUpdateTask = (groupId, updatedTask) => {
+    onUpdateTask = (group, updatedTask) => {
         const board = this.props.currBoard
-        taskService.updateTask(board, groupId, updatedTask)
+        taskService.updateTask(board, group.id, updatedTask)
         this.props.saveBoard(board)
     }
 
@@ -189,7 +190,7 @@ class _BoardDetails extends React.Component {
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                                 ref={provided.innerRef}>
-                                                <Group setDate={this.setDate} toggleDroppable= {this.toggleDroppable} isDragDisabled ={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
+                                                <Group setDate={this.setDate} toggleDroppable={this.toggleDroppable} isDragDisabled={isDragDisabled} changeGroupName={this.changeGroupName} toggleTaskMember={this.toggleTaskMember} updateLabel={this.updateLabel} addLabelToBoard={this.addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} onCopyGroup={this.onCopyGroup} onDeleteGroup={this.onDeleteGroup} board={board} group={group} onAddTask={this.onAddTask} />
                                             </div>
                                         )}
                                     </Draggable>

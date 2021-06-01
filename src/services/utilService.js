@@ -3,6 +3,7 @@ export const utilService = {
     getRandomInt,
     makeId,
     getNameInitials,
+    convertToCreatedAtDate,
 }
 
 function delay(ms = 1500) {
@@ -33,4 +34,11 @@ function getNameInitials(name) {
         (initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')
     ).toUpperCase();
     return initials
+}
+
+function convertToCreatedAtDate (date) {
+    var month = date.getUTCMonth() + 1; //months from 1-12
+    var day = date.getUTCDate();
+    var year = date.getUTCFullYear();
+    return `${year}-${month}-${day}T00:00`
 }
