@@ -54,7 +54,7 @@ function addActivity(loggedInUser, board, group, action, task) {
         txt: action
     }
     console.log('newActivity', newActivity)
-    board.activities = [...board.activities, newActivity]
+    board.activities = [ newActivity, ...board.activities]
     console.log('board', board)
 
 }

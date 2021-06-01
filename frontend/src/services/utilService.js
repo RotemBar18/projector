@@ -36,9 +36,9 @@ function getNameInitials(name) {
     return initials
 }
 
-function convertToCreatedAtDate (date) {
+function convertToCreatedAtDate(date) {
     var month = date.getUTCMonth() + 1; //months from 1-12
     var day = date.getUTCDate();
     var year = date.getUTCFullYear();
-    return `${year}-${month}-${day}T00:00`
+    return `${year}-${(+month > 10) ? month : '0' + month}-${(+day > 10) ? day : '0' + day}T00:00`
 }

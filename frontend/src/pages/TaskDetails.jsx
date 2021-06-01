@@ -155,7 +155,7 @@ class _TaskDetails extends Component {
 
     setDate = (date) => {
         const board = this.props.currBoard
-        const {task} = this.state
+        const { task } = this.state
         taskService.setTaskDate(task, date);
         this.setState({ ...this.state, task })
         this.props.saveBoard(board)
@@ -266,7 +266,7 @@ class _TaskDetails extends Component {
                     updateLabel={this.updateLabel}
                     addLabelToBoard={this.addLabelToBoard}
                 ></LabelsList>}
-                {this.state.isEditDateShow && <Dates task={task} setDate={this.setDate}></Dates>}
+                {this.state.isEditDateShow && <Dates prevPage={'task-details'} toggleModal={this.toggleModal} task={task} setDate={this.setDate}></Dates>}
                 {/* {this.state.isEditDateShow && <form className='dates-form flex' noValidate>
                     <TextField className="dates"
                         id="datetime-local"

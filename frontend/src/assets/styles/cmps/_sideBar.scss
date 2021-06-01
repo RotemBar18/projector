@@ -107,6 +107,11 @@
                     flex-grow: 1;
                     font-size: rem(14px);
                     margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    bottom: 3px;
+                    
 
                     .at {
                         font-size: rem(12px);

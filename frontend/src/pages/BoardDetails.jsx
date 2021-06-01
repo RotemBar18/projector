@@ -46,17 +46,20 @@ class _BoardDetails extends React.Component {
     onDeleteGroup = (group) => {
         const board = this.props.currBoard
         groupService.deleteGroup(board, group.id)
-        boardService.addActivity(this.props.loggedInUser, board, group, 'Deleted')
+        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the list:')
         this.props.saveBoard(board)
     }
     onCopyGroup = (group) => {
         const board = this.props.currBoard
         groupService.copyGroup(board, group)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'copied the list:')
         this.props.saveBoard(board)
     }
     changeGroupName = (newGroupTitle, group) => {
         const board = this.props.currBoard
         groupService.changeGroupName(board, newGroupTitle, group)
+        boardService.addActivity(this.props.loggedInUser, board, group, `changed the list name to: "${newGroupTitle}" from:`)
+
         this.props.saveBoard(board)
     }
 
@@ -66,7 +69,8 @@ class _BoardDetails extends React.Component {
     onAddGroup = (newGroupTitle) => {
         this.onToggleAddGroup()
         const board = this.props.currBoard
-        groupService.addGroup(board, newGroupTitle)
+        const group = groupService.addGroup(board, newGroupTitle)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new list named:')
         this.props.saveBoard(board)
     }
 
@@ -74,20 +78,25 @@ class _BoardDetails extends React.Component {
         this.props.history.push('/board')
     }
 
-    onAddTask = (groupId, newTitle) => {
+    onAddTask = (group, newTitle) => {
         const board = this.props.currBoard
-        taskService.addTask(board, groupId, newTitle)
+        const task = taskService.addTask(board, group.id, newTitle)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
-    onUpdateTask = (group, updatedTask) => {
+    onUpdateTask = (group, updatedTask,task) => {
+        console.log(updatedTask);
+        console.log(task);
         const board = this.props.currBoard
         taskService.updateTask(board, group.id, updatedTask)
+        boardService.addActivity(this.props.loggedInUser, board, group, `changed the card name to: "${updatedTask.title}" from:`, task)
         this.props.saveBoard(board)
     }
 
-    onDeleteTask = (groupId, taskId) => {
+    onDeleteTask = (group, task) => {
         const board = this.props.currBoard
-        taskService.deleteTask(board, groupId, taskId)
+        taskService.deleteTask(board, group.id, task.id)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the card:',task)
         this.props.saveBoard(board)
     }
 

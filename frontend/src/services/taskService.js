@@ -29,30 +29,33 @@ function getPreview(checklists) {
 }
 
 function getDatePreview(currDate) {
-    const month = +currDate.substring(5,7)
+    const year = currDate.substring(0, 4)
+    const month = currDate.substring(5, 7)
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    const monthName = monthNames[month-1].substring(0, 3)
-    const day = +currDate.substring(8,10)
-    return `${monthName} ${day} `
+    const monthName = monthNames[month - 1].substring(0, 3)
+    const day = +currDate.substring(8, 10)
+    return `${monthName} ${day}`
 
 }
 
-function setTaskDate(task, date){
+function setTaskDate(task, date) {
     task.dueDate = date
 }
 
 function addTask(board, groupId, newTitle) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
-    board.groups[groupIdx].tasks.push({
+    const newTask = {
         id: 'c' + utilService.makeId(),
         title: newTitle
-    })
+    }
+    board.groups[groupIdx].tasks = [...board.groups[groupIdx].tasks, newTask]
+    return newTask
 }
 
-function addComment(task,txt, comment ) {
+function addComment(task, txt, comment) {
     var commentIdx = -1
     if (!task.comments) task.comments = [];
     commentIdx = task.comments?.findIndex(taskcomment => taskcomment?.id === comment?.id)
@@ -74,6 +77,7 @@ function addComment(task,txt, comment ) {
 }
 
 function updateTask(board, groupId, updatedTask) {
+    console.log('updatedTask', updatedTask)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     const updatedTaskId = board.groups[groupIdx].tasks.findIndex(task => task.id === updatedTask.id)
     board.groups[groupIdx].tasks.splice(updatedTaskId, 1, updatedTask)
