@@ -42,6 +42,7 @@ export class SideBar extends React.Component {
                             <div className='activities-list'>
                                 <h3 className='activities-title'>Activity</h3>
                                 {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
+                                console.log(board.activities,activity);
 
                                     return <div key={activity.id} className='activity-preview'>
                                         
