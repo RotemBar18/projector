@@ -1,4 +1,5 @@
 import { storageService } from './asyncStorageService.js'
+import { utilService } from './utilService.js';
 // import { utilService } from './utilService.js'
 
 export const boardService = {
@@ -7,6 +8,7 @@ export const boardService = {
     save,
     changeBg,
     remove,
+    addActivity
 }
 
 var dataBase = 'board_db'
@@ -28,7 +30,7 @@ async function save(board) {
     if (board._id) {
         return await storageService.put(dataBase, board)
     } else {
-        return await storageService.post(dataBase,board)
+        return await storageService.post(dataBase, board)
     }
 }
 
@@ -37,3 +39,23 @@ function changeBg(pick, imgUrl, bgColor, board) {
     board.style = { bgColor }
 }
 
+function addActivity(loggedInUser, board, group, action, task) {
+    console.log('action', action)
+    console.log('group', group)
+    console.log('board', board)
+    const date = new Date()
+    const createdAt = utilService.convertToCreatedAtDate(date)
+    const member = (loggedInUser) ? loggedInUser : { fullname: 'guest' }
+    const newActivity = {
+        byMember: member,
+        createdAt,
+        id: 'a' + utilService.makeId(),
+        task,
+        group,
+        txt: action
+    }
+    console.log('newActivity', newActivity)
+    board.activities = [...board.activities, newActivity]
+    console.log('board', board)
+
+}

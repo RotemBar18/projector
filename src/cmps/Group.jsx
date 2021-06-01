@@ -32,7 +32,7 @@ export class Group extends React.Component {
         this.setState({ isGroupOptionOpen: false })
         this.setState({ isAddTaskOpen: !this.state.isAddTaskOpen })
     }
-  
+
     onToggleGroupOptions = () => {
         this.props.toggleDroppable()
         this.setState({ isAddTaskOpen: false })
@@ -41,7 +41,7 @@ export class Group extends React.Component {
 
     onDeleteGroup = () => {
         this.onToggleGroupOptions()
-        this.props.onDeleteGroup(this.props.group.id)
+        this.props.onDeleteGroup(this.props.group)
 
     }
     onCopyGroup = () => {
@@ -50,7 +50,7 @@ export class Group extends React.Component {
 
     }
     onUpdateTask = (updatedTask) => {
-        this.props.onUpdateTask(this.props.group.id, updatedTask)
+        this.props.onUpdateTask(this.props.group, updatedTask)
 
     }
     toggleChangeGroupName = () => {
@@ -96,7 +96,7 @@ export class Group extends React.Component {
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
 
-                   <TaskList isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={onAddTask} group={group} newTaskTitle={newTaskTitle} setDate={this.props.setDate} isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} />
+                    <TaskList isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={onAddTask} group={group} newTaskTitle={newTaskTitle} setDate={this.props.setDate} isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} />
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                     {isGroupOptionOpen &&
