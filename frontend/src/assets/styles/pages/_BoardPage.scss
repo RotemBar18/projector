@@ -77,6 +77,19 @@
     h3 {
         align-self: center;
     }
+    .delete-button {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.219);
+        opacity: 0;
+        color:white;
+        border-radius: 3px;
+        margin: 0px 0px 10px 0px;
+        padding: 5px;
+        bottom: 0;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.356);
+        }
+    }
     .delete-board-window {
         display: flex;
         justify-content: center;
@@ -122,14 +135,19 @@
                     border-radius: 3px;
                     padding: 10px 20px;
                 }
-                .delete-board-btn{
+                .delete-board-btn {
                     background-color: #eb5a46;
                     color: white;
+                    &:hover{
+                        opacity: 0.8;
+                    }
                 }
-                .cancel-delete-board-btn{
-                    background-color:#0279bf;
+                .cancel-delete-board-btn {
+                    background-color: #0279bf;
                     color: white;
-
+                    &:hover{
+                        opacity: 0.8;
+                    }
                 }
             }
         }
@@ -154,9 +172,7 @@
     filter: invert(1);
 }
 
-.delete-button {
-    opacity: 0;
-}
+
 
 .board-preview:hover > .delete-button {
     opacity: 100;

@@ -8,6 +8,7 @@ export class Group extends React.Component {
         isGroupOptionOpen: false,
         isAddTaskOpen: false,
         isChangeGroupNameOpen: false,
+        isScroll: false,
         group: {
             title: ''
         },
@@ -29,6 +30,7 @@ export class Group extends React.Component {
 
     onToggleAddTask = () => {
         this.props.toggleDroppable()
+        this.setState({ isScroll: !this.state.isScroll})
         this.setState({ isGroupOptionOpen: false })
         this.setState({ isAddTaskOpen: !this.state.isAddTaskOpen })
     }
@@ -49,15 +51,15 @@ export class Group extends React.Component {
         this.props.onCopyGroup(this.props.group)
 
     }
-    onUpdateTask = (updatedTask) => {
-        this.props.onUpdateTask(this.props.group, updatedTask)
+    onUpdateTask = (updatedTask, task) => {
+        this.props.onUpdateTask(this.props.group, updatedTask, task)
 
     }
     toggleChangeGroupName = () => {
         this.setState({ isChangeGroupNameOpen: !this.state.isChangeGroupNameOpen })
     }
-    onDeleteTask = (taskId) => {
-        this.props.onDeleteTask(this.props.group.id, taskId)
+    onDeleteTask = (task) => {
+        this.props.onDeleteTask(this.props.group, task)
 
     }
 
@@ -80,7 +82,7 @@ export class Group extends React.Component {
         const { group, board, onAddTask, updateLabel, addLabelToBoard, toggleTaskMember } = this.props
         const newTaskTitle = this.state.task.title
         const newGroupTitle = this.state.group.title
-        const { isAddTaskOpen, isGroupOptionOpen, isChangeGroupNameOpen } = this.state
+        const { isAddTaskOpen, isGroupOptionOpen, isChangeGroupNameOpen,isScroll } = this.state
 
         return (
             <React.Fragment>
@@ -96,7 +98,7 @@ export class Group extends React.Component {
                         <button className='options' onClick={this.onToggleGroupOptions}>...</button>
                     </div>
 
-                    <TaskList isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={onAddTask} group={group} newTaskTitle={newTaskTitle} setDate={this.props.setDate} isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} />
+                    <TaskList isScroll={isScroll} isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={onAddTask} group={group} newTaskTitle={newTaskTitle} setDate={this.props.setDate} isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} />
                     {!isAddTaskOpen &&
                         <button className='add-task-toggle-btn' onClick={this.onToggleAddTask}>+ Add another card</button>}
                     {isGroupOptionOpen &&

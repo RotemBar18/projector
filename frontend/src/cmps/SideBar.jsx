@@ -17,7 +17,7 @@ export class SideBar extends React.Component {
     }
     render() {
         const { isChangeBgOpen, isBgPickOpen, bgPicks } = this.state
-        const { onToggleSideBar, board, getDatePreview , onChangeBg} = this.props
+        const { onToggleSideBar, board, getDatePreview, onChangeBg } = this.props
         return (
             <React.Fragment>
 
@@ -44,8 +44,9 @@ export class SideBar extends React.Component {
                                 {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
 
                                     return <div key={activity.id} className='activity-preview'>
+                                        
                                         <Avatar className='avatar' alt={activity.byMember.fullname} src={activity.byMember.imgUrl} />
-                                        <div className='activity-txt'>{activity.byMember.fullname}: {activity.txt} to {activity.task.title}
+                                        <div className='activity-txt'>{activity.byMember.fullname}: {activity.txt} {(activity.task && activity.task.title) ? `"${activity.task.title}" in list: "${activity.group.title}"` : `"${activity.group.title}"`}
                                             <div className='at'>{getDatePreview(activity.createdAt)}</div>
                                         </div>
                                     </div>

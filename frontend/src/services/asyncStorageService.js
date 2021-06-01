@@ -1,3 +1,4 @@
+import {utilService} from './utilService'
 export const storageService = {
     query,
     get,
@@ -9,7 +10,7 @@ export const storageService = {
 var gBoards = [{
     "_id": "b101",
     "title": "The Better Trello",
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -68,7 +69,7 @@ var gBoards = [{
             "comments": [{
                 "id": "ZdPnm",
                 "txt": "also @yaronb please CR this",
-                "createdAt": '2021-12-04T11:22',
+                "createdAt": '2021-05-31T11:22',
                 "byMember": {
                     "_id": "u101",
                     "fullname": "Tal Tarablus",
@@ -207,7 +208,7 @@ var gBoards = [{
             "comments": [{
                 "id": "ZdPnm",
                 "txt": "also @yaronb please CR this",
-                "createdAt": '2021-12-04T11:22',
+                "createdAt": '2021-05-31T11:22',
                 "byMember": {
                     "_id": "u101",
                     "fullname": "Tal Tarablus",
@@ -458,17 +459,22 @@ var gBoards = [{
     }],
     "activities": [{
         "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": '2021-12-04T11:22',
+        "txt": "Added a card",
+        "createdAt": '2021-05-31T11:22',
         "byMember": {
             "_id": "u101",
             "fullname": "Abi Abambi",
             "imgUrl": "http://some-img"
         },
+        "group": {
+            "id": "grHLeX",
+            "title": "In Progress",
+        },
         "task": {
-            "id": "c101",
-            "title": "Replace Logo"
+            "id": "cE1n29",
+            "title": "Allow custtom Emojis"
         }
+
     }]
 }, {
     "title": "Sprint 4",
@@ -478,7 +484,7 @@ var gBoards = [{
         "imgUrl": "https://bit.ly/3yLM7uN"
     },
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -804,7 +810,7 @@ var gBoards = [{
     },
     "_id": "pGkYm",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -831,7 +837,7 @@ var gBoards = [{
     },
     "_id": "ITzjh",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -857,7 +863,7 @@ var gBoards = [{
     },
     "_id": "skpFX",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -884,7 +890,7 @@ var gBoards = [{
     },
     "_id": "rgwwY",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -910,7 +916,7 @@ var gBoards = [{
     },
     "_id": "W3DV7",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -937,7 +943,7 @@ var gBoards = [{
     },
     "_id": "5iiUS",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -963,7 +969,7 @@ var gBoards = [{
     },
     "_id": "U6NXw",
     "activities": [],
-    "createdAt": '2021-12-04T11:22',
+    "createdAt": '2021-05-31T11:22',
     "createdBy": {
         "_id": "u101",
         "fullname": "Roey Barda",
@@ -1046,9 +1052,11 @@ function _makeId(length = 5) {
 
 
 function _makeNewBoard(newEntity, lastdId) {
+    const date = new Date()
+    const createdAt = utilService.convertToCreatedAtDate(date)
     newEntity._id = _makeId()
     newEntity.activities = []
-    newEntity.createdAt = Date.now()
+    newEntity.createdAt = createdAt
     newEntity.createdBy = {
         "_id": "u101",
         "fullname": "Roey Barda",
