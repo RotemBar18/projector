@@ -29,9 +29,12 @@ class _TaskDetails extends Component {
         isLabelsModalShow: false,
         isEditLabelsShow: false,
         isEditDateShow: false,
-        isAttachmentShow: true,
+        isAttachmentShow: false,
         comment: {
             txt: '',
+        },
+        style: {
+            imgUrl: '',
         }
     }
 
@@ -161,6 +164,20 @@ class _TaskDetails extends Component {
         this.props.saveBoard(board)
     }
 
+    changeHandlerFile = ({target}) => {
+        const {value} = target
+        const {imgUrl } =  this.state.style
+        this.setState({style: {...this.state.style, imgUrl: value}})
+    }
+
+    handleSubmissionFile = () => {
+       const {imgUrl} = this.state.style;
+       const {task} = this.state;
+       task.style.imgUrl= imgUrl;
+       const board = this.props.currBoard
+       this.props.saveBoard(board)
+    }
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
@@ -179,9 +196,7 @@ class _TaskDetails extends Component {
                     <div className="header">
                         <div className="title flex">
                             <AssignmentOutlinedIcon className="taskIcon" color="disabled" />
-                            <Input defaultValue={task.title}
-                                disableUnderline
-                                fullWidth
+                            <input className="title-input" defaultValue={task.title}
                                 onChange={this.handleChange}
                                 name="title"
                             />
@@ -266,18 +281,14 @@ class _TaskDetails extends Component {
                     updateLabel={this.updateLabel}
                     addLabelToBoard={this.addLabelToBoard}
                 ></LabelsList>}
+
                 {this.state.isEditDateShow && <Dates prevPage={'task-details'} toggleModal={this.toggleModal} task={task} setDate={this.setDate}></Dates>}
-                {/* {this.state.isEditDateShow && <form className='dates-form flex' noValidate>
-                    <TextField className="dates"
-                        id="datetime-local"
-                        label="Due date"
-                        type="datetime-local"
-                        defaultValue="2021-05-30T10:30"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </form>} */}
+
+                {this.state.isAttachmentShow && <div className="attachment flex column">
+                <label htmlFor="text">Attach a link</label>
+                    <input type="text" name="text" value={this.state.style.imgUrl || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..."/>
+                    <button onClick={this.handleSubmissionFile}>Attach</button>
+                </div>}
             </section>
         )
     }
