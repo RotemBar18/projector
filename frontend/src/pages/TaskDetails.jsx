@@ -173,8 +173,8 @@ class _TaskDetails extends Component {
     handleSubmissionFile = () => {
         const { imgUrl } = this.state.style;
         const { task } = this.state;
-        if (!task.style) task['style']['imgUrl'] = imgUrl
-        else task.style['imgUrl'] = imgUrl
+        if (!task.style) task.style.imgUrl = imgUrl
+        else task.style.imgUrl = imgUrl
         const board = this.props.currBoard
         this.props.saveBoard(board)
     }
