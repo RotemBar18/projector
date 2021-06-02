@@ -1,6 +1,5 @@
 import { boardService } from '../../services/boardService'
-// import { userService } from '../../services/userService'
-// import { socketService, SOCKET_EVENT_BOARD_ADDED } from '../../services/socketService'
+import { socketService, SOCKET_EVENT_BOARD_UPDATED } from '../../services/socketService'
 
 export function loadBoards() {
     return async dispatch => {
@@ -20,6 +19,9 @@ export function saveBoard(board) {
         try {
             const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
+            socketService.on(SOCKET_EVENT_BOARD_UPDATED, board => {
+            dispatch({ type: 'UPDATE_BOARD', board })
+            }) 
         } catch (err) {
             console.log('BoardActions: err in save/update board', err)
         }

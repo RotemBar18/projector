@@ -11,7 +11,7 @@ import { labelService } from '../services/labelService.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { boardService } from '../services/boardService.js';
 import { BoardHeader } from '../cmps/BoardHeader'
-// import { socketService } from '../services/socketService.js';
+import { socketService } from '../services/socketService.js';
 class _BoardDetails extends React.Component {
 
     state = {
@@ -24,7 +24,10 @@ class _BoardDetails extends React.Component {
     }
 
     componentDidMount() {
+        const { boardId } = this.props.match.params;
         this.getBoardDetails()
+        socketService.setup()
+        socketService.emit('emitTest', boardId)
     }
 
     handleChange = (ev) => {
@@ -175,7 +178,7 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-
+        socketService.emit('render', this.render)
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
