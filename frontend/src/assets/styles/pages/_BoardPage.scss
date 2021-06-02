@@ -26,6 +26,11 @@
     max-width: rem(1100px);
     margin: 0 auto;
     padding: rem(30px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, rem(250px));
+    grid-gap: rem(20px) rem(10px);
+    gap: rem(20px) rem(10px);
+    justify-content: center;
 }
 
 .create-board {
