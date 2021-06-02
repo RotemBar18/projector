@@ -1,4 +1,4 @@
-import { loadUsers, removeUser, login, logout,signup } from '../store/actions/userActions'
+import { loadUsers, removeUser, login, logout, signup } from '../store/actions/userActions'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -22,6 +22,8 @@ class _LoginSignup extends Component {
 
   loginHandleChange = ev => {
     const { name, value } = ev.target
+    console.log(value);
+    console.log(name);
     this.setState(prevState => ({
       loginCred: {
         ...prevState.loginCred,
@@ -71,51 +73,18 @@ class _LoginSignup extends Component {
   }
   render() {
 
-    let signupSection = (
-      <div className="form-container">
-        <form className="frm" onSubmit={this.doSignup}>
-          <h2>Signup</h2>
-          <input
-            type="text"
-            name="fullname"
-            value={this.state.signupCred.fullname}
-            onChange={this.signupHandleChange}
-            placeholder="Full name"
-            autoComplete="off"
-          />
-          <input
-            name="password"
-            // type="password"
-            value={this.state.signupCred.password}
-            onChange={this.signupHandleChange}
-            placeholder="Password"
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            name="username"
-            value={this.state.signupCred.username}
-            onChange={this.signupHandleChange}
-            placeholder="Username"
-            autoComplete="off"
-          />
-          <br />
-          <button>Signup</button>
-        </form>
-      </div>
-    )
     let loginSection = (
       <div className="form-container">
         <form className="frm" onSubmit={this.doLogin}>
           <h2>Login</h2>
-          <select
+          <input
             name="username"
             value={this.state.loginCred.username}
             onChange={this.loginHandleChange}
+            autoComplete='off'
+            placeholder='Username'
           >
-            <option value="">Select User</option>
-            {this.props.users && this.props.users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-          </select>
+          </input>
           <input
             name="password"
             // type="password"
@@ -128,6 +97,39 @@ class _LoginSignup extends Component {
         </form>
       </div>
     )
+      let signupSection = (
+        <div className="form-container">
+          <form className="frm" onSubmit={this.doSignup}>
+            <h2>Signup</h2>
+            <input
+              type="text"
+              name="fullname"
+              value={this.state.signupCred.fullname}
+              onChange={this.signupHandleChange}
+              placeholder="Full name"
+              autoComplete="off"
+            />
+            <input
+              name="password"
+              // type="password"
+              value={this.state.signupCred.password}
+              onChange={this.signupHandleChange}
+              placeholder="Password"
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              name="username"
+              value={this.state.signupCred.username}
+              onChange={this.signupHandleChange}
+              placeholder="Username"
+              autoComplete="off"
+            />
+            <br />
+            <button>Signup</button>
+          </form>
+        </div>
+      )
 
     const { loggedInUser } = this.props
     return (
