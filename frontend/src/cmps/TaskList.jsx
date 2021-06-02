@@ -11,22 +11,20 @@ class _TaskList extends React.Component {
     }
     listRef = React.createRef()
 
-    onScroll = () => {
-        // this.listRef.current.scrollIntoView()
-        // console.log(this.listRef.current);
+    componentDidUpdate() {
+        if (this.props.isScroll)
+            this.listRef.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     render() {
         const { toggleTaskMember, isAddTaskOpen, onToggleAddTask, handleTaskChange, onAddTask, group, newTaskTitle, isScroll } = this.props
         const { isDragDisabled } = this.state;
-        isScroll && this.onScroll()
-        console.log(isScroll);
         return (
 
             <Droppable droppableId={this.props.group.id}>
 
                 {(provided) => (
-                    <div ref={this.listRef} className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
+                    <div className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
                         {group.tasks && this.props.tasks.map((task, index) => {
                             return (
                                 <Draggable isDragDisabled={this.props.isDragDisabled} key={task.id} draggableId={task.id} index={index}>
@@ -46,7 +44,7 @@ class _TaskList extends React.Component {
 
                         {isAddTaskOpen &&
 
-                            <form className='add-task-form' onSubmit={onToggleAddTask}>
+                            <form ref={this.listRef} className='add-task-form' onSubmit={onToggleAddTask}>
                                 <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={handleTaskChange}></textarea>
                                 <div className='add-task-controls'>
                                     <button className='add-task-add-btn' onClick={() => onAddTask(group, newTaskTitle)}>Add card</button>

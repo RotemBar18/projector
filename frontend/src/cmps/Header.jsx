@@ -6,12 +6,10 @@ class _Header extends Component {
     render() {
         return (
             <header className="main-header">
-            <div className="left-header">
-            <Link to="/">Home</Link>
-            <Link to="/board">Boards</Link>
-            </div>
-            <Link to="/">Projector</Link>
-            <Link to="/login">Login</Link>
+            <Link className='home-link-header' to="/">Home</Link>
+            <Link className='boards-link-header' to="/board">Boards</Link>
+            <Link className='logo-header' to="/">Projector</Link>
+            <Link className='login-link-header' to="/login">Login</Link>
             </header>
         )
     }

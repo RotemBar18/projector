@@ -21,9 +21,10 @@ class _BoardPreview extends React.Component {
 
     render() {
         const { board } = this.props
+        console.log(board);
         const { isDeleteBoardOpen } = this.state
-        const img = board.style.imgUrl
-        const clr = board.style.bgColor
+        const img = board.style?.imgUrl
+        const clr = board.style?.bgColor
         return (
             <Link to={`/board/${board._id}`} key={board._id} style={{ textDecoration: 'none' }}>
                 <div key={board._id} className="board-preview" style={(img) ? { backgroundImage: `url(${img})` } : { backgroundColor: clr }}>

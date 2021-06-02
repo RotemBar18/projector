@@ -39,8 +39,8 @@ export class SideBar extends React.Component {
                             <div className='change-bg-btn-container'>
                                 < button onClick={this.onToggleChangeBg} className='change-bg-btn'>Change Background</button>
                             </div>
-                            <div className='activities-list'>
                                 <h3 className='activities-title'>Activity</h3>
+                            <div className='activities-list'>
                                 {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
                                 console.log(board.activities,activity);
 
