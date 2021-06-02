@@ -39,6 +39,7 @@ function changeBg(pick, imgUrl, bgColor, board) {
 }
 
 function addActivity(loggedInUser, board, group, action, task) {
+    console.log('loggedInUser', loggedInUser)
     console.log('action', action)
     console.log('group', group)
     console.log('board', board)

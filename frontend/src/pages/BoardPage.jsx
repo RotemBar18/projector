@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadBoards, saveBoard } from '../store/actions/boardActions.js'
-
 import { BoardList } from '../cmps/BoardList'
 
 class _BoardPage extends React.Component {

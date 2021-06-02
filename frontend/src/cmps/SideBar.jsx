@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import { BgPicksList } from './BgPicksList.jsx'
+
 export class SideBar extends React.Component {
     state = {
         isChangeBgOpen: false,

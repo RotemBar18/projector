@@ -231,6 +231,7 @@ function mapStateToProps(state) {
     return {
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
+        loggedInUser: state.userModule.loggedInUser
     }
 }
 const mapDispatchToProps = {
