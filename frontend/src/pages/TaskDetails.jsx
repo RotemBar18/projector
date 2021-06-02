@@ -173,9 +173,11 @@ class _TaskDetails extends Component {
     handleSubmissionFile = () => {
        const {imgUrl} = this.state.style;
        const {task} = this.state;
-       task.style.imgUrl= imgUrl;
+       console.log(imgUrl)
+       task['style']['imgUrl']= imgUrl;
        const board = this.props.currBoard
        this.props.saveBoard(board)
+       this.toggleModal('isAttachmentShow')
     }
 
     render() {
