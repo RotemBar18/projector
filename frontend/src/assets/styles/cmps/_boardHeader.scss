@@ -64,12 +64,15 @@
             }
         }
         .open-side-bar-btn {
+            display: flex;
             background-color: rgba(255, 255, 255, 0.39);
-            // box-shadow: inset 0 0 10px #0000001e;
             color: #243757;
-
             border-radius: 5px;
             justify-self: flex-end;
+            align-items: center;
+            .path{
+                height: 100px;
+            }
         }
     }
 }

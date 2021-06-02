@@ -88,16 +88,21 @@
         }
     }
     .task-options {
+        display: flex;
+        align-items: center;
         font-weight: 900;
         border-radius: 3px;
         display: none;
         position: absolute;
         background-color: rgba(255, 255, 255, 0.671);
         text-align: center;
-        padding: 4px 6px 1px;
-        margin: 4px;
+        padding:3px;
         top: 0;
         right: 0;
+        .task-options-svg{
+            display: flex;
+            font-size: 1rem;
+        }
     }
     .task-options:hover {
         background-color: rgba(136, 148, 182, 0.164);

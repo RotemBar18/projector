@@ -57,7 +57,7 @@ class _BoardDetails extends React.Component {
     }
     changeGroupName = (newGroupTitle, group) => {
         const board = this.props.currBoard
-        if (groupService.changeGroupName(board, newGroupTitle, group)) {
+        if (groupService.changeGroupName( newGroupTitle, group)) {
             boardService.addActivity(this.props.loggedInUser, board, group, `changed the list name to: "${newGroupTitle}" from:`)
             this.props.saveBoard(board)
         }
