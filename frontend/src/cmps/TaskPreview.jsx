@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 
 export class TaskPreview extends Component {
@@ -37,7 +38,7 @@ export class TaskPreview extends Component {
         return (preview)
     }
 
-    setDate = (date) =>{
+    setDate = (date) => {
         this.props.setDate(date, this.props.task)
     }
 
@@ -61,7 +62,7 @@ export class TaskPreview extends Component {
                     {(task.dueDate || task.checklists || task.members) ? <div className='badges'>
                         {(task.dueDate) &&
                             <div className='dew-date flex'>
-                                <AccessTimeOutlinedIcon className= "clock"></AccessTimeOutlinedIcon>
+                                <AccessTimeOutlinedIcon className="clock"></AccessTimeOutlinedIcon>
                                 {this.convertNumToDate(task.dueDate)}
                             </div>}
 
@@ -75,7 +76,7 @@ export class TaskPreview extends Component {
                         </div>
                     </div> : ''}
                 </Link>
-                <button onClick={this.toggleTaskOptions} className='task-options'>...</button>
+                <button onClick={this.toggleTaskOptions} className='task-options'><MoreHorizIcon className='task-options-svg' /></button>
 
             </article>
         )

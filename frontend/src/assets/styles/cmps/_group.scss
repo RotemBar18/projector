@@ -25,15 +25,18 @@
         }
         .options {
             justify-self: end;
+            align-self: center;
             background-color: #ebecf0;
             color: #6d798e;
             padding: 0px;
             margin: 0px;
-            width: 32px;
-            height: 32px;
             border-radius: 3px;
             margin-right: 6px;
-            font-weight: 900;
+            height: fit-content;
+            .group-options-svg{
+                display: flex;
+                height: 32px;
+            }
         }
         .options:hover {
             background-color: rgba(136, 148, 182, 0.164);

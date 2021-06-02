@@ -1,6 +1,7 @@
 import React from 'react'
 import { TaskList } from './TaskList.jsx'
 import { GroupOptions } from './GroupOptions.jsx'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 
 export class Group extends React.Component {
@@ -95,7 +96,7 @@ export class Group extends React.Component {
                                 <input onChange={this.handleGroupChange} type="text" name='title' placeholder={group.title} />
                             </form>}
 
-                        <button className='options' onClick={this.onToggleGroupOptions}>...</button>
+                        <button className='options' onClick={this.onToggleGroupOptions}>{<MoreHorizIcon className='group-options-svg' />}</button>
                     </div>
 
                     <TaskList isScroll={isScroll} isAddTaskOpen={isAddTaskOpen} onToggleAddTask={this.onToggleAddTask} handleTaskChange={this.handleTaskChange} onAddTask={onAddTask} group={group} newTaskTitle={newTaskTitle} setDate={this.props.setDate} isDragDisabled={this.props.isDragDisabled} toggleDroppable={this.props.toggleDroppable} toggleTaskMember={toggleTaskMember} updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={this.checkLabel} onRemoveLabel={this.onRemoveLabel} board={board} onAddLabel={this.onAddLabel} onDeleteTask={this.onDeleteTask} onUpdateTask={this.onUpdateTask} tasks={group.tasks} group={group} />

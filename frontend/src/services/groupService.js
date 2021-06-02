@@ -30,9 +30,7 @@ function copyGroup(board, group) {
     board.groups.splice(groupIdx, 0, groupCopy)
 }
 
-function changeGroupName(board, newGroupTitle, group) {
+function changeGroupName(newGroupTitle, group) {
     if (!newGroupTitle) return
-    const newGroup = { ...group, title: newGroupTitle }
-    const groupIdx = board.groups.findIndex(currGroup => group.id === currGroup.id)
-    board.groups.splice(groupIdx, 1, newGroup)
+    group.title = newGroupTitle
 }

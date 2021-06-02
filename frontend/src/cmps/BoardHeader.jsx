@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import { utilService } from '../services/utilService.js'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 export class BoardHeader extends React.Component {
     state = {
@@ -37,7 +38,7 @@ export class BoardHeader extends React.Component {
                     {!isChangeBoardTitleOpen &&
                         <div className='header-title' onClick={this.toggleChangeBoardTitle}>{board.title}</div>}
                     {isChangeBoardTitleOpen &&
-                        <form  onSubmit={() => this.onChangeBoardTitle(newBoardTitle)}>
+                        <form onSubmit={() => this.onChangeBoardTitle(newBoardTitle)}>
                             <input className='board-title-input' onChange={this.handleChange} type="text" name='title' placeholder={board.title} />
                         </form>}
                     <div className="header-stats">Statistics</div>
@@ -47,9 +48,9 @@ export class BoardHeader extends React.Component {
                                 {utilService.getNameInitials(member.fullname)}
                             </Avatar>)}
                     </div>
-                    <button onClick={onToggleSideBar} className='open-side-bar-btn'>Show menu</button>
-                </div>
+                    <button onClick={onToggleSideBar} className='open-side-bar-btn'>{<MoreHorizIcon />}Show menu</button>
             </div>
+            </div >
         )
     }
 }
