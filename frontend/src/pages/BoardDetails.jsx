@@ -57,9 +57,15 @@ class _BoardDetails extends React.Component {
     }
     changeGroupName = (newGroupTitle, group) => {
         const board = this.props.currBoard
-        groupService.changeGroupName(board, newGroupTitle, group)
-        boardService.addActivity(this.props.loggedInUser, board, group, `changed the list name to: "${newGroupTitle}" from:`)
-
+        if (groupService.changeGroupName(board, newGroupTitle, group)) {
+            boardService.addActivity(this.props.loggedInUser, board, group, `changed the list name to: "${newGroupTitle}" from:`)
+            this.props.saveBoard(board)
+        }
+    }
+    changeBoardTitle = (newBoardTitle) => {
+        const board = this.props.currBoard
+        boardService.changeBoardTitle(board, newBoardTitle)
+        boardService.addActivity(this.props.loggedInUser, board, null, `changed the board name to: "${newBoardTitle}"`)
         this.props.saveBoard(board)
     }
 
@@ -84,7 +90,7 @@ class _BoardDetails extends React.Component {
         boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
-    onUpdateTask = (group, updatedTask,task) => {
+    onUpdateTask = (group, updatedTask, task) => {
         console.log(updatedTask);
         console.log(task);
         const board = this.props.currBoard
@@ -96,7 +102,7 @@ class _BoardDetails extends React.Component {
     onDeleteTask = (group, task) => {
         const board = this.props.currBoard
         taskService.deleteTask(board, group.id, task.id)
-        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the card:',task)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the card:', task)
         this.props.saveBoard(board)
     }
 
@@ -179,7 +185,7 @@ class _BoardDetails extends React.Component {
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
 
             <div className="board-header-container">
-                <BoardHeader board={board} onToggleSideBar={this.onToggleSideBar} />
+                <BoardHeader changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
             </div>
 
             {isSideBarOpen &&
@@ -229,6 +235,7 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
         loggedInUser: state.userModule.loggedInUser

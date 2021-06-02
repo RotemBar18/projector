@@ -40,15 +40,15 @@ export class SideBar extends React.Component {
                             <div className='change-bg-btn-container'>
                                 < button onClick={this.onToggleChangeBg} className='change-bg-btn'>Change Background</button>
                             </div>
-                                <h3 className='activities-title'>Activity</h3>
+                            <h3 className='activities-title'>Activity</h3>
                             <div className='activities-list'>
                                 {(board.activities || board.activities.legnth) ? board.activities.map(activity => {
-                                console.log(board.activities,activity);
+                                    console.log(board.activities, activity);
 
                                     return <div key={activity.id} className='activity-preview'>
-                                        
+
                                         <Avatar className='avatar' alt={activity.byMember.fullname} src={activity.byMember.imgUrl} />
-                                        <div className='activity-txt'>{activity.byMember.fullname}: {activity.txt} {(activity.task && activity.task.title) ? `"${activity.task.title}" in list: "${activity.group.title}"` : `"${activity.group.title}"`}
+                                        <div className='activity-txt'>{(!activity.group) ? `${activity.byMember.fullname}: ${activity.txt}` : (activity.task && activity.task.title) ? `${activity.byMember.fullname}: ${activity.txt} "${activity.task.title}" in list: "${activity.group.title}"` : `${activity.byMember.fullname}: ${activity.txt} "${activity.group.title}"`}
                                             <div className='at'>{getDatePreview(activity.createdAt)}</div>
                                         </div>
                                     </div>
