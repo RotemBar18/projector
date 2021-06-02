@@ -8,7 +8,8 @@ export const boardService = {
     save,
     changeBg,
     remove,
-    addActivity
+    addActivity,
+    changeBoardTitle
 }
 
 async function query() {
@@ -54,7 +55,13 @@ function addActivity(loggedInUser, board, group, action, task) {
         txt: action
     }
     console.log('newActivity', newActivity)
-    board.activities = [ newActivity, ...board.activities]
+    board.activities = [newActivity, ...board.activities]
     console.log('board', board)
 
+}
+
+function changeBoardTitle(board, newBoardTitle) {
+    if (!newBoardTitle) return false
+    board.title = newBoardTitle
+    return true
 }
