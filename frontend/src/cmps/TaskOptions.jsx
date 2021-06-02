@@ -3,7 +3,10 @@ import { LabelsList } from './LabelsList.jsx'
 import { MembersList } from './MembersList.jsx'
 import React from 'react'
 import { Dates } from './Dates';
-// import { Link } from 'react-router-dom'
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 export class TaskOptions extends Component {
     state = {
@@ -58,21 +61,20 @@ export class TaskOptions extends Component {
                         <button onClick={() => this.onUpdateTask(task)}>Save</button>
                     </div>
                     <div className='options-btns'>
-                        <button className='options-btn' onClick={this.toggleEditLabels} >Edit Labels</button>
+                        <button className='options-btn' onClick={this.toggleEditLabels} ><LabelOutlinedIcon className='svg change-task-labels' />Edit Labels</button>
                         {isEditLabelsOpen &&
                             <LabelsList updateLabel={updateLabel} addLabelToBoard={addLabelToBoard} checkLabel={checkLabel} onRemoveLabel={onRemoveLabel} task={task} onAddLabel={onAddLabel} toggleEditLabels={this.toggleEditLabels} board={board} />
                         }
-                        <button className='options-btn' onClick={this.toggleEditMembers} >Change Members</button>
+                        <button className='options-btn' onClick={this.toggleEditMembers} ><PersonOutlineOutlinedIcon className='svg change-task-members' />Change Members</button>
                         {isEditMembersOpen &&
                             <MembersList toggleTaskMember={toggleTaskMember} board={board} task={task} toggleEditMembers={this.toggleEditMembers} />
                         }
-                        <button className='options-btn' onClick={this.toggleChangeDueDate} >Change Due Date</button>
-                        <button className='options-btn' onClick={() => onDeleteTask(task)}>Delete</button>
+                        <button className='options-btn' onClick={this.toggleChangeDueDate} ><TodayOutlinedIcon className='svg edit-task-due-date' />Change Due Date</button>
+                        <button className='options-btn' onClick={() => onDeleteTask(task)}><DeleteOutlineIcon className='svg delete-task' /> Delete</button>
                     </div>
 
-                    {/* <button onClick={onDeleteTask}>Delete List</button> */}
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         )
 
     }
