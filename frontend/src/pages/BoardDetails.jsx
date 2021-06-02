@@ -84,7 +84,7 @@ class _BoardDetails extends React.Component {
         boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
-    onUpdateTask = (group, updatedTask,task) => {
+    onUpdateTask = (group, updatedTask, task) => {
         console.log(updatedTask);
         console.log(task);
         const board = this.props.currBoard
@@ -96,7 +96,7 @@ class _BoardDetails extends React.Component {
     onDeleteTask = (group, task) => {
         const board = this.props.currBoard
         taskService.deleteTask(board, group.id, task.id)
-        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the card:',task)
+        boardService.addActivity(this.props.loggedInUser, board, group, 'deleted the card:', task)
         this.props.saveBoard(board)
     }
 
@@ -229,6 +229,7 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
     }
