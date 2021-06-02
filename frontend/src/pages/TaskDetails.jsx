@@ -164,13 +164,14 @@ class _TaskDetails extends Component {
         this.props.saveBoard(board)
     }
 
-    changeHandlerFile = ({target}) => {
-        const {value} = target
-        const {imgUrl } =  this.state.style
-        this.setState({style: {...this.state.style, imgUrl: value}})
+    changeHandlerFile = ({ target }) => {
+        const { value } = target
+        const { imgUrl } = this.state.style
+        this.setState({ style: { ...this.state.style, imgUrl: value } })
     }
 
     handleSubmissionFile = () => {
+<<<<<<< HEAD
        const {imgUrl} = this.state.style;
        const {task} = this.state;
        console.log(imgUrl)
@@ -178,6 +179,13 @@ class _TaskDetails extends Component {
        const board = this.props.currBoard
        this.props.saveBoard(board)
        this.toggleModal('isAttachmentShow')
+=======
+        const { imgUrl } = this.state.style;
+        const { task } = this.state;
+        task.style?.imgurl? task.syle.imgUrl = imgUrl : task.style = { imgUrl }
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+>>>>>>> 808b7be6c0558c7f32700a8fba1709443274b1f4
     }
 
     render() {
@@ -287,8 +295,8 @@ class _TaskDetails extends Component {
                 {this.state.isEditDateShow && <Dates prevPage={'task-details'} toggleModal={this.toggleModal} task={task} setDate={this.setDate}></Dates>}
 
                 {this.state.isAttachmentShow && <div className="attachment flex column">
-                <label htmlFor="text">Attach a link</label>
-                    <input type="text" name="text" value={this.state.style.imgUrl || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..."/>
+                    <label htmlFor="text">Attach a link</label>
+                    <input type="text" name="text" value={this.state.style.imgUrl || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..." />
                     <button onClick={this.handleSubmissionFile}>Attach</button>
                 </div>}
             </section>

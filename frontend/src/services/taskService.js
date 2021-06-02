@@ -49,7 +49,11 @@ function addTask(board, groupId, newTitle) {
     if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     const newTask = {
         id: 'c' + utilService.makeId(),
-        title: newTitle
+        title: newTitle,
+        style: {
+            imgUrl:'',
+            bgColor:''
+        }
     }
     board.groups[groupIdx].tasks = [...board.groups[groupIdx].tasks, newTask]
     return newTask
