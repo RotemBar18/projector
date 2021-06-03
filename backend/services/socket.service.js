@@ -18,38 +18,29 @@ function connectSockets(http, session) {
         console.log('New socket - socket.handshake.sessionID', socket.handshake.sessionID)
         gSocketBySessionIdMap[socket.handshake.sessionID] = socket
         // TODO: emitToUser feature - need to tested for CaJan21
-        if (socket.handshake?.session?.user) socket.join(socket.handshake.session.user._id)
+        // if (socket.handshake?.session?.user) socket.join(socket.handshake.session.user._id)
         socket.on('disconnect', socket => {
             console.log('Someone disconnected')
             if (socket.handshake) {
                 gSocketBySessionIdMap[socket.handshake.sessionID] = null
             }
         })
-        socket.on('chat topic', topic => {
-            if (socket.myTopic === topic) return;
+        socket.on('join board', boardId => {
+            console.log('join board', boardId);
+            if (socket.myTopic === boardId) return;
             if (socket.myTopic) {
                 socket.leave(socket.myTopic)
             }
-            socket.join(topic)
+            socket.join(boardId)
             logger.debug('Session ID is', socket.handshake.sessionID)
-            socket.myTopic = topic
+            socket.myTopic = boardId
+            console.log('socket.myTopic',socket.myTopic);
         })
-        socket.on('chat newMsg', msg => {
-            // emits to all sockets:
-            gIo.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
-            gIo.to(socket.myTopic).emit('chat addMsg', msg)
-        })
-        socket.on('board-updated', board => {
-            // console.log('boardId',boardId);
-            // socket.join(boardId)
-            gIo.to(socket.boardId).emit('updateBoard', board)
+        socket.on('board updated', board => {
+            socket.to(socket.myTopic).emit('updated board', 'board')
 
         })
-        // socket.on('board-updated', userId => {
-        //     socket.join(userId)
-        // })
-
+     
     })
 }
 
@@ -71,7 +62,7 @@ function broadcast({ type, data, room = null }) {
     console.log('sessionId',sessionId);
     if (!sessionId) return logger.debug('Shoudnt happen, no sessionId in asyncLocalStorage store')
     const excludedSocket = gSocketBySessionIdMap[sessionId]
-    console.log('excludedSocket',excludedSocket);
+    // console.log('excludedSocket',excludedSocket);
     if (!excludedSocket) return logger.debug('Shouldnt happen, No socket in map')
     if (room) excludedSocket.broadcast.to(room).emit(type, data)
     else excludedSocket.broadcast.emit(type, data)

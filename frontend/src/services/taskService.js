@@ -45,7 +45,6 @@ function setTaskDate(task, date) {
 }
 
 function addTask(board, groupId, newTitle,loggedInUser) {
-    console.log('loggedInUser', loggedInUser)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     const newTask = {
@@ -84,7 +83,6 @@ function addComment(task, txt, comment) {
 }
 
 function updateTask(board, groupId, updatedTask) {
-    console.log('updatedTask', updatedTask)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     const updatedTaskId = board.groups[groupIdx].tasks.findIndex(task => task.id === updatedTask.id)
     board.groups[groupIdx].tasks.splice(updatedTaskId, 1, updatedTask)

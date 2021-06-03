@@ -25,8 +25,6 @@ class _LoginSignup extends Component {
 
   loginHandleChange = ev => {
     const { name, value } = ev.target
-    console.log(value);
-    console.log(name);
     this.setState(prevState => ({
       loginCred: {
         ...prevState.loginCred,

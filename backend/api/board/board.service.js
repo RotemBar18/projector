@@ -69,6 +69,11 @@ async function save(board) {
         try {
             savedBoard = { ...board }
             savedBoard.createdAt = new Date()
+            savedBoard.activities = []
+            savedBoard.createdBy = {}
+            savedBoard.groups = []
+            savedBoard.labels = []
+            savedBoard.members = []
             const collection = await dbService.getCollection('board')
             await collection.insertOne(savedBoard)
             return savedBoard

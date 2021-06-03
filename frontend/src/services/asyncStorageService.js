@@ -1052,11 +1052,11 @@ function _makeId(length = 5) {
 
 
 function _makeNewBoard(newEntity, lastdId) {
-    const date = new Date()
-    const createdAt = utilService.convertToCreatedAtDate(date)
-    newEntity._id = _makeId()
+    // const date = new Date()
+    // const createdAt = utilService.convertToCreatedAtDate(date)
+    // newEntity._id = _makeId()
     newEntity.activities = []
-    newEntity.createdAt = createdAt
+    // newEntity.createdAt = createdAt
     newEntity.createdBy = {
         "_id": "u101",
         "fullname": "Roey Barda",

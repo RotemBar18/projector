@@ -40,7 +40,6 @@ export class TaskOptions extends Component {
     }
 
     preventDragHandler = (e) => {
-        console.log(e)
         e.preventDefault();
     }
 

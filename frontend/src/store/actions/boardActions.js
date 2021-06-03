@@ -19,9 +19,7 @@ export function saveBoard(board) {
         try {
             const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
-            socketService.on(SOCKET_EVENT_BOARD_UPDATED, board => {
-            dispatch({ type: 'UPDATE_BOARD', board })
-            }) 
+            socketService.emit('board updated', board)
         } catch (err) {
             console.log('BoardActions: err in save/update board', err)
         }
@@ -45,6 +43,7 @@ export function setBoard(boardId) { // Action Creator
         try {
 
             const board = await boardService.getById(boardId)
+            console.log('after back cjanged', board.groups);
             dispatch({ type: 'SET_CURR_BOARD', currBoard: board })
         } catch (err) {
             console.log('BoardActions: err in setBoard', err)

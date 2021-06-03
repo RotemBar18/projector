@@ -27,8 +27,11 @@ class _BoardDetails extends React.Component {
         const { boardId } = this.props.match.params;
         this.getBoardDetails()
         socketService.setup()
-        socketService.emit('emitTest', boardId)
-        // socketService.on('updateBoard')
+        socketService.emit('join board', boardId)
+        socketService.on('updated board', this.check)
+    }
+    check=()=>{
+        console.log('ononini')
     }
 
     handleChange = (ev) => {
@@ -96,8 +99,6 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
     onUpdateTask = (group, updatedTask, task) => {
-        console.log(updatedTask);
-        console.log(task);
         const board = this.props.currBoard
         taskService.updateTask(board, group.id, updatedTask)
         boardService.addActivity(this.props.loggedInUser, board, group, `changed the card name to: "${updatedTask.title}" from:`, task)
@@ -137,7 +138,6 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
     getDatePreview = (dateNum) => {
-        console.log(dateNum);
         return taskService.getDatePreview(dateNum)
     }
 

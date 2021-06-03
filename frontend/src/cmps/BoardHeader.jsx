@@ -15,7 +15,6 @@ export class BoardHeader extends React.Component {
     }
 
     handleChange = (ev) => {
-        console.log(ev);
         ev.preventDefault()
         const value = ev.target.value;
         const key = ev.target.name;
