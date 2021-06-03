@@ -27,7 +27,11 @@ class _BoardDetails extends React.Component {
         const { boardId } = this.props.match.params;
         this.getBoardDetails()
         socketService.setup()
-        socketService.emit('emitTest', boardId)
+        socketService.emit('join board', boardId)
+        socketService.on('updated board', this.check)
+    }
+    check=()=>{
+        console.log('ononini')
     }
 
     handleChange = (ev) => {
@@ -88,14 +92,13 @@ class _BoardDetails extends React.Component {
     }
 
     onAddTask = (group, newTitle) => {
+        const loggedInUser = this.props.loggedInUser
         const board = this.props.currBoard
-        const task = taskService.addTask(board, group.id, newTitle)
+        const task = taskService.addTask(board, group.id, newTitle,loggedInUser)
         boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
     onUpdateTask = (group, updatedTask, task) => {
-        console.log(updatedTask);
-        console.log(task);
         const board = this.props.currBoard
         taskService.updateTask(board, group.id, updatedTask)
         boardService.addActivity(this.props.loggedInUser, board, group, `changed the card name to: "${updatedTask.title}" from:`, task)
@@ -135,7 +138,6 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
     getDatePreview = (dateNum) => {
-        console.log(dateNum);
         return taskService.getDatePreview(dateNum)
     }
 
@@ -184,8 +186,10 @@ class _BoardDetails extends React.Component {
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <React.Fragment>
+            <div className='task-details-container'> 
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
+            </div>
 
             <div className="board-header-container">
                 <BoardHeader changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
@@ -241,7 +245,6 @@ function mapStateToProps(state) {
         loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
-        loggedInUser: state.userModule.loggedInUser
     }
 }
 const mapDispatchToProps = {

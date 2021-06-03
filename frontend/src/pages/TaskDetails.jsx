@@ -105,9 +105,6 @@ class _TaskDetails extends Component {
     checkIfLabelInTask = (taskId, labelId) => {
         if (labelId.charAt() === 'l') labelId = labelId.substring(1)
         return this.state.task.labelIds?.some(taskLabelId => {
-            console.log(this.state.task)
-            console.log(taskLabelId)
-            console.log(labelId)
             return taskLabelId === labelId
         })
     }
@@ -196,7 +193,6 @@ class _TaskDetails extends Component {
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
-        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style } = task;
         const board = this.props.currBoard;

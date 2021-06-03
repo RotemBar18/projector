@@ -15,7 +15,6 @@ class _BoardPage extends React.Component {
 
     componentDidMount() {
         this.props.loadBoards()
-        console.log('boards', this.props.boards)
     }
 
     toggleModalVisibility = (boolean) => {

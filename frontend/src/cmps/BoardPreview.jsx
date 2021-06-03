@@ -15,14 +15,12 @@ class _BoardPreview extends React.Component {
         this.setState({ isDeleteBoardOpen: !this.state.isDeleteBoardOpen })
     }
     onRemoveBoard = (boardId, ev) => {
-        console.log(ev);
         ev.preventDefault()
         this.props.removeBoard(boardId)
     }
 
     render() {
         const { board } = this.props
-        console.log(board);
         const { isDeleteBoardOpen } = this.state
         const img = board.style?.imgUrl
         const clr = board.style?.bgColor

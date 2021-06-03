@@ -26,7 +26,6 @@ function remove(id) {
 }
 
 async function save(board) {
-    console.log('board', board)
     if (board._id) {
         return await httpService.put(`board/${board._id}`, board)
     } else {
@@ -40,10 +39,6 @@ function changeBg(pick, imgUrl, bgColor, board) {
 }
 
 function addActivity(loggedInUser, board, group, action, task) {
-    console.log('loggedInUser', loggedInUser)
-    console.log('action', action)
-    console.log('group', group)
-    console.log('board', board)
     const date = new Date()
     const createdAt = utilService.convertToCreatedAtDate(date)
     const member = (loggedInUser) ? loggedInUser : { fullname: 'guest' }
@@ -55,9 +50,7 @@ function addActivity(loggedInUser, board, group, action, task) {
         group,
         txt: action
     }
-    console.log('newActivity', newActivity)
     board.activities = [newActivity, ...board.activities]
-    console.log('board', board)
 
 }
 

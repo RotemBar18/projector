@@ -47,7 +47,7 @@ class _BoardCreate extends React.Component {
                     <input type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
                     <div className="board-background-options">
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#60be50'}}></div>
-                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yLM7uN" alt=""/></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img   src="https://bit.ly/3yLM7uN" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#0279bf'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3yQz8rN" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#ff9f1a'}}></div>
