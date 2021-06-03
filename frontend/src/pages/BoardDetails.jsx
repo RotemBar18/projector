@@ -186,8 +186,10 @@ class _BoardDetails extends React.Component {
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <React.Fragment>
+            <div className='task-details-container'> 
             <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
             <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
+            </div>
 
             <div className="board-header-container">
                 <BoardHeader changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
