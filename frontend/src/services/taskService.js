@@ -44,16 +44,19 @@ function setTaskDate(task, date) {
     task.dueDate = date
 }
 
-function addTask(board, groupId, newTitle) {
+function addTask(board, groupId, newTitle,loggedInUser) {
+    console.log('loggedInUser', loggedInUser)
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     const newTask = {
         id: 'c' + utilService.makeId(),
         title: newTitle,
         style: {
-            imgUrl:'',
-            bgColor:''
-        }
+            imgUrl: '',
+            bgColor: ''
+        },
+        byMember: loggedInUser,
+        comments: []
     }
     board.groups[groupIdx].tasks = [...board.groups[groupIdx].tasks, newTask]
     return newTask

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 class _LoginSignup extends Component {
   state = {
+    isLogin: true,
     msg: '',
     loginCred: {
       username: '',
@@ -15,7 +16,9 @@ class _LoginSignup extends Component {
       fullname: ''
     }
   }
-
+  onToggleLoginSignup = () => {
+    this.setState({ isLogin: !this.state.isLogin })
+  }
   componentDidMount() {
     this.props.loadUsers()
   }
@@ -77,30 +80,35 @@ class _LoginSignup extends Component {
       <div className="form-container">
         <form className="frm" onSubmit={this.doLogin}>
           <h2>Login</h2>
-          <input
-            name="username"
-            value={this.state.loginCred.username}
-            onChange={this.loginHandleChange}
-            autoComplete='off'
-            placeholder='Username'
-          >
-          </input>
-          <input
-            name="password"
-            // type="password"
-            value={this.state.loginCred.password}
-            onChange={this.loginHandleChange}
-            placeholder="Password"
-            autoComplete="off"
-          />
-          <button onClick={this.doLogin}>Login</button>
+          <div className='cradentials'>
+
+            <input
+              name="username"
+              value={this.state.loginCred.username}
+              onChange={this.loginHandleChange}
+              autoComplete='off'
+              placeholder='Username'
+            >
+            </input>
+            <input
+              name="password"
+              // type="password"
+              value={this.state.loginCred.password}
+              onChange={this.loginHandleChange}
+              placeholder="Password"
+              autoComplete="off"
+            />
+            <button onClick={this.doLogin}>Login</button>
+          </div>
         </form>
       </div>
     )
-      let signupSection = (
-        <div className="form-container">
-          <form className="frm" onSubmit={this.doSignup}>
-            <h2>Signup</h2>
+    let signupSection = (
+      <div className="form-container">
+        <form className="frm" onSubmit={this.doSignup}>
+          <h2>Signup</h2>
+          <div className='cradentials'>
+
             <input
               type="text"
               name="fullname"
@@ -125,12 +133,13 @@ class _LoginSignup extends Component {
               placeholder="Username"
               autoComplete="off"
             />
-            <br />
             <button>Signup</button>
-          </form>
-        </div>
-      )
+          </div>
+        </form>
+      </div>
+    )
 
+    const { isLogin } = this.state
     const { loggedInUser } = this.props
     return (
       <div className="form-container">
@@ -144,9 +153,9 @@ class _LoginSignup extends Component {
               </h3>
             </div>
           )}
-          {!loggedInUser && loginSection}
-          {!loggedInUser && signupSection}
-
+          {!loggedInUser && isLogin && loginSection}
+          {!loggedInUser && !isLogin && signupSection}
+          <div onClick={this.onToggleLoginSignup} className='change-login-signup-btn'>{(isLogin) ? 'don\'t have an account yet?' : 'I already have an account'}</div>
         </div>
       </div>
     )

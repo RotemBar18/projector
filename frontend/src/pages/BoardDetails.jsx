@@ -85,8 +85,9 @@ class _BoardDetails extends React.Component {
     }
 
     onAddTask = (group, newTitle) => {
+        const loggedInUser = this.props.loggedInUser
         const board = this.props.currBoard
-        const task = taskService.addTask(board, group.id, newTitle)
+        const task = taskService.addTask(board, group.id, newTitle,loggedInUser)
         boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
