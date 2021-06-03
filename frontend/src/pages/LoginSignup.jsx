@@ -77,87 +77,83 @@ class _LoginSignup extends Component {
   render() {
 
     let loginSection = (
-      <div className="form-container">
-        <form className="frm" onSubmit={this.doLogin}>
-          <h2>Login</h2>
-          <div className='cradentials'>
+      <form className="frm" onSubmit={this.doLogin}>
+        <h2 className='title'>Login</h2>
+        <div className='cradentials'>
 
-            <input
-              name="username"
-              value={this.state.loginCred.username}
-              onChange={this.loginHandleChange}
-              autoComplete='off'
-              placeholder='Username'
-            >
-            </input>
-            <input
-              name="password"
-              // type="password"
-              value={this.state.loginCred.password}
-              onChange={this.loginHandleChange}
-              placeholder="Password"
-              autoComplete="off"
-            />
-            <button onClick={this.doLogin}>Login</button>
-          </div>
-        </form>
-      </div>
+          <input
+            name="username"
+            value={this.state.loginCred.username}
+            onChange={this.loginHandleChange}
+            autoComplete='off'
+            placeholder='Username'
+          >
+          </input>
+          <input
+            name="password"
+            // type="password"
+            value={this.state.loginCred.password}
+            onChange={this.loginHandleChange}
+            placeholder="Password"
+            autoComplete="off"
+          />
+          <button className='login-signup-btn' onClick={this.doLogin}>Login</button>
+        </div>
+      </form>
     )
     let signupSection = (
-      <div className="form-container">
-        <form className="frm" onSubmit={this.doSignup}>
-          <h2>Signup</h2>
-          <div className='cradentials'>
+      <form className="frm" onSubmit={this.doSignup}>
+        <h2 className='title'>Signup</h2>
+        <div className='cradentials'>
 
-            <input
-              type="text"
-              name="fullname"
-              value={this.state.signupCred.fullname}
-              onChange={this.signupHandleChange}
-              placeholder="Full name"
-              autoComplete="off"
-            />
-            <input
-              name="password"
-              // type="password"
-              value={this.state.signupCred.password}
-              onChange={this.signupHandleChange}
-              placeholder="Password"
-              autoComplete="off"
-            />
-            <input
-              type="text"
-              name="username"
-              value={this.state.signupCred.username}
-              onChange={this.signupHandleChange}
-              placeholder="Username"
-              autoComplete="off"
-            />
-            <button>Signup</button>
-          </div>
-        </form>
-      </div>
+          <input
+            type="text"
+            name="fullname"
+            value={this.state.signupCred.fullname}
+            onChange={this.signupHandleChange}
+            placeholder="Full name"
+            autoComplete="off"
+          />
+          <input
+            name="password"
+            // type="password"
+            value={this.state.signupCred.password}
+            onChange={this.signupHandleChange}
+            placeholder="Password"
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            name="username"
+            value={this.state.signupCred.username}
+            onChange={this.signupHandleChange}
+            placeholder="Username"
+            autoComplete="off"
+          />
+          <button className='login-signup-btn' >Signup</button>
+        </div>
+      </form>
     )
 
     const { isLogin } = this.state
     const { loggedInUser } = this.props
     return (
       <div className="form-container">
-        <div className="login">
+        <div className="login-sigup">
           <p>{this.state.msg}</p>
           {loggedInUser && (
-            <div>
+            <div className='welcome-user-msg'>
               <h3>
                 Welcome {loggedInUser.fullname}
-                <button onClick={this.props.logout}>Logout</button>
               </h3>
+              <button className='login-signup-btn' onClick={this.props.logout}>Logout</button>
             </div>
           )}
           {!loggedInUser && isLogin && loginSection}
           {!loggedInUser && !isLogin && signupSection}
-          <div onClick={this.onToggleLoginSignup} className='change-login-signup-btn'>{(isLogin) ? 'don\'t have an account yet?' : 'I already have an account'}</div>
+          {!loggedInUser && < div onClick={this.onToggleLoginSignup} className='change-login-signup-btn'>{(isLogin) ? 'don\'t have an account yet?' : 'I already have an account'}</div>}
         </div>
-      </div>
+      </div >
     )
   }
 }
