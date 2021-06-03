@@ -12,6 +12,9 @@
     > *:not(:first-child) {
         margin-left: 30px;
     }
+    .home-link-header{
+        display: flex;
+    }
     .logo-header {
         justify-self: center;
         margin: 0;
