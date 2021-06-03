@@ -39,6 +39,34 @@
                 margin-bottom: 10px;
             }
         }
+        .colors-pick {
+            left: 473px;
+            top: 62px;
+            width: 200px;
+            z-index: 4;
+            position: absolute;
+            background-color: #fff;
+            border-radius: 3px;
+            padding: 10px;
+            text-decoration: none;
+            box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+            flex-wrap: wrap;
+            label {
+                display: block;
+                width: 200px;
+                margin: 10px 0px;
+            }
+        }
+        .color {
+            width: 48px;
+            height: 32px;
+            margin: 0px 8px 8px 0px;
+            border-radius: 3px;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
         .details {
             margin-left: 10px;
         }
@@ -62,12 +90,25 @@
             z-index: 2;
         }
         .cover {
-            background-color: #ffaf3f;
-            height: 80px;
-            width: 100%;
-            max-height: 80px;
+            background-color: $clr1;
+            min-width: 50px;
             align-items: flex-end;
             justify-content: space-between;
+            margin-bottom: 20px;
+            img {
+                position: absolute;
+                align-self: center;
+                margin: 0;
+                width: 250px;
+                height: 150px;
+            }
+        }
+        .img-hight {
+            background-color: #333434;
+            height: 150px;
+        }
+        .bgc-hight {
+            height: 100px;
         }
         .title {
             align-items: center;
@@ -79,10 +120,9 @@
             font-weight: bold;
             background-color: #f4f5f7;
             border-radius: 5px;
-            padding-top: 20px;
-            padding-bottom: 20px;
             border: none;
             color: #333;
+            width: 400px;
         }
         .title-input:focus {
             background-color: white;

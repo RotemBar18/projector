@@ -30,6 +30,7 @@ class _TaskDetails extends Component {
         isEditLabelsShow: false,
         isEditDateShow: false,
         isAttachmentShow: false,
+        isChooseCoverShow: false,
         comment: {
             txt: '',
         },
@@ -171,13 +172,25 @@ class _TaskDetails extends Component {
     }
 
     handleSubmissionFile = () => {
-       const {imgUrl} = this.state.style;
-       const {task} = this.state;
-       console.log(imgUrl)
-       task.style?.imgurl? task.style.imgUrl = imgUrl : task.style = { imgUrl }
-       const board = this.props.currBoard
-       this.props.saveBoard(board)
-       this.toggleModal('isAttachmentShow')
+        const { imgUrl } = this.state.style;
+        const { task } = this.state;
+        task.style?.imgurl ? task.style.imgUrl = imgUrl : task.style = { imgUrl }
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+        this.toggleModal('isAttachmentShow')
+    }
+
+    setCover = (style) => {
+        if (style && style.imgUrl) return 'img-hight'
+        if (style && style.bgColor) return 'bgc-hight'
+    }
+
+    changeCover = (bgColor) =>{
+        const { task } = this.state;
+        task.style.bgColor = bgColor;
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+        this.toggleModal('isChooseCoverShow')
     }
 
     render() {
@@ -187,13 +200,15 @@ class _TaskDetails extends Component {
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style } = task;
         const board = this.props.currBoard;
+        const colors = ['#f1d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0279bf', '#00c2e0', '#60be50', '#50e898', '#fe78cb', '#344563', '#b3bac5']
         return (
             <section className="task-details flex">
                 <div className="window" onClick={this.goBack}></div>
                 <div className="card flex column">
-                    <div className="cover flex column">
+                    <div className={'cover flex column ' + this.setCover(style)} style={{ backgroundColor: style?.bgColor && !style?.imgUrl ? style.bgColor : '' }}>
                         <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
-                        <button className="btn flex">cover</button>
+                        <button className="btn flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover</button>
+                        {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                     </div>
                     <div className="header">
                         <div className="title flex">
@@ -291,6 +306,17 @@ class _TaskDetails extends Component {
                     <input type="text" name="text" value={this.state.style.imgUrl || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..." />
                     <button onClick={this.handleSubmissionFile}>Attach</button>
                 </div>}
+
+                {this.state.isChooseCoverShow && <div className='colors-pick flex'>
+                    <label>Select a color</label>
+                    {colors.map((color, index) => {
+                       return <div key={index} style={{ backgroundColor: color }} className='color' onClick={()=>this.changeCover(color)}></div>
+                    })
+                    }
+
+
+                </div>
+                }
             </section>
         )
     }
