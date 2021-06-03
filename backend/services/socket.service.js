@@ -40,14 +40,15 @@ function connectSockets(http, session) {
             // emits only to sockets in the same room
             gIo.to(socket.myTopic).emit('chat addMsg', msg)
         })
-        socket.on('board-updated', boardId => {
-            console.log('boardId',boardId);
-            socket.join(boardId)
+        socket.on('board-updated', board => {
+            // console.log('boardId',boardId);
+            // socket.join(boardId)
+            gIo.to(socket.boardId).emit('updateBoard', board)
 
         })
-        socket.on('board-updated', userId => {
-            socket.join(userId)
-        })
+        // socket.on('board-updated', userId => {
+        //     socket.join(userId)
+        // })
 
     })
 }

@@ -50,7 +50,7 @@ async function updateBoard(req, res) {
         const board = req.body
         savedBoard = await boardService.save(board)
         res.send(savedBoard)
-        socketService.on({type: 'board-updated', data: board, to:savedBoard._id})
+        socketService.broadcast({type: 'board-updated', data: board, to:savedBoard._id})
     } catch (err) {
         console.log(err)
         logger.error('Failed to update board', err)

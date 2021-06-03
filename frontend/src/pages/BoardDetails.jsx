@@ -28,6 +28,7 @@ class _BoardDetails extends React.Component {
         this.getBoardDetails()
         socketService.setup()
         socketService.emit('emitTest', boardId)
+        // socketService.on('updateBoard')
     }
 
     handleChange = (ev) => {
