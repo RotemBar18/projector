@@ -53,6 +53,7 @@
         .header-avatars {
             display: flex;
             height: 32px;
+            width: max-content;
             align-items:center ;
             margin-left: 20px;
             > * {
@@ -62,6 +63,18 @@
             }
             > *:not(:first-child) {
                 margin-left: -7px;
+            }
+            .add-member-avatar{
+                margin-left: -5px;
+                background-color: #0079bf;
+                display: flex;
+                svg{
+                    height: 20px;
+                    padding-right: 1.5px;
+                }
+                &:hover{
+                    opacity: 0.8;
+                }
             }
         }
         .open-side-bar-btn {

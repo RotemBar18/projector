@@ -2,16 +2,22 @@ import React from 'react';
 import { Avatar } from '@material-ui/core';
 import { utilService } from '../services/utilService.js'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import {AddMembers} from './AddMembers';
 
 export class BoardHeader extends React.Component {
     state = {
         isChangeBoardTitleOpen: false,
+        isAddMembersOpen: false,
         board: {
             title: ''
         }
     }
     toggleChangeBoardTitle = () => {
         this.setState({ isChangeBoardTitleOpen: !this.state.isChangeBoardTitleOpen })
+    }
+    toggleAddMembers = () => {
+        this.setState({ isAddMembersOpen: !this.state.isAddMembersOpen })
     }
 
     handleChange = (ev) => {
@@ -29,7 +35,7 @@ export class BoardHeader extends React.Component {
     render() {
         const { board, onToggleSideBar } = this.props
         const { members } = board
-        const { isChangeBoardTitleOpen } = this.state
+        const { isChangeBoardTitleOpen, isAddMembersOpen } = this.state
         const newBoardTitle = this.state.board.title
         return (
             <div className="board-header">
@@ -46,9 +52,13 @@ export class BoardHeader extends React.Component {
                             <Avatar className="header-avatar" key={member._id} src={member.imgUrl}>
                                 {utilService.getNameInitials(member.fullname)}
                             </Avatar>)}
+                        <Avatar onClick={this.toggleAddMembers} className="header-avatar add-member-avatar" >
+                            <PersonAddIcon />
+                            {isAddMembersOpen && <AddMembers  />}
+                        </Avatar>
                     </div>
                     <button onClick={onToggleSideBar} className='open-side-bar-btn'>{<MoreHorizIcon />}Show menu</button>
-            </div>
+                </div>
             </div >
         )
     }

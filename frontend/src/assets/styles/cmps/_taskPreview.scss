@@ -32,15 +32,36 @@
         display: flex;
         flex-wrap: wrap;
         margin: 3px 0px 3px 6px;
+        transition: 0.5s;
         > *:not(:first-child) {
             margin-left: 3px;
         }
         .label {
+            transition: 0.5s;
+            min-width: 50px;
+            min-height: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 0.8rem;
             border-radius: 5px;
             color: white;
             font-weight: 600;
             padding-inline: 5px;
+            &:nth-child(n + 5) {
+                margin-top: 3px;
+            }
+            &:nth-child(5) {
+                margin-left: 0px;
+            }
+        }
+        .label.open {
+            min-height: 20.5px;
+            &::before {
+                transition: 0.5s;
+                content: attr(data-content);
+                
+            }
         }
     }
     a {

@@ -181,6 +181,7 @@ class _BoardDetails extends React.Component {
 
     render() {
         socketService.emit('render', this.render)
+        console.log(this.props.users)
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
@@ -245,6 +246,7 @@ function mapStateToProps(state) {
         loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
+        users:state.userModule.users,
     }
 }
 const mapDispatchToProps = {

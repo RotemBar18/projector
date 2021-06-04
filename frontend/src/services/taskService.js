@@ -29,7 +29,6 @@ function getPreview(checklists) {
 }
 
 function getDatePreview(currDate) {
-    const year = currDate.substring(0, 4)
     const month = currDate.substring(5, 7)
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
