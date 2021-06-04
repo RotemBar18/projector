@@ -1,16 +1,18 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Avatar, TextField, Input, Grid } from '@material-ui/core';
+import { Avatar, TextField, Input, Grid, Checkbox } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
-import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
+
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
@@ -34,8 +36,10 @@ class _TaskDetails extends Component {
         comment: {
             txt: '',
         },
-        style: {
-            imgUrl: '',
+        attachment: {
+            url: '',
+            timestamp: '',
+            name: ''
         }
     }
 
@@ -101,14 +105,10 @@ class _TaskDetails extends Component {
         })
     }
 
+    //dont delete taskId
     checkIfLabelInTask = (taskId, labelId) => {
         if (labelId.charAt() === 'l') labelId = labelId.substring(1)
-        return this.state.task.labelIds?.some(taskLabelId => {
-            console.log(this.state.task)
-            console.log(taskLabelId)
-            console.log(labelId)
-            return taskLabelId === labelId
-        })
+        return this.state.task.labelIds?.some(taskLabelId => taskLabelId === labelId)
     }
 
     toggleEditLabel = (currLabel = null) => {
@@ -165,18 +165,37 @@ class _TaskDetails extends Component {
     }
 
     changeHandlerFile = ({ target }) => {
-        const { value } = target
-        const { imgUrl } = this.state.style
-        this.setState({ style: { ...this.state.style, imgUrl: value } })
+        let { name, value } = target
+        const { task } = this.state;
+        if (!task.attachments) task.attachments = []
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+        // const { imgUrl } = this.state.style
+        this.setState({
+            attachment: {
+                ...this.state.attachment, [name]: value,
+                timestamp: taskService.getTimeStemp()
+            }
+        })
     }
 
     handleSubmissionFile = () => {
-        const { imgUrl } = this.state.style;
+        const { attachment } = this.state;
         const { task } = this.state;
-        task.style?.imgurl ? task.style.imgUrl = imgUrl : task.style = { imgUrl }
+        // task.style?.imgurl ? task.style.imgUrl = imgUrl : task.style = { imgUrl }
+        task.attachments.push(attachment)
+        task.style.imgUrl = attachment.url
         const board = this.props.currBoard
         this.props.saveBoard(board)
         this.toggleModal('isAttachmentShow')
+    }
+
+    removeLink = (urlIdx = null)=>{
+        const { task } = this.state;
+        if (task.style.imgUrl) task.style.imgUrl = ''
+        else  task.attachments.splice(urlIdx, 1)
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
     }
 
     setCover = (style) => {
@@ -184,7 +203,7 @@ class _TaskDetails extends Component {
         if (style && style.bgColor) return 'bgc-hight'
     }
 
-    changeCover = (bgColor) =>{
+    changeCover = (bgColor) => {
         const { task } = this.state;
         task.style.bgColor = bgColor;
         const board = this.props.currBoard
@@ -192,14 +211,41 @@ class _TaskDetails extends Component {
         this.toggleModal('isChooseCoverShow')
     }
 
+    checkIfDateComplete = (date) => {
+        const { task } = this.state;
+        if (typeof task.dueDate === 'object') {
+            return task.dueDate.complete ?
+                <div className="label complete">COMPLETE</div> :
+                <div className="label complete overdue">OVERDUE</div>
+        } else {
+            task.dueDate = {
+                date,
+                complete: false
+            }
+            const board = this.props.currBoard
+            this.props.saveBoard(board)
+        }
+    }
+
+    toggleDateComplete = () => {
+        const { task } = this.state;
+        task.dueDate.complete = !task.dueDate.complete;
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+    }
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
         console.log(task)
         const description = (task.description) || ''
-        const { byMember, comments, members, labelIds, style } = task;
+        const { byMember, comments, members, labelIds, style, attachments } = task;
         const board = this.props.currBoard;
+        // console.log(board)
+        console.log(this.state)
         const colors = ['#f1d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0279bf', '#00c2e0', '#60be50', '#50e898', '#fe78cb', '#344563', '#b3bac5']
+        var date = null
+        if (task.dueDate) date = task.dueDate.date || task.dueDate
         return (
             <section className="task-details flex">
                 <div className="window" onClick={this.goBack}></div>
@@ -220,27 +266,47 @@ class _TaskDetails extends Component {
                     </div>
                     <div className="main flex row">
                         <div className="details flex column">
-                            {members && <div className="members">
-                                <h4>Members</h4>
-                                <AvatarGroup max={10}>
-                                    {members && members.map(member => {
-                                        return <Avatar className="avatar"
-                                            key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
-                                    })}
-                                </AvatarGroup>
-                            </div>}
-                            {(task.dueDate) &&
-                                <div className='dew-date'>
-                                    {this.convertNumToDate(task.dueDate)}
+                            <div className="details-labeld-members flex">
+                                {members && <div className="members">
+                                    <h3>MEMBERS</h3>
+                                    <AvatarGroup max={10}>
+                                        {members && members.map(member => {
+                                            return <Avatar className="avatar"
+                                                key={member._id} src={member.imgUrl}>{utilService.getNameInitials(member.fullname)}</Avatar>
+                                        })}
+                                        <Avatar className="add-avatar" onClick={() => this.toggleModal('isMembersModalShow')}>+</Avatar>
+                                    </AvatarGroup>
                                 </div>}
-                            {labelIds && <div className="labels flex">
-                                {labelIds.map(labelId => {
-                                    const label = this.getLableById(labelId)
-                                    return <LabelPreview key={label.id} lable={label} />
-                                })}
-                            </div>}
+
+                                {labelIds && <div className="labels flex column">
+                                    <h3>LABELS</h3>
+                                    <div className="labels flex">
+                                        {labelIds.map(labelId => {
+                                            const label = this.getLableById(labelId)
+                                            return <LabelPreview key={label.id} lable={label} />
+                                        })}
+                                        <div className="label add-label" onClick={() => this.toggleModal('isLabelsModalShow')}>+</div>
+                                    </div>
+                                </div>}
+                            </div>
+                            {(task.dueDate) &&
+                                <div className='dew-date flex column'>
+                                    <h3>DUE DATE</h3>
+                                    <div className="flex">
+                                        <Checkbox className="checkbox"
+                                            onChange={this.toggleDateComplete}
+                                            checked={task.dueDate?.complete} />
+                                        <div className='dew-date-details flex' onClick={() => this.toggleModal('isEditDateShow')}>
+                                            <p>{this.convertNumToDate(date)} at {date.substring(11)}</p>
+                                            {this.checkIfDateComplete(date)}
+                                            <KeyboardArrowDownIcon />
+                                        </div>
+                                    </div>
+                                </div>}
+
+
                             <div className="form flex column">
-                                <h4><DescriptionOutlinedIcon className="icon" color="disabled" /> Description</h4>
+                                <h3><DescriptionOutlinedIcon className="icon" color="disabled" /> Description</h3>
                                 <TextField className="textarea"
                                     name="description"
                                     id="outlined-multiline-static"
@@ -253,7 +319,24 @@ class _TaskDetails extends Component {
                                     onChange={this.handleChange}
                                 />
                             </div>
-                            {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
+                            {attachments && attachments.map((attachment, index) => {
+                                return <div className="img-details flex" key={index}>
+                                    <div className="img-container flex">
+                                        <img className='preview-img' src={attachment.url} alt="" />
+                                    </div>
+                                    <div className="container flex column">
+                                        <p className="title">{attachment.name || 'img.jpng'}</p>
+                                        <div className="flex">
+                                            <p>Added at: {attachment.timestamp}</p>
+                                            <span>-</span>
+                                            <p className="btn" onClick={() => this.removeLink(index)}>Delete</p>
+                                            <span>-</span>
+                                            <p className="btn">Edit</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            })
+                            }
                             <div className="comments flex column">
                                 {comments && comments.map(comment => {
                                     return <Grid item className="comment flex" key={comment.id}>
@@ -275,10 +358,11 @@ class _TaskDetails extends Component {
                             </div>
                         </div>
                         <div className="sidebar flex column">
+                            <h3 className="sidebar-title">ADD TO CARD</h3>
                             <button className="btn flex" onClick={() => this.toggleModal('isMembersModalShow')}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isLabelsModalShow')}><LabelOutlinedIcon className="icon" /> Labels</button>
-                            <button className="btn flex"><ListOutlinedIcon className="icon" /> Checklist</button>
-                            <button className="btn flex" onClick={() => this.toggleModal('isEditDateShow')}><TodayOutlinedIcon className="icon" /> Dates</button>
+                            <button className="btn flex"><CheckBoxOutlinedIcon className="icon" /> Checklist</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isEditDateShow')}><AccessTimeIcon className="icon" /> Dates</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isAttachmentShow')}><AttachFileOutlinedIcon className="icon" /> Attachment</button>
                         </div>
                     </div>
@@ -301,15 +385,20 @@ class _TaskDetails extends Component {
                 {this.state.isEditDateShow && <Dates prevPage={'task-details'} toggleModal={this.toggleModal} task={task} setDate={this.setDate}></Dates>}
 
                 {this.state.isAttachmentShow && <div className="attachment flex column">
-                    <label htmlFor="text">Attach a link</label>
-                    <input type="text" name="text" value={this.state.style.imgUrl || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..." />
+                    <div className="flex container">
+                        <label htmlFor="text">Attach a link</label>
+                        <CloseOutlinedIcon className='btn task-details-close' onClick={() => this.toggleModal('isAttachmentShow')} />
+                    </div>
+                    <input type="text" name="url" value={this.state.attachment.url || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..." />
+                    <label htmlFor="text">Link name</label>
+                    <input type="text" name="name" value={this.state.attachment.name || ''} onChange={this.changeHandlerFile} />
                     <button onClick={this.handleSubmissionFile}>Attach</button>
                 </div>}
 
                 {this.state.isChooseCoverShow && <div className='colors-pick flex'>
                     <label>Select a color</label>
                     {colors.map((color, index) => {
-                       return <div key={index} style={{ backgroundColor: color }} className='color' onClick={()=>this.changeCover(color)}></div>
+                        return <div key={index} style={{ backgroundColor: color }} className='color' onClick={() => this.changeCover(color)}></div>
                     })
                     }
 
