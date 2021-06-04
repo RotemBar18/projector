@@ -32,7 +32,8 @@ export class TaskPreview extends Component {
 
     convertNumToDate = (deuDate) => {
         if (!deuDate) return
-        const deuDatePreview = taskService.getDatePreview(deuDate)
+        const date = deuDate.date || deuDate;
+        const deuDatePreview = taskService.getDatePreview(date)
         return deuDatePreview
     }
     getChecklistsPreview = (checklists) => {
