@@ -37,8 +37,9 @@ function connectSockets(http, session) {
             console.log('socket.myTopic',socket.myTopic);
         })
         socket.on('board updated', board => {
-            socket.to(socket.myTopic).emit('updated board', 'board')
-
+            console.log('@@@@@@@@@@2');
+            gIo.emit('updated board', board)
+            // socket.to(socket.myTopic).emit('updated board', 'board')
         })
      
     })
