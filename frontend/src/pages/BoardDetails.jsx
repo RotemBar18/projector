@@ -27,12 +27,14 @@ class _BoardDetails extends React.Component {
     componentDidMount() {
         const { boardId } = this.props.match.params;
         this.getBoardDetails()
+        this.props.loadUsers()
         socketService.setup()
         socketService.emit('join board', boardId)
-        socketService.on('updated board', (board)=>{
+        socketService.on('updated board', (board) => {
             console.log('@@@@@3');
-        this.props.setBoard(board._id)
+            this.props.setBoard(board._id)
         })
+
     }
 
     handleChange = (ev) => {
@@ -184,6 +186,7 @@ class _BoardDetails extends React.Component {
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
+        console.log(this.props.loggedInUser);
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <div className='task-details-container'>
@@ -242,13 +245,14 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        loggedInUser: state.userModule.loggedInuser,
+        loggedInUser: state.userModule.loggedInUser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
         users: state.userModule.users,
     }
 }
 const mapDispatchToProps = {
+    loadUsers,
     setBoard,
     loadBoards,
     saveBoard

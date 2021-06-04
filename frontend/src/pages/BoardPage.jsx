@@ -36,7 +36,6 @@ class _BoardPage extends React.Component {
     render() {
         const { boards } = this.props
         const { users } = this.props
-        console.log('users',users);
         if (!boards) return <div>Loading...</div>
         return (
             <section className="board-page">
