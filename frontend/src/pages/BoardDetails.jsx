@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Group } from '../cmps/Group.jsx';
 import { SideBar } from '../cmps/SideBar.jsx';
 import { setBoard, loadBoards, saveBoard } from '../store/actions/boardActions.js'
+import { loadUsers } from '../store/actions/userActions.js'
 import { groupService } from '../services/groupService.js'
 import { taskService } from '../services/taskService.js';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
@@ -30,7 +31,7 @@ class _BoardDetails extends React.Component {
         socketService.emit('join board', boardId)
         socketService.on('updated board', this.check)
     }
-    check=()=>{
+    check = () => {
         console.log('ononini')
     }
 
@@ -64,7 +65,7 @@ class _BoardDetails extends React.Component {
     }
     changeGroupName = (newGroupTitle, group) => {
         const board = this.props.currBoard
-        if (groupService.changeGroupName( newGroupTitle, group)) {
+        if (groupService.changeGroupName(newGroupTitle, group)) {
             boardService.addActivity(this.props.loggedInUser, board, group, `changed the list name to: "${newGroupTitle}" from:`)
             this.props.saveBoard(board)
         }
@@ -94,7 +95,7 @@ class _BoardDetails extends React.Component {
     onAddTask = (group, newTitle) => {
         const loggedInUser = this.props.loggedInUser
         const board = this.props.currBoard
-        const task = taskService.addTask(board, group.id, newTitle,loggedInUser)
+        const task = taskService.addTask(board, group.id, newTitle, loggedInUser)
         boardService.addActivity(this.props.loggedInUser, board, group, 'Added a new card named:', task)
         this.props.saveBoard(board)
     }
@@ -187,9 +188,9 @@ class _BoardDetails extends React.Component {
         const board = this.props.currBoard
         if (!board) return <div>Loading</div>
         return <React.Fragment>
-            <div className='task-details-container'> 
-            <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
-            <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
+            <div className='task-details-container'>
+                <Route component={TaskDetails} path='/board/:boardId/:groupId/:taskId' />
+                <div className='board-window' style={(board.style.imgUrl) ? { backgroundImage: `url(${board.style.imgUrl})` } : { backgroundColor: board.style.bgColor }} ></div>
             </div>
 
             <div className="board-header-container">
@@ -246,7 +247,7 @@ function mapStateToProps(state) {
         loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
-        users:state.userModule.users,
+        users: state.userModule.users,
     }
 }
 const mapDispatchToProps = {
