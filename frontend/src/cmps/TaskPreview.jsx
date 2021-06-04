@@ -8,7 +8,7 @@ import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 
 export class TaskPreview extends Component {
 
@@ -67,7 +67,7 @@ export class TaskPreview extends Component {
                             </div>}
 
                         {(task.checklists) ? <div className='checklists-preview'>
-                            {this.getChecklistsPreview(task.checklists)}
+                            <CheckBoxOutlinedIcon /> {this.getChecklistsPreview(task.checklists)}
                         </div> : ''}
                         <div className='avatars'>
                             {(task.members) ? task.members.map(member => {

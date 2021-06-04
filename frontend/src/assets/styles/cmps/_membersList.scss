@@ -14,20 +14,29 @@
         display: flex;
         justify-content: space-between;
         border-bottom: 0.2px solid rgba(94, 108, 132, 0.25);
+        align-items:center ;
+        padding-block: 10px;
         .title {
             color: #243757;
             font-size: 1.2rem;
             padding-top: 0.5rem;
             text-align: center;
             flex-grow: 1;
+            margin: 0;
+            padding: 0;
         }
         .close-edit-members-btn {
+            display: flex;
+            justify-content: center;
+            align-items:center ;
             color: #233655;
             background-color: transparent;
             border: none;
-            font-size: 1.2rem;
+            width: 24px;
+            height: 24px;
             cursor: pointer;
             outline: none;
+            font-size: 1.5rem;
         }
     }
     .member-preview {

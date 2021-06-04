@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { LabelEdit } from './LabelEdit.jsx'
 import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
-
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import React from 'react'
 
 export class LabelsList extends Component {
@@ -45,7 +45,7 @@ export class LabelsList extends Component {
                                     <div style={{ backgroundColor: label.color }} className='label-title' onClick={() => this.onLabelToggle(task.id, label.id)}>{label.title}
                                         {this.checkIfLabelInTask(label.id) && <DoneOutlinedIcon />}</div>
 
-                                    <button className='open-edit-label-btn' onClick={() => this.toggleEditLabel(label)}>Edit</button>
+                                    <button className='open-edit-label-btn' onClick={() => this.toggleEditLabel(label)}><EditOutlinedIcon /></button>
                                 </div>
 
                             })}
