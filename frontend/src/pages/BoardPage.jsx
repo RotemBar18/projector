@@ -40,7 +40,6 @@ class _BoardPage extends React.Component {
         return (
             <section className="board-page">
                 <h1>Your Boards</h1>
-                <div className="chat-container">Hi</div>
                 <BoardList boards={boards}/>
             </section>
         )
