@@ -13,6 +13,7 @@ export const taskService = {
     toggleTaskMember,
     addComment,
     setTaskDate,
+    getTimeStemp,
 }
 
 function getPreview(checklists) {
@@ -41,10 +42,13 @@ function getDatePreview(currDate) {
 }
 
 function setTaskDate(task, date) {
-    task.dueDate = date
+    task.dueDate = {
+        date,
+        complete: false
+    }
 }
 
-function addTask(board, groupId, newTitle,loggedInUser) {
+function addTask(board, groupId, newTitle, loggedInUser) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
     if (!board.groups[groupIdx].tasks) board.groups[groupIdx].tasks = []
     const newTask = {
@@ -55,7 +59,8 @@ function addTask(board, groupId, newTitle,loggedInUser) {
             bgColor: ''
         },
         byMember: loggedInUser,
-        comments: []
+        comments: [],
+        attachments: []
     }
     board.groups[groupIdx].tasks = [...board.groups[groupIdx].tasks, newTask]
     return newTask
@@ -138,4 +143,10 @@ function toggleTaskMember(task, member) {
         if (!task.members) task.members = []
         task.members.push(member)
     }
+}
+
+function getTimeStemp(){
+    const event = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return event.toLocaleDateString(undefined, options)
 }
