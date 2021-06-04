@@ -17,6 +17,7 @@ export function saveBoard(board) {
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
     return async dispatch => { 
         try {
+            console.log('@@@@@@@@@1')
             const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
             socketService.emit('board updated', board)

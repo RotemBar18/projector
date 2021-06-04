@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadBoards, saveBoard } from '../store/actions/boardActions.js'
+import { loadUsers } from '../store/actions/userActions.js'
 import { BoardList } from '../cmps/BoardList'
 
 class _BoardPage extends React.Component {
@@ -15,6 +16,7 @@ class _BoardPage extends React.Component {
 
     componentDidMount() {
         this.props.loadBoards()
+        this.props.loadUsers()
     }
 
     toggleModalVisibility = (boolean) => {
@@ -33,10 +35,13 @@ class _BoardPage extends React.Component {
 
     render() {
         const { boards } = this.props
+        const { users } = this.props
+        console.log('users',users);
         if (!boards) return <div>Loading...</div>
         return (
             <section className="board-page">
                 <h1>Your Boards</h1>
+                <div className="chat-container">Hi</div>
                 <BoardList boards={boards}/>
             </section>
         )
@@ -45,12 +50,14 @@ class _BoardPage extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        boards: state.boardModule.boards
+        boards: state.boardModule.boards,
+        users: state.userModule.users
     }
 }
 const mapDispatchToProps = {
     loadBoards,
-    saveBoard
+    saveBoard,
+    loadUsers
 }
 
 

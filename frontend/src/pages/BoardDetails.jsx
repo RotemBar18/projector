@@ -28,10 +28,10 @@ class _BoardDetails extends React.Component {
         this.getBoardDetails()
         socketService.setup()
         socketService.emit('join board', boardId)
-        socketService.on('updated board', this.check)
-    }
-    check=()=>{
-        console.log('ononini')
+        socketService.on('updated board', (board)=>{
+            console.log('@@@@@3');
+        this.props.setBoard(board._id)
+        })
     }
 
     handleChange = (ev) => {
@@ -180,7 +180,6 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        socketService.emit('render', this.render)
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
@@ -245,6 +244,7 @@ function mapStateToProps(state) {
         loggedInUser: state.userModule.loggedInuser,
         currBoard: state.boardModule.currBoard,
         boards: state.boardModule.boards,
+        users:state.userModule.users,
     }
 }
 const mapDispatchToProps = {

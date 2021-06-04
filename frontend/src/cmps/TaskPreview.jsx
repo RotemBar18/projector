@@ -8,24 +8,26 @@ import { LabelPreview } from './LabelPreview.jsx'
 import { TaskOptions } from './TaskOptions.jsx';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 
 export class TaskPreview extends Component {
 
     state = {
+        isTaskOptionsShow:false,
+        isLabelsOpen:false
     }
 
     getLableById = (labelId) => {
         return this.props.board.labels.find(label => label.id === 'l' + labelId)
     }
 
-    toggleTaskDetails = () => {
-        this.setState({ isTaskDetailsShow: !this.state.isTaskDetailsShow })
-    }
     toggleTaskOptions = () => {
         this.props.toggleDroppable()
         this.setState({ isTaskOptionsShow: !this.state.isTaskOptionsShow })
+    }
 
+    toggleLabels=()=>{
+        this.setState({isLabelsOpen : !this.state.isLabelsOpen})
     }
 
     convertNumToDate = (deuDate) => {
@@ -45,7 +47,7 @@ export class TaskPreview extends Component {
 
     render() {
         const { toggleTaskMember, checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
-        const { isTaskOptionsShow } = this.state
+        const { isTaskOptionsShow,isLabelsOpen } = this.state
         return (
             <article className={`task-container`}>
                 {isTaskOptionsShow &&
@@ -53,10 +55,10 @@ export class TaskPreview extends Component {
                 {(task.style) ? (task.style.bgColor || task.style.imgUrl) ? <div className='task-cover'>
                     {(task.style) ? (task.style.imgUrl) ? <img className='img-cover' src={task.style.imgUrl} alt="" /> : <div className='bgc-cover' style={{ backgroundColor: task.style.bgColor }}></div> : ''}
                 </div> : '' : ''}
-                {(task.labelIds) ? <div className='label-list'>
+                {(task.labelIds) ? <div className='label-list'  onClick={this.toggleLabels}>
                     {(task.labelIds) ? task.labelIds.map(labelId => {
                         const label = this.getLableById(labelId)
-                        return <LabelPreview key={label.id} lable={label} />
+                        return <LabelPreview isLabelsOpen={isLabelsOpen}  key={label.id} lable={label} />
                     }) : ''}
                 </div> : ''}
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
@@ -68,7 +70,7 @@ export class TaskPreview extends Component {
                             </div>}
 
                         {(task.checklists) ? <div className='checklists-preview'>
-                            {this.getChecklistsPreview(task.checklists)}
+                            <CheckBoxOutlinedIcon /> {this.getChecklistsPreview(task.checklists)}
                         </div> : ''}
                         <div className='avatars'>
                             {(task.members) ? task.members.map(member => {

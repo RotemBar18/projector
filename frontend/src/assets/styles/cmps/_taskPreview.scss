@@ -5,7 +5,7 @@
     background-color: white;
     box-shadow: 0 1px 0 #091e4240;
     border-radius: 3px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     min-height: 32px;
     cursor: pointer;
     justify-content: center;
@@ -32,18 +32,41 @@
         display: flex;
         flex-wrap: wrap;
         margin: 3px 0px 3px 6px;
+        transition: 0.5s;
+        > *:not(:first-child) {
+            margin-left: 3px;
+        }
         .label {
+            transition: 0.5s;
+            min-width: 50px;
+            min-height: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 0.8rem;
             border-radius: 5px;
-            margin-inline: 3px;
             color: white;
             font-weight: 600;
             padding-inline: 5px;
+            &:nth-child(n + 5) {
+                margin-top: 3px;
+            }
+            &:nth-child(5) {
+                margin-left: 0px;
+            }
+        }
+        .label.open {
+            min-height: 20.5px;
+            &::before {
+                transition: 0.5s;
+                content: attr(data-content);
+                
+            }
         }
     }
     a {
         text-decoration: none;
-        margin: 0 9px 4px;
+        margin: 0 6px 4px;
         h5 {
             font-weight: 400;
             color: #00395aec;
@@ -51,14 +74,14 @@
             margin: 0px 0px 0px 0px;
         }
         .badges {
-            display: flex;
+            display: grid;
             align-items: center;
-            justify-content: space-between;
-            margin-top: 7px;
-            margin-bottom: 3px;
-            >* {
+            margin-top: 3px;
+            margin-bottom: 0px;
+            grid-template-columns: 60px auto auto;
+            grid-template-rows: max-content;
+            > * {
                 color: #6d798e;
-                margin-right: 5px;
                 font-size: 12px;
                 height: fit-content;
             }
@@ -67,15 +90,32 @@
                 color: white;
                 border-radius: 3px;
                 padding: 1px 2px;
+                width: 60px;
+                display: flex;
+                justify-content: center;
                 align-items: center;
                 .clock {
                     width: 15px;
+                    margin-right: 2px;
                     align-self: baseline;
-                    margin-right: 3px;
+                }
+            }
+            .checklists-preview {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                padding: 1px 2px;
+                svg {
+                    width: 15px;
+                    align-self: baseline;
                 }
             }
             .avatars {
+                justify-self: end;
+                align-self: flex-end;
                 display: flex;
+                grid-column: 3/4;
                 .avatar {
                     justify-items: end;
                     width: 28px;
@@ -96,10 +136,10 @@
         position: absolute;
         background-color: rgba(255, 255, 255, 0.671);
         text-align: center;
-        padding:3px;
+        padding: 3px;
         top: 0;
         right: 0;
-        .task-options-svg{
+        .task-options-svg {
             display: flex;
             font-size: 1rem;
         }
