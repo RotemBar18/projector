@@ -190,10 +190,10 @@ class _TaskDetails extends Component {
         this.toggleModal('isAttachmentShow')
     }
 
-    removeLink = (urlIdx = null)=>{
+    removeLink = (urlIdx = null) => {
         const { task } = this.state;
         if (task.style.imgUrl) task.style.imgUrl = ''
-        else  task.attachments.splice(urlIdx, 1)
+        else task.attachments.splice(urlIdx, 1)
         const board = this.props.currBoard
         this.props.saveBoard(board)
     }
@@ -306,16 +306,19 @@ class _TaskDetails extends Component {
 
 
                             <div className="form flex column">
-                                <h3><DescriptionOutlinedIcon className="icon" color="disabled" /> Description</h3>
+                                <div className="flex title">
+                                    <DescriptionOutlinedIcon className="description-icon" color="disabled" />
+                                    <h3 className="title">Description</h3>
+                                </div>
                                 <TextField className="textarea"
                                     name="description"
                                     id="outlined-multiline-static"
                                     multiline
-                                    rows={1}
+                                    rowsMin={4}
                                     placeholder="add a more detailed description..."
                                     value={description}
                                     variant="outlined"
-                                    size='small'
+                                    size='large'
                                     onChange={this.handleChange}
                                 />
                             </div>

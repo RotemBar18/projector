@@ -89,7 +89,9 @@
             
             .details {
                 margin-left: 10px;
+                width: 70%;
                 .dew-date {
+                    margin-left: 33px;
                     h3 {
                         font-size: 12px;
                         font-weight: 500;
@@ -134,6 +136,9 @@
                     //     margin: 0 5px 0 0;
                     // }
                 }
+                .details-labeld-members {
+                    margin-left: 33px;
+                }
             }
             
             .window {
@@ -155,6 +160,7 @@
                 border-radius: 2px;
                 z-index: 2;
                 overflow: hidden;
+                min-height: 500px;
             }
             
             .cover {
@@ -182,8 +188,10 @@
             }
             
             .title {
-                align-items: center;
-                padding-left: 10px;
+                align-content: center;
+                .taskIcon {
+                    margin: 0 2px 0 10px;
+                }
             }
             
             .title-input {
@@ -193,19 +201,12 @@
                 background-color: #f4f5f7;
                 border-radius: 5px;
                 border: none;
-                color: #333;
+                color: #5e6c84;
                 width: 400px;
             }
             
             .title-input:focus {
                 background-color: white;
-                border: none;
-            }
-            
-            textarea {
-                // width: 90%;
-                width: 450px;
-                height: 70px;
                 border: none;
             }
             
@@ -269,10 +270,34 @@
             .form {
                 margin-top: 10px;
                 margin-bottom: 10px;
-                textarea,
+                .title {
+                    align-items: center;
+                    margin-bottom: 15px;
+                    margin-top: 5px;
+                    h3 {
+                        font-size: 1.125rem;
+                        line-height: 1;
+                        font-weight: bold;
+                        margin: 0;
+                    }
+                }
+                .description-icon {
+                    margin: 0 2px 0 0;
+                }
+                .textarea {
+                    width: 100%;
+                    // width: 450px;
+                    min-height: 70px;
+                    height: fit-content;
+                    border: none;
+                    background-color: white;
+                }
                 .MuiInputBase-root {
                     background-color: white;
                     border: none;
+                    min-height: 70px;
+                    height: fit-content;
+                    padding-top: 5px;
                 }
             }
             
