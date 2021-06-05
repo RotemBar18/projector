@@ -13,12 +13,15 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { boardService } from '../services/boardService.js';
 import { BoardHeader } from '../cmps/BoardHeader'
 import { socketService } from '../services/socketService.js';
+import { BoardCharts } from '../cmps/BoardCharts'
+
 class _BoardDetails extends React.Component {
 
     state = {
         isSideBarOpen: false,
         isAddGroupOpen: false,
         isDragDisabled: false,
+        isChartsOpen: false,
         group: {
             title: ''
         }
@@ -45,6 +48,11 @@ class _BoardDetails extends React.Component {
 
     onToggleSideBar = () => {
         this.setState({ isSideBarOpen: !this.state.isSideBarOpen })
+    }
+
+    onToggleCharts = () => {
+        console.log('hi');
+        this.setState({ isChartsOpen: !this.state.isChartsOpen })
     }
 
     getBoardDetails = () => {
@@ -189,7 +197,7 @@ class _BoardDetails extends React.Component {
     
     
     render() {
-        const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
+        const { isAddGroupOpen, isSideBarOpen, isDragDisabled, isChartsOpen } = this.state
         const { users } = this.props
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
@@ -201,12 +209,18 @@ class _BoardDetails extends React.Component {
             </div>
 
             <div className="board-header-container">
-                <BoardHeader toggleUser={this.toggleUser} users={users} changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
+                <BoardHeader toggleUser={this.toggleUser} users={users} changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} onToggleCharts={this.onToggleCharts} />
             </div>
 
             {isSideBarOpen &&
                 < SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
             }
+
+            {isChartsOpen &&
+                <BoardCharts board={board}/>
+            }
+
+
 
             <DragDropContext onDragEnd={this.handleOnDragEnd}>
                 <Droppable droppableId={board._id} direction="horizontal" type='list' >

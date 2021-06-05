@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Avatar } from '@material-ui/core';
 import { utilService } from '../services/utilService';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import Logo from '../assets/imgs/logo.png';
 
 class _Header extends Component {
     render() {
@@ -13,6 +14,7 @@ class _Header extends Component {
                 <Link className='home-link-header' to="/"><HomeOutlinedIcon /></Link>
                 <Link className='boards-link-header' to="/board">Boards</Link>
                 <Link className='logo-header' to="/">EasyTask</Link>
+                {/* <Link className='logo-header' to="/"><img className="logo-header-img" src={Logo}/></Link> */}
                 {(loggedInUser) ? <Link className='login-link-header' to="/login"> <Avatar className='logged-in-user-avatar' key={loggedInUser._id} src={loggedInUser.imgUrl}>{(!loggedInUser.imgUrl) && utilService.getNameInitials(loggedInUser.fullname)}</Avatar> {loggedInUser.fullname} </Link>
                     : <Link className='login-link-header' to="/login">Login</Link>}
             </header>
