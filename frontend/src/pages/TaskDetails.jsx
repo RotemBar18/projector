@@ -12,6 +12,7 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
+import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
@@ -287,7 +288,7 @@ class _TaskDetails extends Component {
                 <div className="card flex column">
                     <div className={'cover flex column ' + this.setCover(style)} style={{ backgroundColor: style?.bgColor && !style?.imgUrl ? style.bgColor : '' }}>
                         <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
-                       {style?.bgColor && <button className="btn flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover</button>}
+                       {style?.bgColor && <button className="btn-cover flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover <VideoLabelIcon className='icon'/></button>}
                         {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                     </div>
                     <div className="header">
