@@ -17,7 +17,6 @@ export function saveBoard(board) {
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
     return async dispatch => { 
         try {
-            console.log('@@@@@@@@@1')
             const savedBoard = await boardService.save(board)
             dispatch({ type, board: savedBoard })
             socketService.emit('board updated', board)
@@ -42,9 +41,7 @@ export function removeBoard(boardId) {
 export function setBoard(boardId) { // Action Creator
     return async dispatch => {
         try {
-
             const board = await boardService.getById(boardId)
-            console.log('after back cjanged', board.groups);
             dispatch({ type: 'SET_CURR_BOARD', currBoard: board })
         } catch (err) {
             console.log('BoardActions: err in setBoard', err)

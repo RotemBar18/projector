@@ -183,9 +183,7 @@ class _BoardDetails extends React.Component {
 
     toggleUser = (user) => {
         const board = this.props.currBoard;
-        console.log(board);
         boardService.toggleUser(board, user)
-        console.log(board);
         this.props.saveBoard(board)
     }
     
