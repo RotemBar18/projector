@@ -12,17 +12,12 @@ class _BoardCharts extends React.Component {
     }
 
     componentDidMount() {
-        // this.getBoardDetails()
         this.createData()
     }
 
-    // getBoardDetails = () => {
-    //     const { boardId } = this.props.match.params;
-    //     this.props.setBoard(boardId)
-    // }
-
     createData = () => {
         const board = this.props.board
+        
         let tasksAmount = []
         let roeyCount = 0
         let noaCount = 0
