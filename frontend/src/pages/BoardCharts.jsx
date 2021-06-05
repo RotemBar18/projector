@@ -37,22 +37,22 @@ class _BoardCharts extends React.Component {
                 ++tasksCount
                 const members = task.members
                 members.forEach((member) => {
-                if (member.fullname === 'Roey Barda') ++roeyCount
-                if (member.fullname === 'Noa Kaplan') ++noaCount
-                if (member.fullname === 'Rotem Bar') ++rotemCount
+                    if (member.fullname === 'Roey Barda') ++roeyCount
+                    if (member.fullname === 'Noa Kaplan') ++noaCount
+                    if (member.fullname === 'Rotem Bar') ++rotemCount
                 })
             })
             tasksAmount.push(tasksCount)
             return group.title
         })
-        const tasksPerMember = {"Roey Barda": roeyCount, "Noa Kaplan": noaCount, "Rotem Bar": rotemCount}
-        this.setState({tasksPerMember})
-        this.setState({groupsTitles, tasksAmount}, () => {console.log('this.state',this.state);})
+        const tasksPerMember = { "Roey Barda": roeyCount, "Noa Kaplan": noaCount, "Rotem Bar": rotemCount }
+        this.setState({ tasksPerMember })
+        this.setState({ groupsTitles, tasksAmount }, () => { console.log('this.state', this.state); })
     }
 
     render() {
         const board = this.props.currBoard
-        const { groupsTitles, tasksAmount, tasksPerMember} = this.state
+        const { groupsTitles, tasksAmount, tasksPerMember } = this.state
         if (!board || !groupsTitles && !tasksAmount && !tasksPerMember) return <div>Loading...</div>
 
         const tasksPerGroupData = {
@@ -101,13 +101,13 @@ class _BoardCharts extends React.Component {
         }
         return (
             <section className="board-charts">
-                <div>
-                    <span>Tasks Per Group</span>
-                    <Doughnut data={tasksPerGroupData} />
+                <div className='chart-container a'>
+                    <div className='title'>Tasks Per Group</div>
+                    <Doughnut className='chart' data={tasksPerGroupData} />
                 </div>
-                <div>
-                    <span>Tasks Per Member</span>
-                    <Bar data={tasksPerMemberData} />
+                <div className='chart-container b'>
+                    <div className='title'>Tasks Per Member</div>
+                    <Bar className='chart' data={tasksPerMemberData} />
                 </div>
             </section>
         )
