@@ -13,7 +13,6 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 
-
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
@@ -22,6 +21,7 @@ import { labelService } from '../services/labelService.js';
 import { MembersList } from '../cmps/MembersList';
 import { LabelsList } from '../cmps/LabelsList';
 import { Dates } from '../cmps/Dates';
+import {Checklist} from '../cmps/Checklist'
 
 class _TaskDetails extends Component {
 
@@ -234,12 +234,20 @@ class _TaskDetails extends Component {
         this.props.saveBoard(board)
     }
 
+    updateChecklist = (checklists) =>{
+        const { task } = this.state;
+        if (!task.checklists) task.checklists =[];
+        task.checklists = checklists;
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+    }
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
         console.log(task)
         const description = (task.description) || ''
-        const { byMember, comments, members, labelIds, style, attachments } = task;
+        const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
         const board = this.props.currBoard;
         const { loggedInUser } = this.props
         // console.log(board)
@@ -319,7 +327,6 @@ class _TaskDetails extends Component {
                                     placeholder="add a more detailed description..."
                                     value={description}
                                     variant="outlined"
-                                    size='large'
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -346,6 +353,7 @@ class _TaskDetails extends Component {
                                     </div>
                                 })}
                             </div >}
+                            {/* {checklists && <Checklist checklists={checklists} updateChecklist={this.updateChecklist}></Checklist>} */}
                             <div className="comments flex column">
                                 {comments && comments.map(comment => {
                                     return <Grid item className="comment flex" key={comment.id}>
