@@ -13,7 +13,6 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 
-
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
 import { utilService } from '../services/utilService.js';
@@ -22,6 +21,7 @@ import { labelService } from '../services/labelService.js';
 import { MembersList } from '../cmps/MembersList';
 import { LabelsList } from '../cmps/LabelsList';
 import { Dates } from '../cmps/Dates';
+import {Checklist} from '../cmps/Checklist'
 
 class _TaskDetails extends Component {
 
@@ -234,12 +234,21 @@ class _TaskDetails extends Component {
         this.props.saveBoard(board)
     }
 
+    updateChecklist = (checklists) =>{
+        const { task } = this.state;
+        if (!task.checklists) task.checklists =[];
+        task.checklists = checklists;
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+    }
+
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
         const description = (task.description) || ''
-        const { byMember, comments, members, labelIds, style, attachments } = task;
+        const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
         const board = this.props.currBoard;
+        const { loggedInUser } = this.props
         const colors = ['#f1d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0279bf', '#00c2e0', '#60be50', '#50e898', '#fe78cb', '#344563', '#b3bac5']
         var date = null
         if (task.dueDate) date = task.dueDate.date || task.dueDate
@@ -315,28 +324,33 @@ class _TaskDetails extends Component {
                                     placeholder="add a more detailed description..."
                                     value={description}
                                     variant="outlined"
-                                    size='large'
                                     onChange={this.handleChange}
                                 />
                             </div>
-                            {attachments && attachments.map((attachment, index) => {
-                                return <div className="img-details flex" key={index}>
-                                    <div className="img-container flex">
-                                        <img className='preview-img' src={attachment.url} alt="" />
-                                    </div>
-                                    <div className="container flex column">
-                                        <p className="title">{attachment.name || 'img.jpng'}</p>
-                                        <div className="flex">
-                                            <p>Added at: {attachment.timestamp}</p>
-                                            <span>-</span>
-                                            <p className="btn" onClick={() => this.removeLink(index)}>Delete</p>
-                                            <span>-</span>
-                                            <p className="btn">Edit</p>
+                            {attachments && <div >
+                                <div className='imgs flex'>
+                                    <AttachFileOutlinedIcon className="icon" color="disabled" />
+                                    <h3 className="title">Attachment</h3>
+                                </div>
+                                {attachments.map((attachment, index) => {
+                                    return <div className="img-details flex" key={index}>
+                                        <div className="img-container flex">
+                                            <img className='preview-img' src={attachment.url} alt="" />
+                                        </div>
+                                        <div className="container flex column">
+                                            <p className="title">{attachment.name || 'img.jpng'}</p>
+                                            <div className="flex">
+                                                <p>Added at: {attachment.timestamp}</p>
+                                                <span>-</span>
+                                                <p className="btn" onClick={() => this.removeLink(index)}>Delete</p>
+                                                <span>-</span>
+                                                <p className="btn">Edit</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            })
-                            }
+                                })}
+                            </div >}
+                            {/* {checklists && <Checklist checklists={checklists} updateChecklist={this.updateChecklist}></Checklist>} */}
                             <div className="comments flex column">
                                 {comments && comments.map(comment => {
                                     return <Grid item className="comment flex" key={comment.id}>
@@ -347,7 +361,7 @@ class _TaskDetails extends Component {
                                         /></Grid>
                                 })}
                                 <Grid item className="comment flex">
-                                    {byMember && <Avatar src={byMember.imgUrl} className="avatar">{!byMember.imgUrl && utilService.getNameInitials(byMember.fullname)}</Avatar>}
+                                    {<Avatar src={loggedInUser?.imgUrl || ''} className="avatar">{!loggedInUser?.imgUrl && utilService.getNameInitials(loggedInUser?.fullname || '')}</Avatar>}
                                     <Input id="input-with-icon-grid " placeholder="Write a comment..." value={this.state.comment.txt}
                                         disableUnderline
                                         fullWidth
@@ -401,10 +415,9 @@ class _TaskDetails extends Component {
                         return <div key={index} style={{ backgroundColor: color }} className='color' onClick={() => this.changeCover(color)}></div>
                     })
                     }
+                </div>}
 
 
-                </div>
-                }
             </section>
         )
     }
@@ -413,6 +426,7 @@ class _TaskDetails extends Component {
 function mapStateToProps(state) {
     return {
         currBoard: state.boardModule.currBoard,
+        loggedInUser: state.userModule.loggedInUser,
     }
 }
 

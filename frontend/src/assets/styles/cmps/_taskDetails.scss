@@ -282,11 +282,12 @@
                     }
                 }
                 .description-icon {
-                    margin: 0 2px 0 0;
+                    margin: 0 5px 0 0;
                 }
                 .textarea {
-                    width: 100%;
+                    width: 90%;
                     // width: 450px;
+                    margin-left: 32px;
                     min-height: 70px;
                     height: fit-content;
                     border: none;
@@ -364,7 +365,19 @@
                 }
             }
             
+            .imgs {
+                margin-bottom: 15px;
+                margin-top: 5px;
+                .icon {
+                    margin: 0 5px 0 0;
+                }
+                .title {
+                    font-size: 1.125rem;
+                }
+            }
+            
             .img-details {
+                margin-left: 32px;
                 &:hover {
                     background-color: rgba(9, 30, 66, .04);
                 }
