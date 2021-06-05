@@ -12,7 +12,6 @@ export class Checklist extends Component {
 
     componentDidMount() {
         const { checklists } = this.props
-        console.log(checklists)
         this.setState({ checklists })
     }
 
@@ -52,8 +51,6 @@ export class Checklist extends Component {
     render() {
         const { checklists } = this.state
         if (!checklists) return <div>loading</div>
-        const { todos } = checklists
-        console.log(checklists)
         return <div className='checklists'>
             <div className="checklist flex column">
                 {checklists.map((checklist, checklistIdx) => {
@@ -61,7 +58,7 @@ export class Checklist extends Component {
                         <div className="flex container">
                             <div className="flex title">
                                 <CheckBoxOutlinedIcon className="icon" color="disabled" />
-                                <h3 className="title">Checklists</h3>
+                                <h3 className="title">{checklist.title || 'Checklists'}</h3>
                             </div>
                             <button onClick={() => this.removeTodo(checklistIdx)}>Delete</button>
                         </div>
@@ -70,6 +67,9 @@ export class Checklist extends Component {
                                 <Checkbox className="checkbox"
                                     onChange={() => this.toggleComplete(checklistIdx, todoIdx)}
                                     checked={todo.isDone}
+                                    cols="30"
+                                    rows="5"
+                                    wrap="off"
                                     color="uncontrolled" />
                                 <input className="title-input" placeholder='Add an item' defaultValue={todo.title}
                                     style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}

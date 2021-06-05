@@ -53,7 +53,12 @@
                 }
                 input {
                     padding: 5px;
-                    margin-bottom: 10px;
+                    // margin-bottom: 10px;
+                }
+                .header {
+                    title {
+                        align-content: center;
+                    }
                 }
             }
             
@@ -176,6 +181,9 @@
                     width: 250px;
                     height: 150px;
                 }
+                .task-details-close {
+                    margin: 10px 10px 0 0
+                }
             }
             
             .img-hight {
@@ -247,6 +255,7 @@
             
             .comments {
                 justify-content: space-around;
+                margin-top: 10px;
                 .MuiGrid-root {
                     margin-bottom: 15px;
                 }
@@ -286,19 +295,21 @@
                 }
                 .textarea {
                     width: 90%;
-                    // width: 450px;
                     margin-left: 32px;
-                    min-height: 70px;
+                    min-height: 130px;
                     height: fit-content;
                     border: none;
-                    background-color: white;
-                }
-                .MuiInputBase-root {
-                    background-color: white;
-                    border: none;
-                    min-height: 70px;
-                    height: fit-content;
-                    padding-top: 5px;
+                    background-color: #eaecf0;
+                    font-size: 14px;
+                    font-family: inherit;
+                    resize: none;
+                    border-radius: 5px;
+                    word-spacing: 2px;
+                    padding: 8px 12px;
+                    &:focus {
+                        background-color: white;
+                        border: 1px solid #172b4d;
+                    }
                 }
             }
             

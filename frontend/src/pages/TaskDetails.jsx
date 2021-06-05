@@ -197,7 +197,7 @@ class _TaskDetails extends Component {
     removeLink = (urlIdx = null) => {
         const { task } = this.state;
         if (task.style.imgUrl) task.style.imgUrl = ''
-        else task.attachments.splice(urlIdx, 1)
+        task.attachments.splice(urlIdx, 1)
         const board = this.props.currBoard
         this.props.saveBoard(board)
     }
@@ -248,7 +248,6 @@ class _TaskDetails extends Component {
 
     onChangeChecklist = ({ target }) => {
         let { value, name } = target
-        const { checklist } = this.state
         this.setState({
             checklist: {
                 ...this.state.checklist, [name]: value,
@@ -273,6 +272,7 @@ class _TaskDetails extends Component {
     render() {
         const { task, checklist } = this.state
         if (!task) return <div>loading</div>
+        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
         const board = this.props.currBoard;
@@ -286,7 +286,7 @@ class _TaskDetails extends Component {
                 <div className="card flex column">
                     <div className={'cover flex column ' + this.setCover(style)} style={{ backgroundColor: style?.bgColor && !style?.imgUrl ? style.bgColor : '' }}>
                         <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
-                        <button className="btn flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover</button>
+                       {style?.bgColor && <button className="btn flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover</button>}
                         {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                     </div>
                     <div className="header">
@@ -344,16 +344,13 @@ class _TaskDetails extends Component {
                                     <DescriptionOutlinedIcon className="description-icon" color="disabled" />
                                     <h3 className="title">Description</h3>
                                 </div>
-                                <TextField className="textarea"
+                                <textarea className="textarea"
                                     name="description"
                                     id="outlined-multiline-static"
-                                    multiline
-                                    rowsMin={4}
                                     placeholder="add a more detailed description..."
                                     value={description}
-                                    variant="outlined"
-                                    onChange={this.handleChange}
-                                />
+                                    onChange={this.handleChange}>
+                                </textarea>
                             </div>
                             {attachments && <div >
                                 <div className='imgs flex'>
