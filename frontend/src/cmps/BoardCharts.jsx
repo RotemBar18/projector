@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2'
 import { connect } from 'react-redux'
@@ -11,7 +10,6 @@ class _BoardCharts extends React.Component {
         tasksAmount: [],
         tasksPerMember: {}
     }
-
 
     componentDidMount() {
         // this.getBoardDetails()

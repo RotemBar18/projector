@@ -12,6 +12,7 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
+import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
@@ -186,8 +187,9 @@ class _TaskDetails extends Component {
     handleSubmissionFile = () => {
         const { attachment } = this.state;
         const { task } = this.state;
-        // task.style?.imgurl ? task.style.imgUrl = imgUrl : task.style = { imgUrl }
+        // task.style?.imgurl ? task.style.imgUrl = attachment.url : task.style = 
         task.attachments.push(attachment)
+        if (!task.style?.imgUrl) task.style = {imgUrl: ''}
         task.style.imgUrl = attachment.url
         const board = this.props.currBoard
         this.props.saveBoard(board)
@@ -197,7 +199,7 @@ class _TaskDetails extends Component {
     removeLink = (urlIdx = null) => {
         const { task } = this.state;
         if (task.style.imgUrl) task.style.imgUrl = ''
-        else task.attachments.splice(urlIdx, 1)
+        task.attachments.splice(urlIdx, 1)
         const board = this.props.currBoard
         this.props.saveBoard(board)
     }
@@ -248,7 +250,6 @@ class _TaskDetails extends Component {
 
     onChangeChecklist = ({ target }) => {
         let { value, name } = target
-        const { checklist } = this.state
         this.setState({
             checklist: {
                 ...this.state.checklist, [name]: value,
@@ -273,6 +274,7 @@ class _TaskDetails extends Component {
     render() {
         const { task, checklist } = this.state
         if (!task) return <div>loading</div>
+        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
         const board = this.props.currBoard;
@@ -286,7 +288,7 @@ class _TaskDetails extends Component {
                 <div className="card flex column">
                     <div className={'cover flex column ' + this.setCover(style)} style={{ backgroundColor: style?.bgColor && !style?.imgUrl ? style.bgColor : '' }}>
                         <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
-                        <button className="btn flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover</button>
+                       {style?.bgColor && <button className="btn-cover flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover <VideoLabelIcon className='icon'/></button>}
                         {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                     </div>
                     <div className="header">
@@ -344,18 +346,15 @@ class _TaskDetails extends Component {
                                     <DescriptionOutlinedIcon className="description-icon" color="disabled" />
                                     <h3 className="title">Description</h3>
                                 </div>
-                                <TextField className="textarea"
+                                <textarea className="textarea"
                                     name="description"
                                     id="outlined-multiline-static"
-                                    multiline
-                                    rowsMin={4}
                                     placeholder="add a more detailed description..."
                                     value={description}
-                                    variant="outlined"
-                                    onChange={this.handleChange}
-                                />
+                                    onChange={this.handleChange}>
+                                </textarea>
                             </div>
-                            {attachments && <div >
+                            {(attachments?.length > 0) && <div >
                                 <div className='imgs flex'>
                                     <AttachFileOutlinedIcon className="icon" color="disabled" />
                                     <h3 className="title">Attachment</h3>
