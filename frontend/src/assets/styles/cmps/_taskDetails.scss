@@ -257,18 +257,35 @@
                 justify-content: space-around;
                 margin-top: 10px;
                 .MuiGrid-root {
-                    margin-bottom: 15px;
+                    margin-bottom: 30px;
+                    margin-left: 5px;
+                    min-height: 20px;
+                    input {
+                        padding: 8px 12px;
+                        width: 91%;
+                        color: #172b4d;
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 400;
+                        background-color: #fff;
+                        border: 1px solid rgb(160, 160, 160);
+                        border-radius: 3px;
+                        transition-property: background-color, border-color, box-shadow;
+                    }
                 }
             }
             
             .comment {
                 align-items: flex-end;
                 margin-top: 5px;
+                .input-with-icon-grid {
+                    background-color: #fff;
+                }
                 .avatar {
                     width: 30px;
                     height: 30px;
                     font-size: 0.8rem;
-                    margin-right: 10px
+                    margin-right: 5px
                 }
             }
             

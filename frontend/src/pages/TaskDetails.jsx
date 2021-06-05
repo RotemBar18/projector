@@ -186,8 +186,9 @@ class _TaskDetails extends Component {
     handleSubmissionFile = () => {
         const { attachment } = this.state;
         const { task } = this.state;
-        // task.style?.imgurl ? task.style.imgUrl = imgUrl : task.style = { imgUrl }
+        // task.style?.imgurl ? task.style.imgUrl = attachment.url : task.style = 
         task.attachments.push(attachment)
+        if (!task.style?.imgUrl) task.style = {imgUrl: ''}
         task.style.imgUrl = attachment.url
         const board = this.props.currBoard
         this.props.saveBoard(board)
@@ -352,7 +353,7 @@ class _TaskDetails extends Component {
                                     onChange={this.handleChange}>
                                 </textarea>
                             </div>
-                            {attachments && <div >
+                            {(attachments?.length > 0) && <div >
                                 <div className='imgs flex'>
                                     <AttachFileOutlinedIcon className="icon" color="disabled" />
                                     <h3 className="title">Attachment</h3>
