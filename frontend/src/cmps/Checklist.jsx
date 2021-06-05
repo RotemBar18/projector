@@ -1,6 +1,7 @@
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import { Checkbox } from '@material-ui/core';
 import { Component } from 'react';
+import { utilService } from '../services/utilService'
 import React from 'react'
 
 export class Checklist extends Component {
@@ -17,40 +18,73 @@ export class Checklist extends Component {
 
     toggleComplete = (checklistIdx, todoIdx) => {
         const { checklists } = this.state;
-        checklists[checklistIdx][todoIdx].idDone = !checklists[checklistIdx][todoIdx].idDone
+        checklists[checklistIdx].todos[todoIdx].isDone = !checklists[checklistIdx].todos[todoIdx].isDone
+        this.setState({ ...this.state, checklists }, () => {
+            this.props.updateChecklist(this.state.checklists)
+        })
+    }
+
+    handleChange = (ev, checklistIdx, todoIdx) => {
+        let { name, value } = ev.target;
+        const { checklists } = this.state;
+        checklists[checklistIdx].todos[todoIdx][name] = value;
+        this.setState({ ...this.state, checklists }, () => {
+            this.props.updateChecklist(this.state.checklists)
+        })
+    }
+
+    addTodo = (checklistIdx) => {
+        const { checklists } = this.state;
+        checklists[checklistIdx].todos.push({ id: utilService.makeId(), title: '', isDone: false })
+        this.setState({ ...this.state, checklists }, () => {
+            this.props.updateChecklist(this.state.checklists)
+        })
+    }
+
+    removeTodo = (checklistIdx) => {
+        const { checklists } = this.state;
+        checklists.splice(checklistIdx, 1);
         this.setState({ ...this.state, checklists }, () => {
             this.props.updateChecklist(this.state.checklists)
         })
     }
 
     render() {
-        const checklists = this.state
-        if (!checklists) return
+        const { checklists } = this.state
+        if (!checklists) return <div>loading</div>
         const { todos } = checklists
         console.log(checklists)
         return <div className='checklists'>
-            <div className="flex title">
-                <CheckBoxOutlinedIcon className="description-icon" color="disabled" />
-                <h3 className="title">Checklists</h3>
-                <div className="checklist">
-                    {checklists.map((checklist, checklistIdx) => {
-                        return <div className='todos flex column'key={checklist}>
-                            {checklist.todos.map((todo, checklistIdx, todoIdx) => {
-                                return <div className='todo' key={checklist}>
-                                    <Checkbox className="checkbox"
-                                        onChange={() => this.toggleComplete(checklistIdx, todoIdx)}
-                                        checked={todo.isDone} />
-                                </div>
-                            })
-                            }
+            <div className="checklist flex column">
+                {checklists.map((checklist, checklistIdx) => {
+                    return <div className='todos flex column' key={checklist}>
+                        <div className="flex container">
+                            <div className="flex title">
+                                <CheckBoxOutlinedIcon className="icon" color="disabled" />
+                                <h3 className="title">Checklists</h3>
+                            </div>
+                            <button onClick={() => this.removeTodo(checklistIdx)}>Delete</button>
                         </div>
-                    })
-                    }
-                </div>
+                        {checklist.todos.map((todo, todoIdx) => {
+                            return <div className='todo flex' key={checklist}>
+                                <Checkbox className="checkbox"
+                                    onChange={() => this.toggleComplete(checklistIdx, todoIdx)}
+                                    checked={todo.isDone}
+                                    color="uncontrolled" />
+                                <input className="title-input" placeholder='Add an item' defaultValue={todo.title}
+                                    style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
+                                    onChange={(ev) => this.handleChange(ev, checklistIdx, todoIdx)}
+                                    name="title"
+                                />
+                            </div>
+                        })
+                        }
+                        <button onClick={() => this.addTodo(checklistIdx)}>Add an item</button>
+                    </div>
+                })
+                }
 
             </div>
-
-
         </div>
     }
 }

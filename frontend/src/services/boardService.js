@@ -40,7 +40,6 @@ function changeBg(pick, imgUrl, bgColor, board) {
 }
 
 function addActivity(loggedInUser, board, group, action, task) {
-    console.log('loggedInUser', loggedInUser)
     const date = new Date()
     const createdAt = utilService.convertToCreatedAtDate(date)
     const member = (loggedInUser) ? loggedInUser : { fullname: 'guest' }
@@ -73,7 +72,7 @@ function toggleUser(board, user) {
         board.members = [...board.members, {
             _id: user._id,
             fullname: user.fullname,
-            imgUrl: (user.imgUrl) ? user.imgUrl : ''
+            imgUrl: user.imgUrl || ''
         }]
     }
 }
