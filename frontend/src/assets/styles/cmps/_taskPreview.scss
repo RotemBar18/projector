@@ -57,11 +57,6 @@
         }
         .label.open {
             min-height: 20.5px;
-            &::before {
-                transition: 0.5s;
-                content: attr(data-content);
-                
-            }
         }
     }
     a {

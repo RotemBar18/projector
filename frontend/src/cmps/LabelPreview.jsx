@@ -2,10 +2,11 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 
 
-export function LabelPreview({ lable, isLabelsOpen }) {
+export function LabelPreview({ lable, isLabelsOpen, from }) {
 
     return (
-        <div className={`label ${isLabelsOpen ? 'open' : ''}`} data-content={isLabelsOpen ? lable.title : ''} style={{ backgroundColor: lable.color }}>
+        <div className={`label ${isLabelsOpen ? 'open' : ''}`} style={{ backgroundColor: lable.color }}>
+            {isLabelsOpen || from === 'details' ? lable.title : ''}
         </div>
     )
 

@@ -1,0 +1,73 @@
+.edit-users-container{
+    z-index: 50;
+    position: absolute;
+    display: flex;
+    left: 120px;
+    width: 270px;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+    text-decoration: none;
+    .edit-users-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0.2px solid rgba(94, 108, 132, 0.25);
+        align-items:center ;
+        padding-block: 10px;
+        .title {
+            color: #243757;
+            font-size: 1.2rem;
+            padding-top: 0.5rem;
+            text-align: center;
+            flex-grow: 1;
+            margin: 0;
+            padding: 0;
+        }
+        .close-edit-users-btn {
+            display: flex;
+            justify-content: center;
+            align-items:center ;
+            color: #233655;
+            background-color: transparent;
+            border: none;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            outline: none;
+            font-size: 1.5rem;
+        }
+    }
+    .users-preview {
+        border-bottom: 0.2px solid rgba(94, 108, 132, 0.25);
+        display: grid;
+        grid-template-columns: 50px auto auto;
+        align-self: center;
+        padding-block: 10px;
+        width: 100%;
+        &:hover {
+            background-color: #ebecf0;
+        }
+        .avatar {
+            align-self: center;
+            justify-items: end;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            line-height: 28px;
+            margin: 1px;
+            font-size: 0.8rem;
+        }
+        .users-name {
+            align-self: center;
+            margin: 0;
+            color: #233655;
+            font-weight: 400;
+        }
+        svg {
+            align-self: center;
+            justify-self: flex-end;
+        }
+    }
+}

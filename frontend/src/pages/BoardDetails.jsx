@@ -31,7 +31,6 @@ class _BoardDetails extends React.Component {
         socketService.setup()
         socketService.emit('join board', boardId)
         socketService.on('updated board', (board) => {
-            console.log('@@@@@3');
             this.props.setBoard(board._id)
         })
 
@@ -182,11 +181,20 @@ class _BoardDetails extends React.Component {
         this.props.saveBoard(board)
     }
 
+    toggleUser = (user) => {
+        const board = this.props.currBoard;
+        console.log(board);
+        boardService.toggleUser(board, user)
+        console.log(board);
+        this.props.saveBoard(board)
+    }
+    
+    
     render() {
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled } = this.state
+        const { users } = this.props
         const newGroupTitle = this.state.group.title
         const board = this.props.currBoard
-        console.log(this.props.loggedInUser);
         if (!board) return <div>Loading</div>
         return <React.Fragment>
             <div className='task-details-container'>
@@ -195,12 +203,11 @@ class _BoardDetails extends React.Component {
             </div>
 
             <div className="board-header-container">
-                <BoardHeader changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
+                <BoardHeader toggleUser={this.toggleUser} users={users} changeBoardTitle={this.changeBoardTitle} board={board} onToggleSideBar={this.onToggleSideBar} />
             </div>
 
             {isSideBarOpen &&
-
-                <SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
+                < SideBar onChangeBg={this.onChangeBg} getDatePreview={this.getDatePreview} board={board} onToggleSideBar={this.onToggleSideBar} />
             }
 
             <DragDropContext onDragEnd={this.handleOnDragEnd}>
