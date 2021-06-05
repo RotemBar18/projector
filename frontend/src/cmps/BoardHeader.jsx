@@ -4,7 +4,6 @@ import { utilService } from '../services/utilService.js'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { AddUsers } from './AddUsers';
-import { Link } from 'react-router-dom'
 
 export class BoardHeader extends React.Component {
     state = {
@@ -14,6 +13,7 @@ export class BoardHeader extends React.Component {
             title: ''
         }
     }
+
     toggleChangeBoardTitle = () => {
         this.setState({ isChangeBoardTitleOpen: !this.state.isChangeBoardTitleOpen })
     }
@@ -34,7 +34,7 @@ export class BoardHeader extends React.Component {
     }
 
     render() {
-        const { board, onToggleSideBar, users, toggleUser } = this.props
+        const { board, onToggleSideBar, users, toggleUser, onToggleCharts} = this.props
         const { members } = board
         const { isChangeBoardTitleOpen, isAddMembersOpen } = this.state
         const newBoardTitle = this.state.board.title
@@ -47,7 +47,7 @@ export class BoardHeader extends React.Component {
                         <form onSubmit={() => this.onChangeBoardTitle(newBoardTitle)}>
                             <input className='board-title-input' onChange={this.handleChange} type="text" name='title' placeholder={board.title} />
                         </form>}
-                    <Link className='header-stats' to={`/board/${board._id}/stats`}>Statistics</Link>
+                        <div className="header-stats" onClick={onToggleCharts}>Statistics</div>
                     <div className="header-avatars">
                         {members.map(member =>
                             <Avatar className="header-avatar" key={member._id} src={member.imgUrl}>
