@@ -353,7 +353,7 @@ class _TaskDetails extends Component {
                                     </div>
                                 })}
                             </div >}
-                            {/* {checklists && <Checklist checklists={checklists} updateChecklist={this.updateChecklist}></Checklist>} */}
+                            {checklists && <Checklist checklists={checklists} updateChecklist={this.updateChecklist}></Checklist>}
                             <div className="comments flex column">
                                 {comments && comments.map(comment => {
                                     return <Grid item className="comment flex" key={comment.id}>

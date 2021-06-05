@@ -1,0 +1,30 @@
+.checklists {
+    .todos {
+        margin-left: 32px;
+        p {
+            margin: 10px 0 5px 0;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+    }
+    .checkbox {
+        color: #0079bf;
+        width: 20px;
+        margin-right: 5px;
+        svg {
+            height: 20px;
+            width: 20px;
+            color: #0079bf;
+        }
+    }
+    .todo {
+        justify-content: center;
+    }
+    .title-input {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        margin: 0;
+    }
+}
