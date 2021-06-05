@@ -2,6 +2,7 @@ import { Home } from './pages/Home.jsx'
 import { BoardPage } from './pages/BoardPage.jsx'
 import { BoardDetails } from './pages/BoardDetails.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
+import { BoardCharts } from './pages/BoardCharts.jsx'
 
 export const routes = [{
         path: '/',
@@ -10,6 +11,10 @@ export const routes = [{
     {
         path: '/board',
         component: BoardPage,
+    },
+    {
+        path: '/board/:boardId?/stats',
+        component: BoardCharts,
     },
     {
         path: '/board/:boardId?/:groupId?/:taskId?',
