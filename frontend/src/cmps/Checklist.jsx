@@ -48,7 +48,7 @@ export class Checklist extends Component {
         console.log(checklists)
         return <div className='checklists'>
             <div className="flex title">
-                <CheckBoxOutlinedIcon className="description-icon" color="disabled" />
+                <CheckBoxOutlinedIcon className="icon" color="disabled" />
                 <h3 className="title">Checklists</h3>
             </div>
             <div className="checklist flex">
