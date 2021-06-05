@@ -21,7 +21,7 @@ import { labelService } from '../services/labelService.js';
 import { MembersList } from '../cmps/MembersList';
 import { LabelsList } from '../cmps/LabelsList';
 import { Dates } from '../cmps/Dates';
-import {Checklist} from '../cmps/Checklist'
+import { Checklist } from '../cmps/Checklist'
 
 class _TaskDetails extends Component {
 
@@ -33,6 +33,7 @@ class _TaskDetails extends Component {
         isEditDateShow: false,
         isAttachmentShow: false,
         isChooseCoverShow: false,
+        isChecklistShow: false,
         comment: {
             txt: '',
         },
@@ -40,6 +41,9 @@ class _TaskDetails extends Component {
             url: '',
             timestamp: '',
             name: ''
+        },
+        checklist: {
+            title: ''
         }
     }
 
@@ -234,16 +238,40 @@ class _TaskDetails extends Component {
         this.props.saveBoard(board)
     }
 
-    updateChecklist = (checklists) =>{
+    updateChecklist = (checklists) => {
         const { task } = this.state;
-        if (!task.checklists) task.checklists =[];
+        if (!task.checklists) task.checklists = [];
         task.checklists = checklists;
         const board = this.props.currBoard
         this.props.saveBoard(board)
     }
 
+    onChangeChecklist = ({ target }) => {
+        let { value, name } = target
+        const { checklist } = this.state
+        this.setState({
+            checklist: {
+                ...this.state.checklist, [name]: value,
+            }
+        })
+    }
+
+    handleSubmissionChecklist = () => {
+        const { task } = this.state;
+        if (!task.checklists) task.checklists = [];
+        task.checklists.unshift({
+            id: utilService.makeId(),
+            title: this.state.checklist.title,
+            todos: []
+        })
+        console.log(task)
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+        this.toggleModal('isChecklistShow')
+    }
+
     render() {
-        const { task } = this.state
+        const { task, checklist } = this.state
         if (!task) return <div>loading</div>
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
@@ -375,7 +403,7 @@ class _TaskDetails extends Component {
                             <h3 className="sidebar-title">ADD TO CARD</h3>
                             <button className="btn flex" onClick={() => this.toggleModal('isMembersModalShow')}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isLabelsModalShow')}><LabelOutlinedIcon className="icon" /> Labels</button>
-                            <button className="btn flex"><CheckBoxOutlinedIcon className="icon" /> Checklist</button>
+                            <button className="btn flex" onClick={() => this.toggleModal('isChecklistShow')}><CheckBoxOutlinedIcon className="icon" /> Checklist</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isEditDateShow')}><AccessTimeIcon className="icon" /> Dates</button>
                             <button className="btn flex" onClick={() => this.toggleModal('isAttachmentShow')}><AttachFileOutlinedIcon className="icon" /> Attachment</button>
                         </div>
@@ -416,6 +444,14 @@ class _TaskDetails extends Component {
                     })
                     }
                 </div>}
+                {this.state.isChecklistShow && <div className='checklist attachment'>
+                    <div>
+                        <h3>Add checklist</h3>
+                        <input type="text" name="title" value={checklist.title} onChange={this.onChangeChecklist} placeholder="Add checklist title here..." />
+                        <button onClick={this.handleSubmissionChecklist}>Add</button>
+                    </div>
+                </div>
+                }
 
 
             </section>

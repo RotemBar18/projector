@@ -41,26 +41,38 @@ export class Checklist extends Component {
         })
     }
 
+    removeTodo = (checklistIdx) => {
+        const { checklists } = this.state;
+        checklists.splice(checklistIdx, 1);
+        this.setState({ ...this.state, checklists }, () => {
+            this.props.updateChecklist(this.state.checklists)
+        })
+    }
+
     render() {
         const { checklists } = this.state
         if (!checklists) return <div>loading</div>
         const { todos } = checklists
         console.log(checklists)
         return <div className='checklists'>
-            <div className="flex title">
-                <CheckBoxOutlinedIcon className="icon" color="disabled" />
-                <h3 className="title">Checklists</h3>
-            </div>
-            <div className="checklist flex">
+            <div className="checklist flex column">
                 {checklists.map((checklist, checklistIdx) => {
                     return <div className='todos flex column' key={checklist}>
-                        <p>{checklist.title}:</p>
+                        <div className="flex container">
+                            <div className="flex title">
+                                <CheckBoxOutlinedIcon className="icon" color="disabled" />
+                                <h3 className="title">Checklists</h3>
+                            </div>
+                            <button onClick={() => this.removeTodo(checklistIdx)}>Delete</button>
+                        </div>
                         {checklist.todos.map((todo, todoIdx) => {
                             return <div className='todo flex' key={checklist}>
                                 <Checkbox className="checkbox"
                                     onChange={() => this.toggleComplete(checklistIdx, todoIdx)}
-                                    checked={todo.isDone} />
+                                    checked={todo.isDone}
+                                    color="uncontrolled" />
                                 <input className="title-input" placeholder='Add an item' defaultValue={todo.title}
+                                    style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
                                     onChange={(ev) => this.handleChange(ev, checklistIdx, todoIdx)}
                                     name="title"
                                 />
