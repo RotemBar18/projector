@@ -9,7 +9,8 @@ export const boardService = {
     changeBg,
     remove,
     addActivity,
-    changeBoardTitle
+    changeBoardTitle,
+    toggleUser
 }
 
 async function query() {
@@ -59,4 +60,20 @@ function changeBoardTitle(board, newBoardTitle) {
     if (!newBoardTitle) return false
     board.title = newBoardTitle
     return true
+}
+
+
+function toggleUser(board, user) {
+    var userIdx = -1
+    userIdx = board.members?.findIndex(boardMember => boardMember._id === user._id)
+    if (userIdx >= 0) {
+        board.members.splice(userIdx, 1)
+    } else {
+        if (!board.members) board.members = []
+        board.members = [...board.members, {
+            _id: user._id,
+            fullname: user.fullname,
+            imgUrl: (user.imgUrl) ? user.imgUrl : ''
+        }]
+    }
 }

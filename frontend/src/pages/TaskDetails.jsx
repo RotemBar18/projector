@@ -284,7 +284,7 @@ class _TaskDetails extends Component {
                                     <div className="labels flex">
                                         {labelIds.map(labelId => {
                                             const label = this.getLableById(labelId)
-                                            return <LabelPreview key={label.id} lable={label} />
+                                            return <LabelPreview from={'details'} key={label.id} lable={label} />
                                         })}
                                         <div className="label add-label" onClick={() => this.toggleModal('isLabelsModalShow')}>+</div>
                                     </div>
