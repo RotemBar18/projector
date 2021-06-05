@@ -21,16 +21,28 @@
         width: 100%;
         align-items: center;
         grid-template-columns: max-content max-content max-content auto;
+ 
         .header-title {
             background-color: rgba(255, 255, 255, 0.39);
             border-radius: 5px;
             padding: 0px 10px;
             width: 100%;
+            &:hover{
+                opacity: 0.8;
+            }
         }
         .header-stats {
+            display: flex;
+            align-items: center;
             background-color: rgba(255, 255, 255, 0.39);
             border-radius: 5px;
             padding: 0px 10px;
+            svg{
+                margin-right: 3px;
+            }
+            &:hover{
+                opacity: 0.8;
+            }
         }
         .board-title-input {
             width: 150px;
@@ -87,6 +99,9 @@
             align-items: center;
             .path {
                 height: 100px;
+            }
+            &:hover{
+                opacity: 0.8;
             }
         }
     }

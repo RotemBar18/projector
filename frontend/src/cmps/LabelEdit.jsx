@@ -45,7 +45,7 @@ export class LabelEdit extends Component {
                 </div>
                 <form className='edit-label-form'>
                     <label >Name</label>
-                    <input type="text" name='title' onChange={this.handleChange} placeholder={(currLabel) ? currLabel.title : 'Add label title...'} />
+                    <input autoComplete='off' type="text" name='title' onChange={this.handleChange} placeholder={(currLabel) ? currLabel.title : 'Add label title...'} />
                     <label >Select a color</label>
                     <div className='edit-label-colors-pick'>
                         <div onClick={() => this.setLabelColor('#f1d600')} style={{ backgroundColor: '#f1d600' }} className='color #f1d600'></div>

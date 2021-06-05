@@ -47,11 +47,14 @@ class _BoardDetails extends React.Component {
     }
 
     onToggleSideBar = () => {
+        this.setState({ isChartsOpen: false })
         this.setState({ isSideBarOpen: !this.state.isSideBarOpen })
+
     }
 
-    onToggleCharts = () => {
+    onToggleCharts = (order = null) => {
         console.log('hi');
+        if (order==='close') return this.setState({ isChartsOpen: false })
         this.setState({ isChartsOpen: !this.state.isChartsOpen })
     }
 
@@ -194,8 +197,8 @@ class _BoardDetails extends React.Component {
         boardService.toggleUser(board, user)
         this.props.saveBoard(board)
     }
-    
-    
+
+
     render() {
         const { isAddGroupOpen, isSideBarOpen, isDragDisabled, isChartsOpen } = this.state
         const { users } = this.props
@@ -217,7 +220,7 @@ class _BoardDetails extends React.Component {
             }
 
             {isChartsOpen &&
-                <BoardCharts board={board}/>
+                <BoardCharts board={board} />
             }
 
 

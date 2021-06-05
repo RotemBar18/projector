@@ -4,6 +4,7 @@ import { utilService } from '../services/utilService.js'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { AddUsers } from './AddUsers';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 export class BoardHeader extends React.Component {
     state = {
@@ -15,9 +16,11 @@ export class BoardHeader extends React.Component {
     }
 
     toggleChangeBoardTitle = () => {
+        this.props.onToggleCharts('close')
         this.setState({ isChangeBoardTitleOpen: !this.state.isChangeBoardTitleOpen })
     }
     toggleAddMembers = () => {
+        this.props.onToggleCharts('close')
         this.setState({ isAddMembersOpen: !this.state.isAddMembersOpen })
     }
 
@@ -34,7 +37,7 @@ export class BoardHeader extends React.Component {
     }
 
     render() {
-        const { board, onToggleSideBar, users, toggleUser, onToggleCharts} = this.props
+        const { board, onToggleSideBar, users, toggleUser, onToggleCharts } = this.props
         const { members } = board
         const { isChangeBoardTitleOpen, isAddMembersOpen } = this.state
         const newBoardTitle = this.state.board.title
@@ -45,9 +48,9 @@ export class BoardHeader extends React.Component {
                         <div className='header-title' onClick={this.toggleChangeBoardTitle}>{board.title}</div>}
                     {isChangeBoardTitleOpen &&
                         <form onSubmit={() => this.onChangeBoardTitle(newBoardTitle)}>
-                            <input className='board-title-input' onChange={this.handleChange} type="text" name='title' placeholder={board.title} />
+                            <input autoComplete='off' className='board-title-input' onChange={this.handleChange} type="text" name='title' placeholder={board.title} />
                         </form>}
-                        <div className="header-stats" onClick={onToggleCharts}>Statistics</div>
+                    <div className="header-stats" onClick={onToggleCharts}> <EqualizerIcon /> Statistics </div>
                     <div className="header-avatars">
                         {members.map(member =>
                             <Avatar className="header-avatar" key={member._id} src={member.imgUrl}>

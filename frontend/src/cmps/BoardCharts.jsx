@@ -76,6 +76,7 @@ class _BoardCharts extends React.Component {
 
         const tasksPerMemberData = {
             labels: Object.keys(tasksPerMember),
+
             datasets: [
                 {
                     label: 'Tasks Per Member',
@@ -89,7 +90,7 @@ class _BoardCharts extends React.Component {
                         '#ea3546',
                     ],
                     borderWidth: 0,
-                    options: {
+                    options: {                            
                         scales: {
                             y: {
                                 beginAtZero: true
@@ -101,13 +102,17 @@ class _BoardCharts extends React.Component {
         }
         return (
             <section className="board-charts">
+                <div className='header-title'>Statistics</div>
                 <div className='chart-container a'>
                     <div className='title'>Tasks Per Group</div>
-                    <Doughnut className='chart' data={tasksPerGroupData} />
+                    <Doughnut className='chart' options={{ maintainAspectRatio: false }} data={tasksPerGroupData} />
                 </div>
                 <div className='chart-container b'>
                     <div className='title'>Tasks Per Member</div>
-                    <Bar className='chart' data={tasksPerMemberData} />
+                    <Bar
+                        className='chart'
+                        data={tasksPerMemberData}
+                        options={{ maintainAspectRatio: false }} />
                 </div>
             </section>
         )

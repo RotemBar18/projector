@@ -93,7 +93,7 @@ export class Group extends React.Component {
                             <div className='title' onClick={this.toggleChangeGroupName}>{group.title}</div>}
                         {isChangeGroupNameOpen &&
                             <form onSubmit={() => this.onChangeGroupName(newGroupTitle)}>
-                                <input onChange={this.handleGroupChange} type="text" name='title' placeholder={group.title} />
+                                <input autoComplete='off' onChange={this.handleGroupChange} type="text" name='title' placeholder={group.title} />
                             </form>}
 
                         <button className='options' onClick={this.onToggleGroupOptions}>{<MoreHorizIcon className='group-options-svg' />}</button>

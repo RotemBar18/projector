@@ -44,7 +44,7 @@ class _BoardCreate extends React.Component {
                     <img className="plus-icon" alt = "" src={Plus} />
                 </div>
                 <form className="create-board" hidden={this.state.isCreateHidden} onSubmit={this.onCreateBoard} autoComplete="off">
-                    <input type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
+                    <input autoComplete='off' type="text" name="title" placeholder="Enter Board Name..." onChange={this.handleChange} value={this.state.board.title}></input>
                     <div className="board-background-options">
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#60be50'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img   src="https://bit.ly/3yLM7uN" alt=""/></div>

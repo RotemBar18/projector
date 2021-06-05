@@ -45,7 +45,7 @@ class _TaskList extends React.Component {
                         {isAddTaskOpen &&
 
                             <form ref={this.listRef} className='add-task-form' onSubmit={onToggleAddTask}>
-                                <textarea name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={handleTaskChange}></textarea>
+                                <textarea  name='title' placeholder='Enter a title for this card...' className='task-title-input' cols="5" rows="5" onChange={handleTaskChange}></textarea>
                                 <div className='add-task-controls'>
                                     <button className='add-task-add-btn' onClick={() => onAddTask(group, newTaskTitle)}>Add card</button>
                                     <button className='add-task-close-btn' onClick={this.onToggleAddTask}> X </button>

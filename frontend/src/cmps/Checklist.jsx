@@ -71,7 +71,7 @@ export class Checklist extends Component {
                                     onChange={() => this.toggleComplete(checklistIdx, todoIdx)}
                                     checked={todo.isDone}
                                     color="uncontrolled" />
-                                <input className="title-input" placeholder='Add an item' defaultValue={todo.title}
+                                <input  className="title-input" placeholder='Add an item' defaultValue={todo.title}
                                     style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
                                     onChange={(ev) => this.handleChange(ev, checklistIdx, todoIdx)}
                                     name="title"
