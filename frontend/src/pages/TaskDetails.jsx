@@ -245,13 +245,10 @@ class _TaskDetails extends Component {
     render() {
         const { task } = this.state
         if (!task) return <div>loading</div>
-        console.log(task)
         const description = (task.description) || ''
         const { byMember, comments, members, labelIds, style, attachments, checklists } = task;
         const board = this.props.currBoard;
         const { loggedInUser } = this.props
-        // console.log(board)
-        console.log(this.state)
         const colors = ['#f1d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0279bf', '#00c2e0', '#60be50', '#50e898', '#fe78cb', '#344563', '#b3bac5']
         var date = null
         if (task.dueDate) date = task.dueDate.date || task.dueDate
