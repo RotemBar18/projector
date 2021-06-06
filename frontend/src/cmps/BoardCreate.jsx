@@ -49,7 +49,7 @@ class _BoardCreate extends React.Component {
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#60be50'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img   src="https://bit.ly/3yLM7uN" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#0279bf'}}></div>
-                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3wUy18K" alt=""/></div>
+                        <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3uVKA2j" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#ff9f1a'}}></div>
                         <div className="board-background-thumb" onClick={this.handleBackground}><img src="https://bit.ly/3i3i4c9" alt=""/></div>
                         <div className="board-background-thumb" onClick={this.handleBackground} style={{backgroundColor: '#eb5a46'}}></div>
