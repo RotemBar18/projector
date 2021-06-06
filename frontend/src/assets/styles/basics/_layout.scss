@@ -9,7 +9,11 @@
             grid-column: 1 /-1;
         }
     }
+    @include for-narrow-layout {
+    }
+    @include for-normal-layout {
 
+    }
     @include for-narrow-layout {
         grid-template-columns: 
             minmax(20px, 1fr)
