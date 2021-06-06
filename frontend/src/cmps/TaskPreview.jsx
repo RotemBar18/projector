@@ -64,7 +64,7 @@ export class TaskPreview extends Component {
                 <Link to={`/board/${board._id}/${group.id}/${task.id}`} className="link"><h5>{task.title}</h5>
                     {(task.dueDate || task.checklists || task.members) ? <div className='badges'>
                         {(task.dueDate) &&
-                            <div className='dew-date flex'>
+                            <div className='dew-date flex' style={{ backgroundColor: (!task.dueDate.complete) ? '#eb5a46' : '#60be50' }}>
                                 <AccessTimeOutlinedIcon className="clock"></AccessTimeOutlinedIcon>
                                 {this.convertNumToDate(task.dueDate)}
                             </div>}
