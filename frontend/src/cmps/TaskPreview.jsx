@@ -37,6 +37,7 @@ export class TaskPreview extends Component {
         return deuDatePreview
     }
     getChecklistsPreview = (checklists) => {
+        console.log(checklists);
         const preview = taskService.getPreview(checklists)
         return (preview)
     }
@@ -47,6 +48,7 @@ export class TaskPreview extends Component {
 
     render() {
         const { toggleTaskMember, checkLabel, updateLabel, addLabelToBoard, onRemoveLabel, board, group, task, onUpdateTask, onDeleteTask, onAddLabel } = this.props
+        console.log(task);
         const { isTaskOptionsShow, isLabelsOpen } = this.state
         return (
             <article className={`task-container`}>
@@ -69,7 +71,7 @@ export class TaskPreview extends Component {
                                 {this.convertNumToDate(task.dueDate)}
                             </div>}
 
-                        {(task.checklists && task.checklists.legnth === 0) ? <div className='checklists-preview'>
+                        {(task.checklists && task.checklists.legnth !== 0) ? <div className='checklists-preview'>
                             <CheckBoxOutlinedIcon /> {this.getChecklistsPreview(task.checklists)}
                         </div> : ''}
                         <div className='avatars'>
