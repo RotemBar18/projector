@@ -1,25 +1,81 @@
 .board-page {
-    display: block;
-    padding: rem(24px);
-    overflow-y: auto;
-    background-color: #1a1a1a;
-    color: #fff;
-    flex-grow: 1;
-    padding-top: 10px;
-    margin-top: 15px;
-    &::-webkit-scrollbar {
-        width: 15px;
+
+    background-color: #00ff2a;
+
+    @include for-narrow-layout {
+        display: block;
+        padding: rem(24px);
+        overflow-y: auto;
+        background-color: #00ff2a;
+        color: #fff;
+        flex-grow: 1;
+        padding-top: 10px;
+        margin-top: 15px;
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px #414a55;
+        }
+        &::-webkit-scrollbar-track {
+            background: rgba(29, 105, 238, 0.041);
+        }
+        &::-webkit-scrollbar-track-piece {
+            background: #e7ebff;
+        }
     }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        box-shadow: inset 0 0 10px #414a55;
+
+    @include for-normal-layout {
+        display: block;
+        padding: rem(24px);
+        overflow-y: auto;
+        background-color: #ff1111;
+        color: #fff;
+        flex-grow: 1;
+        padding-top: 10px;
+        margin-top: 15px;
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px #414a55;
+        }
+        &::-webkit-scrollbar-track {
+            background: rgba(88, 238, 29, 0.041);
+        }
+        &::-webkit-scrollbar-track-piece {
+            background: #e7ebff;
+        }
     }
-    &::-webkit-scrollbar-track {
-        background: rgba(29, 105, 238, 0.041);
+
+    @include for-wide-layout {
+        display: block;
+        padding: rem(24px);
+        overflow-y: auto;
+        background-color: #1a1a1a;
+        color: #fff;
+        flex-grow: 1;
+        padding-top: 10px;
+        margin-top: 15px;
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px #414a55;
+        }
+        &::-webkit-scrollbar-track {
+            background: rgba(29, 105, 238, 0.041);
+        }
+        &::-webkit-scrollbar-track-piece {
+            background: #e7ebff;
+        }
     }
-    &::-webkit-scrollbar-track-piece {
-        background: #e7ebff;
-    }
+
+
+
 }
 
 .board-list {
