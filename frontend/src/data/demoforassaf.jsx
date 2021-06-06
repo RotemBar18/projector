@@ -40,6 +40,18 @@ function toggleTaskMember(task, member) {
 
 
 
+
+
+
+
+
+
+
+
+
+toggleTaskMember()
+
+
 export function saveBoard(board) {
     const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
     return async dispatch => {

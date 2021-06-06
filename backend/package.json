@@ -2,7 +2,7 @@
     "name": "backend",
     "version": "1.0.0",
     "engines": {
-    "node": "14.x"
+        "node": "14.x"
     },
     "description": "production ready server",
     "main": "server.js",
