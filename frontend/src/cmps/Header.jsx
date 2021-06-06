@@ -14,7 +14,6 @@ class _Header extends Component {
             <header className="main-header">
                 <Link className='home-link-header' to="/"><HomeOutlinedIcon /></Link>
                 <Link className='boards-link-header' to="/board">Boards</Link>
-                {/* <Link className='logo-header' to="/">EasyTask</Link> */}
                 <Link className='logo-header' to="/"><img className="logo-header-img" src={Logo1}/></Link>
                 {(loggedInUser) ? <Link className='login-link-header' to="/login"> <Avatar className='logged-in-user-avatar' key={loggedInUser._id} src={loggedInUser.imgUrl}>{(!loggedInUser.imgUrl) && utilService.getNameInitials(loggedInUser.fullname)}</Avatar> {loggedInUser.fullname} </Link>
                     : <Link className='login-link-header' to="/login">Login</Link>}
