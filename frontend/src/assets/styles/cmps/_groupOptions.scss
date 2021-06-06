@@ -11,27 +11,27 @@
     z-index: 99;
     position: absolute;
     display: flex;
-    top: 40px;
-    left: 100px;
-    width: 270px;
+    top: rem(40px);
+    left: rem(100px);
+    width: rem(270px);
     flex-direction: column;
     background-color: #fff;
-    border-radius: 3px;
+    border-radius: rem(3px);
     color: #172b4d;
-    padding: 10px;
-    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+    padding: rem(10px);
+    box-shadow: 0 rem(8px) rem(16px) rem(-4px) rgba(9, 30, 66, 0.25), 0 0 0 rem(1px) rgba(9, 30, 66, 0.08);
     text-decoration: none;
     > *:not(:first-child) {
-        padding: 10px 0px 10px 0px;
+        padding: rem(10px) 0px rem(10px) 0px;
         margin: 0px;
     }
     .group-options-header {
         width: 100%;
         display: flex;
-        border-bottom: 0.2px solid rgba(94, 108, 132, 0.25);
+        border-bottom: rem(0.2px) solid rgba(94, 108, 132, 0.25);
         justify-content: space-around;
         align-items: baseline;
-        padding-bottom: 10px;
+        padding-bottom: rem(10px);
         .title {
             line-height: 0.9;
             flex-grow: 1;
@@ -54,7 +54,7 @@
     button {
         text-align: left;
         background-color: rgba(255, 255, 255, 0);
-        border-radius: 5px;
+        border-radius: rem(5px);
     }
     button:hover {
         background-color: rgba(0, 0, 0, 0.068);

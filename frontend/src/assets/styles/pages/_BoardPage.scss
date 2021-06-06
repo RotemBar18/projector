@@ -5,14 +5,14 @@
     background-color: #1a1a1a;
     color: #fff;
     flex-grow: 1;
-    padding-top: 10px;
-    margin-top: 15px;
+    padding-top: rem(10px);
+    margin-top: rem(15px);
     &::-webkit-scrollbar {
-        width: 15px;
+        width: rem(15px);
     }
     &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        box-shadow: inset 0 0 10px #414a55;
+        border-radius: rem(10px);
+        box-shadow: inset 0 0 rem(10px) #414a55;
     }
     &::-webkit-scrollbar-track {
         background: rgba(29, 105, 238, 0.041);
@@ -23,13 +23,13 @@
 }
 
 .board-list {
-    max-width: 1100px;
+    max-width: rem(1100px);
     margin: 0 auto;
-    padding: 30px;
+    padding: rem(30px);
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
-    grid-gap: 20px 10px;
-    gap: 20px 10px;
+    grid-gap: rem(20px) rem(10px);
+    gap: rem(20px) rem(10px);
     justify-content: center;
 }
 
@@ -49,20 +49,21 @@
         outline: none;
         width: 90%;
         margin: auto;
-        margin-bottom: 20px;
+        margin-bottom: rem(20px);
     }
     button {
         margin: auto;
         width: 90%;
         font-size: 0.9rem;
         align-self: center;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
-        border-radius: 3px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+            sans-serif;
+        border-radius: rem(3px);
         background-color: white;
         color: #00395aec;
         transition: 0.3s;
-        padding: 3px 6px;
-        margin-block: 10px;
+        padding: rem(3px) rem(6px);
+        margin-block: rem(10px);
         &:hover {
             color: white;
             background-color: #243757;
@@ -70,27 +71,27 @@
     }
 }
 
-.create-board>* {
+.create-board > * {
     width: 100%;
 }
 
 .board-background-options {
     color: white;
     font-size: rem(12px);
-    width: 280px;
+    width: rem(280px);
     display: grid;
-    grid-template-columns: repeat(3, 70px);
-    grid-gap: 10px 20px;
-    gap: 10px 20px;
+    grid-template-columns: repeat(3, rem(70px));
+    grid-gap: rem(10px) rem(20px);
+    gap: rem(10px) rem(20px);
     justify-content: center;
     align-items: center;
 }
 
 .board-background-thumb {
     object-fit: cover;
-    width: 70px;
-    height: 40px;
-    border-radius: 7px;
+    width: rem(70px);
+    height: rem(40px);
+    border-radius: rem(7px);
     opacity: 0.8;
     cursor: pointer;
     img {
@@ -123,16 +124,16 @@
         background-color: rgba(0, 0, 0, 0.219);
         opacity: 0;
         color: white;
-        border-radius: 3px;
-        margin: 0px 0px 10px 0px;
-        padding: 5px;
+        border-radius: rem(3px);
+        margin: 0px 0px rem(10px) 0px;
+        padding: rem(5px);
         bottom: 0;
         display: flex;
         align-items: center;
         .delete-board-svg {
             display: flex;
             font-size: 1rem;
-            margin-bottom: 1px;
+            margin-bottom: rem(1px);
         }
         &:hover {
             background-color: rgba(0, 0, 0, 0.575);
@@ -151,9 +152,9 @@
         z-index: 98;
         .delete-board-container {
             background-color: white;
-            width: 300px;
-            height: 150px;
-            border-radius: 5px;
+            width: rem(300px);
+            height: rem(150px);
+            border-radius: rem(5px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -161,9 +162,9 @@
                 text-shadow: none;
                 width: 100%;
                 display: flex;
-                border-bottom: 0.2px solid rgba(94, 108, 132, 0.25);
+                border-bottom: rem(0.2px) solid rgba(94, 108, 132, 0.25);
                 justify-content: space-around;
-                padding-block: 10px;
+                padding-block: rem(10px);
                 align-items: baseline;
                 .title {
                     line-height: 0.9;
@@ -177,11 +178,11 @@
             .delete-board-controls {
                 display: flex;
                 justify-content: space-around;
-                margin-bottom: 20px;
-                >* {
+                margin-bottom: rem(20px);
+                > * {
                     margin: 0;
-                    border-radius: 3px;
-                    padding: 10px 20px;
+                    border-radius: rem(3px);
+                    padding: rem(10px) rem(20px);
                 }
                 .delete-board-btn {
                     background-color: #eb5a46;
@@ -220,7 +221,7 @@
     filter: invert(1);
 }
 
-.board-preview:hover>.delete-button {
+.board-preview:hover > .delete-button {
     opacity: 100;
 }
 
@@ -253,8 +254,8 @@
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
+    padding:rem(20px);
+    border: rem(1px) solid #888;
     width: 30%;
     /* Could be more or less, depending on screen size */
 }
