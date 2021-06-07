@@ -147,5 +147,5 @@ function toggleTaskMember(task, member) {
 function getTimeStemp(){
     const event = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return event.toLocaleDateString(undefined, options)
+    return event.toLocaleDateString('en-US', options)
 }
