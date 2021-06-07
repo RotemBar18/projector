@@ -13,6 +13,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
+import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
 import { saveBoard } from '../store/actions/boardActions.js';
 import { taskService } from '../services/taskService.js';
@@ -22,7 +23,8 @@ import { labelService } from '../services/labelService.js';
 import { MembersList } from '../cmps/MembersList';
 import { LabelsList } from '../cmps/LabelsList';
 import { Dates } from '../cmps/Dates';
-import { Checklist } from '../cmps/Checklist'
+import { Checklist } from '../cmps/Checklist';
+
 
 class _TaskDetails extends Component {
 
@@ -33,8 +35,10 @@ class _TaskDetails extends Component {
         isEditLabelsShow: false,
         isEditDateShow: false,
         isAttachmentShow: false,
+        isAttachment2Show: false,
         isChooseCoverShow: false,
         isChecklistShow: false,
+        isMenueShow: false,
         comment: {
             txt: '',
         },
@@ -189,11 +193,24 @@ class _TaskDetails extends Component {
         const { task } = this.state;
         // task.style?.imgurl ? task.style.imgUrl = attachment.url : task.style = 
         task.attachments.push(attachment)
-        if (!task.style?.imgUrl) task.style = {imgUrl: ''}
+        if (!task.style?.imgUrl) task.style = { imgUrl: '' }
         task.style.imgUrl = attachment.url
         const board = this.props.currBoard
         this.props.saveBoard(board)
         this.toggleModal('isAttachmentShow')
+    }
+
+    handleSubmissionFile2 = () => {
+        const { attachment } = this.state;
+        const { task } = this.state;
+        // task.style?.imgurl ? task.style.imgUrl = attachment.url : task.style = 
+        task.attachments.push(attachment)
+        if (!task.style?.imgUrl) task.style = { imgUrl: '' }
+        task.style.imgUrl = attachment.url
+        const board = this.props.currBoard
+        this.props.saveBoard(board)
+        this.toggleModal('isAttachment2Show')
+        this.toggleModal('isMenueShow')
     }
 
     removeLink = (urlIdx = null) => {
@@ -288,9 +305,31 @@ class _TaskDetails extends Component {
                 <div className="card flex column">
                     <div className={'cover flex column ' + this.setCover(style)} style={{ backgroundColor: style?.bgColor && !style?.imgUrl ? style.bgColor : '' }}>
                         <CloseOutlinedIcon className='btn task-details-close' onClick={this.goBack} />
-                       {style?.bgColor && <button className="btn-cover flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover <VideoLabelIcon className='icon'/></button>}
+                        {style?.bgColor && <button className="btn-cover flex" onClick={() => this.toggleModal('isChooseCoverShow')}>cover <VideoLabelIcon className='icon' /></button>}
                         {style?.imgUrl && <img className='preview-img' src={`${style.imgUrl}`} alt="" />}
                     </div>
+                    <div className="menu flex">
+                        <MenuOutlinedIcon className="menu-icon" onClick={() => this.toggleModal('isMenueShow')} />
+                        <h3>ADD TO CARD</h3>
+                    </div>
+                    {this.state.isMenueShow && <div className="menu-sidebar flex column">
+                        <h3 className="sidebar-title">ADD TO CARD</h3>
+                        <button className="btn flex" onClick={() => this.toggleModal('isMembersModalShow')}><PersonOutlineOutlinedIcon className="icon" /> Members</button>
+                        <button className="btn flex" onClick={() => this.toggleModal('isLabelsModalShow')}><LabelOutlinedIcon className="icon" /> Labels</button>
+                        <button className="btn flex" onClick={() => this.toggleModal('isChecklistShow')}><CheckBoxOutlinedIcon className="icon" /> Checklist</button>
+                        <button className="btn flex" onClick={() => this.toggleModal('isEditDateShow')}><AccessTimeIcon className="icon" /> Dates</button>
+                        <button className="btn flex" onClick={() => this.toggleModal('isAttachment2Show')}><AttachFileOutlinedIcon className="icon" /> Attachment</button>
+                    </div>}
+                    {this.state.isAttachment2Show && <div className="attachment2 flex column">
+                        <div className="flex container">
+                            <label htmlFor="text">Attach a link</label>
+                            <CloseOutlinedIcon className='btn task-details-close' onClick={() => this.toggleModal('isAttachment2Show')} />
+                        </div>
+                        <input type="text" name="url" value={this.state.attachment.url || ''} onChange={this.changeHandlerFile} placeholder="Paste any link here..." />
+                        <label htmlFor="text">Link name</label>
+                        <input type="text" name="name" value={this.state.attachment.name || ''} onChange={this.changeHandlerFile} />
+                        <button onClick={this.handleSubmissionFile2}>Attach</button>
+                    </div>}
                     <div className="header">
                         <div className="title flex">
                             <AssignmentOutlinedIcon className="taskIcon" color="disabled" />
