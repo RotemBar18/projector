@@ -38,7 +38,7 @@ class _BoardCharts extends React.Component {
             tasksAmount.push(tasksCount)
             return group.title
         })
-        const tasksPerMember = { "Roey Barda": roeyCount, "Noa Kaplan": noaCount, "Rotem Bar": rotemCount }
+        const tasksPerMember = { "Roey": roeyCount, "Noa": noaCount, "Rotem": rotemCount }
         this.setState({ tasksPerMember })
         this.setState({ groupsTitles, tasksAmount }, () => { console.log('this.state', this.state); })
     }
